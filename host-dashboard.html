@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Host dashboard | Share Your Car (design concept)</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap bar" style="max-width:none">
+    <a class="brand" href="index.html">Share Your Car</a>
+    <a class="small" href="index.html">Back to site</a>
+  </div>
+</header>
+<div class="app">
+  <nav class="side" aria-label="Dashboard">
+    <button data-panel="overview" aria-current="true">Overview</button>
+    <button data-panel="bookings">Bookings</button>
+    <button data-panel="vehicles">Vehicles</button>
+    <button data-panel="insurance">Insurance</button>
+    <button data-panel="parking">Parking</button>
+    <button data-panel="payments">History</button>
+  </nav>
+  <main class="main">
+    <p class="notice">Design concept. All names, dates, and amounts on this page are sample data. Nothing is saved or sent.</p>
+
+    <section class="panel" id="overview" style="padding:0">
+      <h2>Overview</h2><p class="muted">Your vehicles at a glance.</p>
+      <div class="grid2">
+        <div class="stat"><b>2</b><span class="muted small">Vehicles listed</span></div>
+        <div class="stat"><b>1</b><span class="muted small">Upcoming booking</span></div>
+      </div>
+      <h3>Next booking</h3>
+      <div class="note small">Sample Guest A &middot; Compact sedan &middot; Oct 24 to Oct 27</div>
+    </section>
+
+    <section class="panel" id="bookings" hidden style="padding:0">
+      <h2>Upcoming bookings</h2><p class="muted">Sample requests and confirmed trips.</p>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Guest</th><th>Vehicle</th><th>Dates</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Sample Guest A</td><td>Compact sedan</td><td>Oct 24 to 27</td><td><span class="badge ok">Confirmed</span></td></tr>
+          <tr><td>Sample Guest B</td><td>Family SUV</td><td>Nov 2 to 4</td><td><span class="badge pending">Request</span></td></tr>
+        </tbody></table></div>
+    </section>
+
+    <section class="panel" id="vehicles" hidden style="padding:0">
+      <h2>Vehicle management</h2><p class="muted">Sample vehicles. Changes here are not saved.</p>
+      <div class="tabs" role="group" aria-label="Filter vehicles">
+        <button aria-pressed="true" data-vf="all">All</button>
+        <button aria-pressed="false" data-vf="Active">Active</button>
+        <button aria-pressed="false" data-vf="Paused">Paused</button>
+      </div>
+      <div class="tablewrap"><table id="vtable">
+        <thead><tr><th>Vehicle</th><th>Daily rate</th><th>Status</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr data-s="Active"><td>Compact sedan</td><td>$48</td><td><span class="badge ok">Active</span></td><td><button class="btn ghost" data-demo="Editing listings is not connected in this concept.">Edit</button></td></tr>
+          <tr data-s="Paused"><td>Family SUV</td><td>$82</td><td><span class="badge">Paused</span></td><td><button class="btn ghost" data-demo="Editing listings is not connected in this concept.">Edit</button></td></tr>
+        </tbody></table></div>
+      <button class="btn" data-demo="Adding a vehicle is not connected in this concept.">Add vehicle</button>
+    </section>
+
+    <section class="panel" id="insurance" hidden style="padding:0">
+      <h2>Insurance and documentation</h2>
+      <p class="muted">Understand the insurance requirements for your location and vehicle before listing or operating it. Share Your Car does not verify or approve insurance in this concept.</p>
+      <div class="note" style="margin-bottom:var(--s3)">
+        <h3>Enrollment information</h3>
+        <p class="muted small">Where applicable, enrollment information is available through our partner, Roamly.</p>
+        <a class="btn accent" id="roamly" href="#" data-demo="Placeholder only. Replace ROAMLY_PARTNER_URL_HERE with the verified partner link.">Continue to Roamly enrollment</a>
+      </div>
+      <h3>Document status</h3>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Document</th><th>Status</th></tr></thead>
+        <tbody><tr><td id="doc-name">No document selected</td><td><span class="badge" id="doc-badge">Not provided</span></td></tr></tbody></table></div>
+      <div class="drop">
+        <label for="doc">Choose a document (demo)</label>
+        <input id="doc" type="file" accept=".pdf,.jpg,.jpeg,.png">
+        <p class="muted small" style="margin:8px 0 0">Files are read in your browser only. Nothing is uploaded to a server.</p>
+      </div>
+    </section>
+
+    <section class="panel" id="parking" hidden style="padding:0">
+      <h2>Share Your Car Parking</h2>
+      <p class="notice">Coming soon. Reservations open only after the first physical location launches.</p>
+      <h3>Sample location (demonstration data)</h3>
+      <div class="note small" style="margin-bottom:var(--s2)">Sample Lot 1, Downtown. Proposed rate: approximately $10 to $20. Billing period not yet finalized.</div>
+      <div style="margin-bottom:var(--s2)">
+        <label for="pv">Vehicle</label>
+        <select id="pv" disabled><option>Compact sedan</option><option>Family SUV</option></select>
+      </div>
+      <button class="btn" disabled>Reserve parking (unavailable)</button>
+      <h3 style="margin-top:var(--s4)">Reservation history</h3>
+      <div class="empty">No reservations yet. They will appear here once parking launches.</div>
+      <h3>Parking payments</h3>
+      <div class="empty">No parking payments. Payment history will appear here after launch.</div>
+    </section>
+
+    <section class="panel" id="payments" hidden style="padding:0">
+      <h2>Booking and payment history</h2><p class="muted">Sample records. No real payments are processed.</p>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Date</th><th>Booking</th><th>Amount</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Sep 12</td><td>Compact sedan, 2 days</td><td>$96</td><td><span class="badge ok">Paid (sample)</span></td></tr>
+          <tr><td>Sep 28</td><td>Family SUV, 3 days</td><td>$246</td><td><span class="badge ok">Paid (sample)</span></td></tr>
+        </tbody></table></div>
+    </section>
+  </main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="dashboard.js"></script>
+</body>
+</html>

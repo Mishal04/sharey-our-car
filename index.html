@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Share Your Car | Rent Cars from Local Hosts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+:root{--ink:#0B0D12;--ink2:#14171F;--lime:#B6F25C;--bg:#F6F6F4;--line:#E6E6E2;--muted:#6B6D75;--text:#111318;--r:20px;--ease:cubic-bezier(.2,.8,.2,1)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}button,input{font:inherit;color:inherit}button{cursor:pointer;border:0;background:none}
+:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
+h1,h2,h3{letter-spacing:-.03em;line-height:1.08}
+h1{font-size:clamp(2.8rem,7vw,5.2rem);font-weight:800}
+h2{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:800}
+h3{font-size:1.1rem;font-weight:700;letter-spacing:-.01em}
+p{color:var(--muted)}
+.wrap{width:min(1180px,92%);margin:0 auto}
+.section{padding:100px 0}
+.dark{background:var(--ink);color:#fff}.dark p{color:#A3A5AD}
+.eyebrow{font-size:.78rem;font-weight:600;color:var(--muted)}
+.dark .eyebrow{color:var(--lime)}
+.head{max-width:620px;margin-bottom:48px}.head h2{margin:10px 0 14px}.head p{font-size:1.04rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 26px;border-radius:14px;font-weight:700;font-size:.95rem;transition:transform .25s var(--ease),background .25s,color .25s}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:scale(.97)}
+.btn-lime{background:var(--lime);color:var(--ink)}.btn-lime:hover{background:#c8ff72}
+.btn-ghost{border:1px solid rgba(255,255,255,.25);color:#fff}.btn-ghost:hover{background:rgba(255,255,255,.1)}
+.btn-white{background:#fff;color:var(--ink)}.btn-white:hover{background:var(--lime)}
+.btn-sm{min-height:40px;padding:0 18px;font-size:.86rem;border-radius:11px}.btn-block{width:100%}
+
+/* ========== PROFESSIONAL NAVBAR ========== */
+.nav{
+  position:fixed;
+  top:16px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:100;
+  width:min(1120px,94%);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:11px 12px 11px 18px;
+  border-radius:18px;
+  background:rgba(11,13,18,0.88);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,0.12);
+  box-shadow:0 10px 40px rgba(0,0,0,0.35);
+  color:#fff;
+}
+.logo{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  font-weight:800;
+  font-size:1.05rem;
+  letter-spacing:-0.03em;
+  color:#fff;
+}
+.logo-icon{
+  width:36px;
+  height:36px;
+  border-radius:11px;
+  background:var(--lime);
+  color:var(--ink);
+  display:grid;
+  place-items:center;
+  flex-shrink:0;
+}
+.logo-icon svg{
+  width:20px;
+  height:20px;
+}
+.nav-links{
+  display:flex;
+  gap:2px;
+}
+.nav-links a{
+  padding:9px 15px;
+  border-radius:11px;
+  font-size:0.9rem;
+  font-weight:600;
+  color:rgba(255,255,255,0.68);
+  transition:all 0.25s ease;
+}
+.nav-links a:hover{
+  color:#fff;
+  background:rgba(255,255,255,0.09);
+}
+.nav-cta{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+
+.hero{min-height:100vh;padding:140px 0 80px;display:flex;align-items:center;background:var(--ink);color:#fff}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:50px;align-items:center}
+.tag{display:inline-flex;gap:10px;align-items:center;padding:8px 14px;border-radius:99px;border:1px solid rgba(255,255,255,.15);font-size:.8rem;font-weight:600;color:#E3E3DE}
+.tag i{width:8px;height:8px;border-radius:50%;background:var(--lime)}
+.hero h1{margin:22px 0 18px}.hero h1 span{color:var(--lime)}
+.lead{font-size:1.1rem;color:#B3B5BC;max-width:480px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.search{margin-top:32px;display:grid;grid-template-columns:1.3fr 1fr 1fr auto;gap:8px;padding:8px;border-radius:20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);max-width:640px}
+.search div{display:flex;flex-direction:column;padding:9px 14px;border-radius:14px;background:rgba(11,13,18,.55)}
+.search div:focus-within{box-shadow:inset 0 0 0 1.5px var(--lime)}
+.search label{font-size:.72rem;font-weight:600;color:#8E919B}
+.search input{background:transparent;border:0;outline:0;font-weight:600;color:#fff;color-scheme:dark;width:100%}
+.search .btn{border-radius:14px}
+.stats{display:flex;gap:34px;margin-top:30px;flex-wrap:wrap}.stats div{font-size:.84rem;color:#8E919B}.stats b{display:block;font-size:1.3rem;color:#fff;font-weight:700}
+.hero-art{position:relative;height:520px}
+.ph{position:relative;overflow:hidden;background:#1B1E27}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.hero-photo{position:absolute;inset:0;border-radius:30px;border:1px solid rgba(255,255,255,.1)}
+.hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(11,13,18,.7))}
+.float{position:absolute;z-index:3;padding:14px 18px;border-radius:16px;background:#fff;color:var(--muted);font-size:.78rem;font-weight:600;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.float b{display:block;font-size:1.15rem;color:var(--text);font-weight:800;letter-spacing:-.02em}
+.f1{top:-14px;left:-10px}.f2{bottom:28px;right:-10px;display:flex;gap:10px;align-items:center}
+.f2 i{width:32px;height:32px;border-radius:10px;background:var(--lime);color:var(--ink);display:grid;place-items:center;font-style:normal;font-weight:800}
+
+.tabs{display:inline-flex;gap:4px;padding:5px;background:#fff;border:1px solid var(--line);border-radius:14px;margin-bottom:24px;flex-wrap:wrap}
+.tabs button{padding:9px 18px;border-radius:10px;font-weight:600;font-size:.9rem;color:var(--muted);transition:.25s}
+.tabs button.on{background:var(--ink);color:#fff}
+.cars{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.car{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:transform .4s var(--ease),box-shadow .4s}
+.car:hover{transform:translateY(-4px);box-shadow:0 24px 48px rgba(11,13,18,.12)}
+.car:hover .ph img{transform:scale(1.05)}
+.car .ph{height:230px;background:#E7E7E3}
+.badge{position:absolute;top:14px;left:14px;z-index:2;padding:6px 12px;border-radius:99px;background:#fff;font-size:.74rem;font-weight:700}
+.badge.hl{background:var(--lime)}
+.heart{position:absolute;top:12px;right:12px;z-index:2;width:38px;height:38px;border-radius:50%;background:#fff;font-size:1.05rem;display:grid;place-items:center}
+.heart.on{color:#E11D48}
+.car-info{padding:18px 20px 20px}.car-info h3{margin-bottom:6px}
+.meta{display:flex;gap:14px;flex-wrap:wrap;font-size:.82rem;color:var(--muted);font-weight:500;margin-bottom:14px}
+.row{display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid var(--line)}
+.price{font-size:1.3rem;font-weight:800;letter-spacing:-.02em}.price small{font-size:.78rem;color:var(--muted);font-weight:500}
+.rate{font-weight:700;font-size:.9rem}
+
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.step{padding:32px 30px;border-radius:var(--r);background:#fff;border:1px solid var(--line)}
+.step .num{font-size:3rem;font-weight:800;letter-spacing:-.05em;color:#D6D7D2;line-height:1}
+.step h3{margin:16px 0 8px;font-size:1.22rem}
+
+.earn{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.calc{margin-top:28px;background:var(--ink2);border:1px solid rgba(255,255,255,.08);border-radius:26px;padding:28px}
+.sl{margin-bottom:22px}.sl-top{display:flex;justify-content:space-between;font-weight:600;font-size:.9rem;margin-bottom:10px;color:#DADBD6}.sl-top output{color:#fff;font-weight:800}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:8px;background:linear-gradient(90deg,var(--lime) var(--p,50%),rgba(255,255,255,.12) var(--p,50%));outline:0}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:#fff;border:4px solid var(--lime);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:#fff;border:4px solid var(--lime);cursor:pointer}
+.out{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;padding:20px 22px;border-radius:18px;background:rgba(182,242,92,.08);border:1px solid rgba(182,242,92,.28);margin:6px 0 20px}
+.out span{font-size:.8rem;color:#B3B5BC;font-weight:600}.out strong{font-size:2.6rem;font-weight:800;letter-spacing:-.04em;color:var(--lime);line-height:1}
+.calc small{display:block;color:#7C7F89;font-size:.76rem;margin-top:12px}
+.bento{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.tile{padding:24px;border-radius:22px;background:var(--ink2);border:1px solid rgba(255,255,255,.08)}
+.tile .ico{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:rgba(182,242,92,.12);color:var(--lime);margin-bottom:16px;font-weight:800}
+.tile h3{color:#fff;margin-bottom:6px;font-size:1.02rem}.tile p{font-size:.9rem}
+
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.tc{padding:28px;border-radius:var(--r);background:#fff;border:1px solid var(--line)}
+.tc .ico{width:50px;height:50px;border-radius:16px;display:grid;place-items:center;background:#F0F0EC;margin-bottom:18px;font-weight:800}
+.tc p{margin-top:8px;font-size:.92rem}
+.notice{margin-top:24px;padding:20px 24px;border-radius:18px;background:#EDEDE9;border:1px solid #E0E0DA;color:#3A3C44;font-size:.92rem}
+
+.dash{background:#fff;border-radius:26px;border:1px solid var(--line);box-shadow:0 30px 70px rgba(11,13,18,.12);overflow:hidden;display:grid;grid-template-columns:210px 1fr;min-height:480px}
+.side{background:var(--ink);color:#fff;padding:22px 14px;display:flex;flex-direction:column;gap:6px}
+.side .logo{padding:0 8px 20px;font-size:.92rem}
+.side button{padding:12px 14px;border-radius:12px;font-weight:600;font-size:.9rem;color:#8E919B;text-align:left;transition:.25s}
+.side button:hover{color:#fff;background:rgba(255,255,255,.06)}.side button.on{background:var(--lime);color:var(--ink)}
+.main{padding:26px;background:var(--bg)}
+.dv{display:none}.dv.on{display:block}
+.dv>h3{font-size:1.3rem;margin-bottom:18px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
+.kpi{background:#fff;border-radius:16px;padding:18px;border:1px solid var(--line)}
+.kpi span{font-size:.76rem;color:var(--muted);font-weight:600}.kpi b{display:block;font-size:1.5rem;font-weight:800;letter-spacing:-.03em}
+.chart{background:#fff;border-radius:18px;padding:20px;border:1px solid var(--line)}
+.bars{display:flex;align-items:flex-end;gap:12px;height:160px;margin-top:14px}
+.bars div{flex:1;border-radius:8px 8px 3px 3px;background:#D6D7D2}
+.bars div.hi{background:var(--lime)}
+.labels{display:flex;gap:12px;margin-top:8px;font-size:.74rem;color:var(--muted);font-weight:600}.labels span{flex:1;text-align:center}
+.lrow{display:flex;align-items:center;gap:14px;padding:12px;background:#fff;border-radius:16px;border:1px solid var(--line);margin-bottom:10px}
+.lrow .ph{width:80px;height:58px;border-radius:12px;flex:0 0 80px;background:#E7E7E3}
+.lrow .g{flex:1;min-width:0}.lrow p{font-size:.8rem}
+.sw{width:46px;height:27px;border-radius:99px;background:#CFCFCA;position:relative;transition:.3s;flex:0 0 46px}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:21px;height:21px;border-radius:50%;background:#fff;transition:transform .3s var(--ease)}
+.sw.on{background:var(--ink)}.sw.on::after{transform:translateX(19px);background:var(--lime)}
+.ins{display:grid;gap:12px}
+.ins>div{display:flex;gap:14px;background:#fff;padding:16px;border-radius:14px;border:1px solid var(--line)}
+.ins span{flex:0 0 26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--lime);color:var(--ink);font-weight:800;font-size:.8rem}
+.ins p{font-size:.88rem}
+.pk{padding:20px;border-radius:18px;background:var(--ink);color:#fff}.pk p{color:#A3A5AD;margin-top:6px;font-size:.9rem}
+
+.book{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.book ul{list-style:none;display:grid;gap:14px;margin-top:24px}
+.book li{display:flex;gap:12px;font-weight:600;color:#E3E3DE}
+.book li span{flex:0 0 26px;height:26px;border-radius:50%;background:var(--lime);color:var(--ink);display:grid;place-items:center;font-weight:800;font-size:.8rem}
+.phones{display:flex;justify-content:center;position:relative;height:560px;align-items:center}
+.phone{position:absolute;width:260px;height:530px;border-radius:42px;background:#000;padding:11px;box-shadow:0 40px 80px rgba(0,0,0,.5),inset 0 0 0 2px #2A2D38}
+.phone:nth-child(1){transform:translate(-105px,16px) rotate(-5deg)}.phone:nth-child(2){transform:translate(105px,-10px) rotate(4deg)}
+.screen{height:100%;border-radius:32px;background:var(--bg);overflow:hidden;padding:46px 16px 16px;display:flex;flex-direction:column;gap:10px;color:var(--text)}
+.screen .t{font-weight:800;font-size:1.05rem}
+.screen .ph{height:130px;border-radius:18px;background:#E7E7E3}
+.sr{display:flex;justify-content:space-between;font-size:.82rem;color:var(--muted);font-weight:500}.sr b{color:var(--text)}
+.sc{background:#fff;border-radius:16px;padding:12px;border:1px solid var(--line);font-size:.86rem}
+.sbtn{margin-top:auto;height:48px;border-radius:14px;background:var(--lime);color:var(--ink);font-weight:800;display:grid;place-items:center;transition:.3s}
+.sbtn.done{background:var(--ink);color:var(--lime)}
+.chip{display:inline-block;padding:4px 10px;border-radius:99px;font-size:.72rem;font-weight:700;background:var(--lime);color:var(--ink)}
+
+.park{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px}
+.coming{display:inline-flex;gap:8px;align-items:center;width:max-content;padding:8px 14px;border-radius:99px;background:rgba(182,242,92,.1);border:1px solid rgba(182,242,92,.35);color:var(--lime);font-weight:700;font-size:.8rem}
+.park h2{margin:16px 0}
+.plist{list-style:none;display:grid;gap:12px;margin:20px 0}.plist li{display:flex;gap:12px;color:#D4D5D0;font-weight:500}
+.plist li::before{content:"";flex:0 0 8px;height:8px;margin-top:9px;border-radius:50%;background:var(--lime)}
+.notify{display:flex;gap:8px;margin-top:18px;padding:6px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);max-width:460px}
+.notify input{flex:1;min-width:0;background:transparent;border:0;outline:0;padding:0 12px;color:#fff}
+.notify input::placeholder{color:#7C7F89}
+.map{position:relative;border-radius:26px;overflow:hidden;min-height:440px;border:1px solid rgba(255,255,255,.08)}
+.map iframe{width:100%;height:100%;min-height:440px;border:0;display:block}
+
+.cta{border-radius:34px;padding:76px 40px;text-align:center;color:#fff;background:var(--ink)}
+.cta p{color:#B3B5BC;margin:16px auto 30px;max-width:500px}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+footer{background:var(--ink);color:#8E919B;padding:60px 0 36px}
+.fg{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:36px}
+footer h4{color:#fff;font-size:.9rem;margin-bottom:14px}footer ul{list-style:none;display:grid;gap:10px;font-size:.9rem}footer a:hover{color:#fff}
+.fb2{margin-top:44px;padding-top:22px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.82rem}.fb2 small{max-width:600px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,160%);background:var(--ink);color:#fff;padding:14px 22px;border-radius:14px;font-weight:600;font-size:.9rem;z-index:300;transition:transform .5s var(--ease);max-width:calc(100% - 32px);text-align:center;border:1px solid rgba(255,255,255,.12)}
+.toast.show{transform:translate(-50%,0)}
+.rv{opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease),transform .6s var(--ease)}.rv.in{opacity:1;transform:none}
+
+@media(max-width:1024px){.hero-grid,.earn,.park,.book{grid-template-columns:1fr}.hero-art{height:420px}.trust{grid-template-columns:1fr 1fr}.dash{grid-template-columns:1fr}.side{flex-direction:row;overflow-x:auto}.side .logo{display:none}.side button{white-space:nowrap}.fg{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){.section{padding:72px 0}.nav-links{display:none}.search{grid-template-columns:1fr}.cars,.steps,.bento,.trust{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr}.f1{left:0}.f2{right:0}.fg{grid-template-columns:1fr}.cta{padding:52px 22px}.notify{flex-direction:column}.phones{height:520px}.phone{width:230px;height:480px}.phone:nth-child(1){transform:translate(-60px,14px) rotate(-5deg)}.phone:nth-child(2){transform:translate(60px,-8px) rotate(4deg)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <a href="#top" class="logo">
+    <div class="logo-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 17h14v-5l-1.5-4.5A2 2 0 0 0 15.6 6H8.4a2 2 0 0 0-1.9 1.5L5 12v5z"/>
+        <circle cx="7.5" cy="17.5" r="1.5"/>
+        <circle cx="16.5" cy="17.5" r="1.5"/>
+        <path d="M5 12h14"/>
+      </svg>
+    </div>
+    <span>Share Your Car</span>
+  </a>
+
+  <nav class="nav-links">
+    <a href="#cars">Cars</a>
+    <a href="#how">How it works</a>
+    <a href="#earn">Earn</a>
+    <a href="#trust">Insurance</a>
+    <a href="#parking">Parking</a>
+  </nav>
+
+  <div class="nav-cta">
+    <a href="#" class="btn btn-ghost btn-sm" data-toast="Sign in opens here">Log in</a>
+    <button class="btn btn-lime btn-sm" data-list>List your car</button>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="tag"><i></i>Available in Austin, Denver and Miami</span>
+      <h1>Your car.<br><span>Your way.</span></h1>
+      <p class="lead">Rent well-kept cars from local hosts for a day, a weekend, or a month. Or share your own and earn while it's parked.</p>
+      <div class="hero-btns"><a href="#cars" class="btn btn-lime">Find a car</a><button class="btn btn-ghost" data-list>Start hosting</button></div>
+      <form class="search" id="search">
+        <div><label for="hl">Location</label><input id="hl" value="Downtown Austin, TX" /></div>
+        <div><label for="hs">Pick-up</label><input id="hs" type="date" /></div>
+        <div><label for="he">Return</label><input id="he" type="date" /></div>
+        <button class="btn btn-white" type="submit">Search</button>
+      </form>
+      <div class="stats"><div><b>Host-set pricing</b>You choose your rate</div><div><b>Secure checkout</b>Payments via a trusted provider</div><div><b>Reviews</b>From verified trips</div></div>
+    </div>
+    <div class="hero-art">
+      <div class="ph hero-photo" id="heroPhoto"></div>
+      <div class="float f1"><span>Earned this month</span><b>$1,240</b></div>
+      <div class="float f2"><i>✓</i><div><b style="font-size:.95rem">Booking confirmed</b>Pick-up 10:00 AM, Downtown Austin</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="cars">
+  <div class="wrap">
+    <div class="head rv"><span class="eyebrow">Top rated near you</span><h2>Cars people book again and again</h2><p>Every host sets their own prices and availability. Compare photos, ratings, and reviews before you book.</p></div>
+    <div class="tabs rv" id="tabs"><button class="on" data-f="all">All</button><button data-f="sedan">Sedans</button><button data-f="suv">SUVs</button><button data-f="truck">Trucks</button><button data-f="electric">Electric</button><button data-f="sports">Sports</button></div>
+    <div class="cars" id="grid"></div>
+  </div>
+</section>
+
+<section class="section" id="how" style="padding-top:10px">
+  <div class="wrap">
+    <div class="head rv"><span class="eyebrow">How it works</span><h2>On the road in three steps</h2></div>
+    <div class="steps">
+      <div class="step rv"><div class="num">1</div><h3>Find your car</h3><p>Search by city and dates, then filter by type, seats, or fuel. Read reviews from real drivers.</p></div>
+      <div class="step rv"><div class="num">2</div><h3>Book and message</h3><p>Confirm your dates and chat with your host. Payment is processed securely at checkout.</p></div>
+      <div class="step rv"><div class="num">3</div><h3>Drive and review</h3><p>Pick up the keys, enjoy the drive, return on time, and leave a review for the next driver.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section dark" id="earn">
+  <div class="wrap earn">
+    <div class="rv">
+      <span class="eyebrow">For hosts</span>
+      <h2 style="margin:10px 0 16px">Your car can earn while it's parked</h2>
+      <p style="font-size:1.04rem">Set your own price, choose when your car is available, and get paid after every completed trip. Use the calculator to estimate what your car could earn.</p>
+      <div class="calc">
+        <div class="sl"><div class="sl-top"><label for="rate">Daily rate</label><output id="rateOut">$60</output></div><input type="range" id="rate" min="25" max="250" step="5" value="60" /></div>
+        <div class="sl"><div class="sl-top"><label for="days">Days booked per month</label><output id="daysOut">12</output></div><input type="range" id="days" min="2" max="30" value="12" /></div>
+        <div class="out"><span>Estimated monthly earnings</span><strong id="earnOut">$612</strong></div>
+        <button class="btn btn-lime btn-block" data-list>Start hosting</button>
+        <small>Illustrative only. Assumes a 15% platform fee; actual earnings depend on demand and pricing.</small>
+      </div>
+    </div>
+    <div class="bento rv">
+      <div class="tile"><div class="ico">$</div><h3>Set your price</h3><p>Adjust daily rates for weekends, holidays, or long trips.</p></div>
+      <div class="tile"><div class="ico">▦</div><h3>Your calendar</h3><p>Block dates for personal use and open them when you're ready.</p></div>
+      <div class="tile"><div class="ico">◆</div><h3>Insurance guidance</h3><p>Clear requirements and partner options in your dashboard.</p></div>
+      <div class="tile"><div class="ico">↗</div><h3>Paid after each trip</h3><p>Earnings go to your payout account once a trip is complete.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="trust">
+  <div class="wrap">
+    <div class="head rv"><span class="eyebrow">Insurance &amp; responsibility</span><h2>Clear rules. Shared responsibility.</h2><p>Hosts are responsible for keeping the insurance their vehicle requires. We make the requirements easy to understand and coverage easy to find.</p></div>
+    <div class="trust">
+      <div class="tc rv"><div class="ico">1</div><h3>Know the requirements</h3><p>Our onboarding explains what coverage applies in your state before your car goes live.</p></div>
+      <div class="tc rv"><div class="ico">2</div><h3>Keep your own policy</h3><p>If your current insurance qualifies, you can keep using it under our platform terms.</p></div>
+      <div class="tc rv"><div class="ico">3</div><h3>Partner options</h3><p>Need coverage? Explore options through our insurance partner, Roamly, from your dashboard.</p></div>
+      <div class="tc rv"><div class="ico">4</div><h3>Secure payments</h3><p>Booking payments are processed through a secure payment provider.</p></div>
+    </div>
+    <div class="notice rv">Share Your Car does not verify or guarantee every host's insurance coverage. Hosts remain responsible for ensuring their policies are appropriate and valid while their vehicle is listed.</div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:10px">
+  <div class="wrap">
+    <div class="head rv"><span class="eyebrow">Host dashboard</span><h2>Everything in one place</h2><p>Click through the sections to see the dashboard hosts will use.</p></div>
+    <div class="dash rv">
+      <aside class="side">
+        <a href="#top" class="logo" style="padding:0 8px 20px;font-size:.92rem">
+          <div class="logo-icon" style="width:32px;height:32px">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 17h14v-5l-1.5-4.5A2 2 0 0 0 15.6 6H8.4a2 2 0 0 0-1.9 1.5L5 12v5z"/>
+              <circle cx="7.5" cy="17.5" r="1.5"/>
+              <circle cx="16.5" cy="17.5" r="1.5"/>
+              <path d="M5 12h14"/>
+            </svg>
+          </div>
+          <span>Share Your Car</span>
+        </a>
+        <button class="on" data-dv="ov">Overview</button>
+        <button data-dv="ls">My listings</button>
+        <button data-dv="in">Insurance</button>
+        <button data-dv="pk">Parking (soon)</button>
+      </aside>
+      <div class="main">
+        <div class="dv on" id="dv-ov"><h3>Welcome back, Jordan</h3>
+          <div class="kpis"><div class="kpi"><span>This month</span><b>$1,240</b></div><div class="kpi"><span>Trips</span><b>18</b></div><div class="kpi"><span>Rating</span><b>4.9</b></div></div>
+          <div class="chart"><b>Earnings, last 6 months</b><div class="bars" id="bars"></div><div class="labels" id="labels"></div></div>
+        </div>
+        <div class="dv" id="dv-ls"><h3>My listings</h3><div id="lrows"></div></div>
+        <div class="dv" id="dv-in"><h3>Insurance responsibilities</h3>
+          <div class="ins">
+            <div><span>✓</span><section><b>Responsibility acknowledged</b><p>You confirmed you will maintain required coverage.</p></section></div>
+            <div><span>✓</span><section><b>Policy must stay valid</b><p>Keep your policy active while your vehicle is listed.</p></section></div>
+            <div><span>!</span><section><b>Tell your insurer</b><p>Confirm your insurer knows the vehicle may be shared on a platform.</p></section></div>
+            <div><span>→</span><section><b>Explore partner coverage</b><p>Roamly options are available from this section at any time.</p></section></div>
+          </div>
+        </div>
+        <div class="dv" id="dv-pk"><div class="pk"><b style="font-size:1.1rem">Share Your Car Parking</b><p>Not yet active. Reserve a secure space at our location so renters can pick up with staff on hand. Activates when our first location opens.</p></div>
+          <div class="chart" style="margin-top:14px;opacity:.65"><b>Reserve a space</b><p style="font-size:.86rem;margin-top:6px">Indicative $10–$20 per visit. Final rates announced at launch.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section dark" id="booking">
+  <div class="wrap book">
+    <div class="rv">
+      <span class="eyebrow">Booking</span>
+      <h2 style="margin:10px 0 16px">Booking that feels like an app</h2>
+      <p style="font-size:1.04rem">Pick a car, choose your dates, and send your request in a few taps. Your host replies in the app, and you get pick-up details in your trips tab.</p>
+      <ul><li><span>1</span>See the total before you request</li><li><span>2</span>Chat with your host directly in the app</li><li><span>3</span>Track every trip in one place</li></ul>
+    </div>
+    <div class="phones rv">
+      <div class="phone"><div class="screen">
+        <div class="t">Camry, Austin TX</div><div class="ph" id="phPhone"></div>
+        <div class="sr"><span>Hosted by Jordan R.</span><b>★ 4.92</b></div><span class="chip" style="align-self:flex-start">Top host</span>
+        <div class="sc"><div class="sr"><span>Per day</span><b>$52</b></div><div class="sr" style="margin-top:6px"><span>Dates</span><b>Oct 24 – 25</b></div><div class="sr" style="margin-top:6px"><span>Total</span><b>$104</b></div></div>
+        <div class="sbtn" id="req" style="cursor:pointer">Request to book</div>
+      </div></div>
+      <div class="phone"><div class="screen">
+        <div class="t">Trips</div>
+        <div class="sc"><b>Camry, Austin TX</b><div class="sr" style="margin-top:6px"><span>Sat, Oct 24 – Sun, Oct 25</span><span class="chip">Confirmed</span></div></div>
+        <div class="sc"><b>Model Y, Denver CO</b><div class="sr" style="margin-top:6px"><span>Waiting for host</span><span class="chip" style="background:#E7E7E3">Pending</span></div></div>
+        <div class="sc" style="background:var(--ink);color:#fff;border:0"><b style="color:var(--lime)">Pick-up details</b><p style="color:#A3A5AD;font-size:.8rem;margin-top:6px">10:00 AM, Downtown Austin meeting point. Your host will message you the exact spot.</p></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section dark" id="parking" style="padding-top:0">
+  <div class="wrap park">
+    <div class="rv">
+      <span class="coming">Coming with our first location</span>
+      <h2>Share Your Car Parking</h2>
+      <p style="font-size:1.04rem">Soon, hosts can reserve a secure space at our physical locations, so renters can pick up vehicles with staff on hand during business hours. Parking is not yet open for bookings.</p>
+      <ul class="plist"><li>Reserve a space for an eligible listed vehicle</li><li>See rates, billing, and payment history in one place</li><li>Receive pick-up instructions for each reservation</li><li>Hand over keys yourself outside business hours</li></ul>
+      <p style="font-size:.84rem">Indicative rate: $10–$20 per visit. Final pricing and billing period to be announced.</p>
+      <form class="notify" id="notify"><input type="email" placeholder="Email me when parking opens" aria-label="Email" required /><button class="btn btn-lime btn-sm" type="submit">Notify me</button></form>
+    </div>
+    <div class="map rv">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110502.7539188404!2d-97.82144765!3d30.307182!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644b599a0cc032f%3A0x5d9b464bd469d57a!2sAustin%2C%20TX!5e0!3m2!1sen!2sus!4v1710000000000" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:60px">
+  <div class="wrap"><div class="cta rv"><h2>Ready to share the road?</h2><p>Find a car for your next trip, or list your own and let it work for you.</p>
+    <div class="cta-btns"><a href="#cars" class="btn btn-lime">Find a car</a><button class="btn btn-ghost" data-list>List your car</button></div></div></div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fg">
+      <div>
+        <a href="#top" class="logo" style="color:#fff">
+          <div class="logo-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 17h14v-5l-1.5-4.5A2 2 0 0 0 15.6 6H8.4a2 2 0 0 0-1.9 1.5L5 12v5z"/>
+              <circle cx="7.5" cy="17.5" r="1.5"/>
+              <circle cx="16.5" cy="17.5" r="1.5"/>
+              <path d="M5 12h14"/>
+            </svg>
+          </div>
+          <span>Share Your Car</span>
+        </a>
+        <p style="margin-top:14px;max-width:320px;font-size:.92rem">A peer-to-peer marketplace connecting drivers with local vehicle hosts.</p>
+      </div>
+      <div><h4>Drivers</h4><ul><li><a href="#cars">Find a car</a></li><li><a href="#how">How it works</a></li><li><a href="#">Help center</a></li></ul></div>
+      <div><h4>Hosts</h4><ul><li><a href="#earn">Become a host</a></li><li><a href="#trust">Host insurance</a></li><li><a href="#">Host resources</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact</a></li></ul></div>
+    </div>
+    <div class="fb2"><span>© 2026 Share Your Car. All rights reserved.</span><small>Insurance options are provided through third-party partners. Share Your Car does not guarantee coverage for any host. Hosts are responsible for maintaining appropriate insurance for their vehicles.</small></div>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+
+const cars=[
+  {name:'Toyota Camry',year:2022,price:52,rating:4.92,cat:'sedan',loc:'Austin, TX',seats:5,trans:'Automatic',badge:'Top host',hl:1,photo:'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=800&q=80'},
+  {name:'Tesla Model Y',year:2023,price:89,rating:4.97,cat:'electric suv',loc:'Los Angeles, CA',seats:5,trans:'Automatic',badge:'Electric',hl:1,photo:'https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=800&q=80'},
+  {name:'Ford F-150',year:2022,price:95,rating:4.88,cat:'truck',loc:'Denver, CO',seats:5,trans:'Automatic',badge:'Work truck',photo:'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=800&q=80'},
+  {name:'Jeep Wrangler',year:2021,price:88,rating:4.90,cat:'suv',loc:'Seattle, WA',seats:4,trans:'Automatic',badge:'Adventure',photo:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=800&q=80'},
+  {name:'Ford Mustang GT',year:2022,price:130,rating:4.95,cat:'sports',loc:'Miami, FL',seats:4,trans:'Manual',badge:'Sports',photo:'https://images.unsplash.com/photo-1494905998402-395d579af36f?auto=format&fit=crop&w=800&q=80'},
+  {name:'Honda CR-V',year:2023,price:68,rating:4.84,cat:'suv',loc:'Atlanta, GA',seats:5,trans:'Automatic',badge:'Family pick',photo:'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=800&q=80'}
+];
+
+const photo = (src, label) => `<img src="${src}" alt="${label}" style="opacity:1">`;
+
+$('#heroPhoto').innerHTML = photo('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80', 'Share Your Car');
+$('#phPhone').innerHTML = photo(cars[0].photo, cars[0].name);
+
+const grid = $('#grid');
+function render(f){
+  grid.innerHTML = cars.filter(c => f === 'all' || c.cat.split(' ').includes(f)).map(c => `
+  <article class="car">
+    <div class="ph"><span class="badge ${c.hl ? 'hl' : ''}">${c.badge}</span><button class="heart" aria-label="Save">♡</button>${photo(c.photo, c.name)}</div>
+    <div class="car-info"><h3>${c.name} ${c.year}</h3>
+      <div class="meta"><span>${c.seats} seats</span><span>${c.trans}</span><span>${c.loc}</span></div>
+      <div class="row"><div class="price">$${c.price} <small>/ day</small></div><span class="rate">★ ${c.rating.toFixed(2)}</span></div></div>
+  </article>`).join('');
+}
+render('all');
+$('#tabs').addEventListener('click', e => {
+  const b = e.target.closest('button');
+  if (!b) return;
+  $$('#tabs button').forEach(x => x.classList.toggle('on', x === b));
+  render(b.dataset.f);
+});
+
+const rate = $('#rate'), days = $('#days');
+function calc(){
+  const r = +rate.value, d = +days.value;
+  $('#rateOut').textContent = '$' + r;
+  $('#daysOut').textContent = d;
+  $('#earnOut').textContent = '$' + Math.round(r * d * .85).toLocaleString('en-US');
+  [rate, days].forEach(el => el.style.setProperty('--p', (el.value - el.min) / (el.max - el.min) * 100 + '%'));
+}
+rate.oninput = days.oninput = calc; calc();
+
+const earn = [['May',480],['Jun',620],['Jul',540],['Aug',790],['Sep',940],['Oct',1240]], mx = 1240;
+$('#bars').innerHTML = earn.map((x,i) => `<div class="${i===5?'hi':''}" style="height:${Math.round(x[1]/mx*100)}%" title="$${x[1]}"></div>`).join('');
+$('#labels').innerHTML = earn.map(x => `<span>${x[0]}</span>`).join('');
+$('#lrows').innerHTML = cars.slice(0,3).map((c,i) => `<div class="lrow"><div class="ph">${photo(c.photo, c.name)}</div><div class="g"><b>${c.name} ${c.year}</b><p>${c.loc} · $${c.price}/day</p></div><button class="sw ${i!==2?'on':''}" aria-label="Toggle listing"></button></div>`).join('');
+$$('[data-dv]').forEach(b => b.onclick = () => {
+  $$('[data-dv]').forEach(x => x.classList.toggle('on', x === b));
+  $$('.dv').forEach(v => v.classList.toggle('on', v.id === 'dv-' + b.dataset.dv));
+});
+
+let booked = 0;
+$('#req').onclick = function(){
+  if (booked) return;
+  booked = 1;
+  this.classList.add('done');
+  this.textContent = 'Request sent ✓';
+  toast('Request sent. Your host will reply in the app.');
+};
+
+const pad = n => String(n).padStart(2,'0'), iso = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`, t = new Date();
+$('#hs').min = $('#he').min = iso(t);
+$('#hs').value = iso(new Date(t.getTime() + 864e5));
+$('#he').value = iso(new Date(t.getTime() + 2*864e5));
+$('#search').onsubmit = e => {
+  e.preventDefault();
+  $('#cars').scrollIntoView({behavior:'smooth'});
+  toast('Showing cars in ' + ($('#hl').value || 'your area'));
+};
+$('#notify').onsubmit = e => {
+  e.preventDefault();
+  toast('Thanks! We will email you when parking opens.');
+  e.target.reset();
+};
+$$('[data-list]').forEach(b => b.onclick = () => toast('Host onboarding opens here, with the insurance acknowledgment step'));
+
+let tt;
+function toast(m){
+  const el = $('#toast');
+  el.textContent = m;
+  el.classList.add('show');
+  clearTimeout(tt);
+  tt = setTimeout(() => el.classList.remove('show'), 2800);
+}
+document.addEventListener('click', e => {
+  const d = e.target.closest('[data-toast]');
+  if (d) { e.preventDefault(); toast(d.dataset.toast); return; }
+  const h = e.target.closest('.heart');
+  if (h) {
+    e.stopPropagation();
+    h.classList.toggle('on');
+    h.textContent = h.classList.contains('on') ? '♥' : '♡';
+    toast(h.classList.contains('on') ? 'Saved to favorites' : 'Removed');
+    return;
+  }
+  const s = e.target.closest('.sw');
+  if (s) {
+    s.classList.toggle('on');
+    toast(s.classList.contains('on') ? 'Listing is live' : 'Listing paused');
+    return;
+  }
+  const c = e.target.closest('.car');
+  if (c) toast('Sign in to book the ' + $('h3', c).textContent);
+});
+
+const io = new IntersectionObserver(es => es.forEach(en => {
+  if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+}), {threshold: .12});
+$$('.rv').forEach(el => io.observe(el));
+})();
+</script>
+</body>
+</html>
