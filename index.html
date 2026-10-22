@@ -10,7 +10,7 @@
 <style>
 :root{--ink:#0B0D12;--ink2:#14171F;--lime:#B6F25C;--bg:#F6F6F4;--line:#E6E6E2;--muted:#6B6D75;--text:#111318;--ease:cubic-bezier(.2,.8,.2,1)}
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:auto}
 body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}button,input{font:inherit;color:inherit}button{cursor:pointer;border:0;background:none}
 :focus-visible{outline:2px solid var(--lime);outline-offset:2px}
@@ -36,7 +36,7 @@ p{color:var(--muted)}
 .rv.in{opacity:1;transform:none}
 
 /* nav */
-.nav{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:100;width:min(1120px,94%);display:flex;justify-content:space-between;align-items:center;padding:11px 12px 11px 18px;border-radius:18px;background:rgba(11,13,18,.82);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.12);box-shadow:0 10px 40px rgba(0,0,0,.35);color:#fff}
+.nav{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:100;width:min(1120px,94%);display:flex;justify-content:space-between;align-items:center;padding:11px 12px 11px 18px;border-radius:18px;background:rgba(11,13,18,.94);border:1px solid rgba(255,255,255,.12);box-shadow:0 10px 40px rgba(0,0,0,.35);color:#fff;will-change:transform}
 .logo{display:flex;align-items:center;gap:11px;font-weight:800;font-size:1.05rem;letter-spacing:-.03em;color:#fff}
 .logo-icon{width:36px;height:36px;border-radius:11px;background:var(--lime);color:var(--ink);display:grid;place-items:center;flex:0 0 36px}
 .nav-links{display:flex;gap:2px}
@@ -46,16 +46,17 @@ p{color:var(--muted)}
 
 /* hero: compact, bolder */
 .hero{position:relative;padding:118px 0 56px;display:flex;align-items:center;color:#fff;background:linear-gradient(135deg,#0B0D12,#1B2030);overflow:hidden}
-.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1800&q=80') center/cover;animation:zoom 18s ease-out both} /* HERO PHOTO: swap this URL for the client's chosen image */
+.hero-bg{position:absolute;inset:0;will-change:transform;background:url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1800&q=80') center/cover;animation:zoom 18s ease-out both} /* HERO PHOTO: swap this URL for the client's chosen image */
 .hero::before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(60% 80% at 85% 100%,rgba(182,242,92,.22),transparent 70%),linear-gradient(90deg,rgba(11,13,18,.97) 10%,rgba(11,13,18,.72) 50%,rgba(11,13,18,.38)),linear-gradient(0deg,var(--ink),transparent 40%)}
 @keyframes zoom{from{transform:scale(1.12)}to{transform:scale(1)}}
 .hero .wrap{position:relative;z-index:2}
 .tag{display:inline-flex;gap:10px;align-items:center;padding:8px 14px;border-radius:99px;border:1px solid rgba(255,255,255,.2);background:rgba(11,13,18,.4);font-size:.8rem;font-weight:600}
-.tag i{width:8px;height:8px;border-radius:50%;background:var(--lime);animation:pulse 2s infinite}
-@keyframes pulse{50%{box-shadow:0 0 0 7px rgba(182,242,92,0)}0%{box-shadow:0 0 0 0 rgba(182,242,92,.6)}}
+.tag i{position:relative;width:8px;height:8px;border-radius:50%;background:var(--lime)}
+.tag i::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--lime);animation:pulse 2s infinite}
+@keyframes pulse{0%{transform:scale(1);opacity:.6}100%{transform:scale(3.2);opacity:0}}
 .hero h1{margin:16px 0 12px;max-width:860px;font-size:clamp(2.8rem,8vw,5.8rem);text-shadow:0 4px 30px rgba(0,0,0,.45)}.hero h1 span{color:var(--lime)}
 .lead{font-size:1.08rem;color:#D5D7DC;max-width:520px}
-.search{margin-top:24px;display:grid;grid-template-columns:1.3fr 1fr 1fr auto;gap:8px;padding:8px;border-radius:20px;background:rgba(11,13,18,.66);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.18);max-width:680px}
+.search{margin-top:24px;display:grid;grid-template-columns:1.3fr 1fr 1fr auto;gap:8px;padding:8px;border-radius:20px;background:rgba(11,13,18,.78);border:1px solid rgba(255,255,255,.18);max-width:680px}
 .search div{display:flex;flex-direction:column;padding:9px 14px;border-radius:14px;background:rgba(255,255,255,.06);min-width:0}
 .search div:focus-within{box-shadow:inset 0 0 0 1.5px var(--lime)}
 .search label{font-size:.72rem;font-weight:600;color:#9A9DA7}
@@ -72,10 +73,10 @@ p{color:var(--muted)}
 .tabs button.on{background:var(--ink);color:#fff}
 .cars{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .empty{grid-column:1/-1;padding:40px 20px;text-align:center;border-radius:22px;background:#fff;border:1px dashed var(--line);font-weight:600}
-.car{position:relative;border-radius:24px;overflow:hidden;cursor:pointer;height:340px;background:linear-gradient(135deg,#1B1E27,#2A3040);color:#fff;animation:up .5s var(--ease) both;transition:transform .4s var(--ease),box-shadow .4s}
-.car:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(11,13,18,.25)}
+.car{position:relative;border-radius:24px;overflow:hidden;cursor:pointer;height:340px;background:linear-gradient(135deg,#1B1E27,#2A3040);color:#fff;animation:up .55s var(--ease) both;transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
+.car:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(11,13,18,.25)}.car:active{transform:translateY(-2px) scale(.985);transition-duration:.15s}
 @keyframes up{from{opacity:0;transform:translateY(14px)}}
-.car img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.car img{will-change:transform;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
 .car:hover img{transform:scale(1.07)}
 .car::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(11,13,18,.9))}
 .badge{position:absolute;top:14px;left:14px;z-index:2;padding:6px 12px;border-radius:99px;background:#fff;color:var(--ink);font-size:.74rem;font-weight:700}
@@ -126,6 +127,8 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .view{flex:1;overflow-y:auto;padding:4px 16px 16px;scrollbar-width:none}.view::-webkit-scrollbar{display:none}
 .scr{display:none}.scr.on{display:block;animation:slide .35s var(--ease)}
 @keyframes slide{from{opacity:0;transform:translateX(18px)}}
+.dev.pulse::after{content:"";position:absolute;inset:0;border-radius:48px;border:2px solid var(--lime);pointer-events:none;animation:glow 1.1s var(--ease) forwards}
+@keyframes glow{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.07);opacity:0}}
 .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;margin-bottom:10px;font-size:.85rem}
 .card b{color:var(--text)}
 .rowx{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:.82rem;color:var(--muted)}.rowx b{color:var(--text)}
@@ -383,6 +386,29 @@ footer h4{color:#fff;font-size:.9rem;margin-bottom:14px}footer ul{list-style:non
 (function(){
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 let tt;function toast(m){const e=$('#toast');e.textContent=m;e.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('show'),2600)}
+/* smooth scrolling: native browser smooth scroll (runs off the main thread, so it stays fluid) */
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const fine=matchMedia('(pointer:fine)').matches&&!reduce;
+let sTo=0,sy=0,sRun=false,last=0;
+const maxY=()=>document.documentElement.scrollHeight-innerHeight;
+function loop(t){const dt=Math.min(50,t-last);last=t;sy+=(sTo-sy)*(1-Math.exp(-dt/110));
+  if(Math.abs(sTo-sy)<.4){sy=sTo;scrollTo(0,sy);sRun=false;return}
+  scrollTo(0,sy);requestAnimationFrame(loop)}
+function glide(y){sTo=Math.max(0,Math.min(y,maxY()));if(!sRun){sy=scrollY;sRun=true;last=performance.now();requestAnimationFrame(loop)}}
+function scrollToY(y){fine?glide(y):scrollTo({top:y,behavior:reduce?'auto':'smooth'})}
+if(fine){
+  /* eased mouse-wheel / trackpad scrolling for the whole page */
+  addEventListener('wheel',e=>{
+    if(e.ctrlKey||e.defaultPrevented)return;
+    const n=(e.target&&e.target.closest&&e.target.closest('.view,.bot-m'));
+    if(n&&n.scrollHeight>n.clientHeight){const top=n.scrollTop<=0&&e.deltaY<0,bot=n.scrollTop+n.clientHeight>=n.scrollHeight-1&&e.deltaY>0;if(!top&&!bot)return}
+    e.preventDefault();
+    glide((sRun?sTo:scrollY)+(e.deltaMode===1?e.deltaY*32:e.deltaY));
+  },{passive:false});
+  addEventListener('scroll',()=>{if(!sRun){sy=sTo=scrollY}},{passive:true});
+}
+function scrollToEl(el,center){const r=el.getBoundingClientRect();let y=scrollY+r.top-(center?(innerHeight-r.height)/2:84);y=Math.max(0,Math.min(y,document.documentElement.scrollHeight-innerHeight));scrollToY(y)}
+document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(!a||a.getAttribute('href').length<2)return;const el=$(a.getAttribute('href'));if(!el)return;e.preventDefault();a.getAttribute('href')==='#top'?scrollToY(0):scrollToEl(el)});
 const esc=s=>String(s).replace(/[<>&"]/g,'');
 const SIL='<svg class="sil" viewBox="0 0 120 50" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 38h100v-12l-9-12a8 8 0 0 0-6-3H40a8 8 0 0 0-6 3L22 24l-12 4z"/><path d="M38 14l-6 12h66l-8-12"/><circle cx="34" cy="38" r="7" fill="#0B0D12"/><circle cx="88" cy="38" r="7" fill="#0B0D12"/></svg>';
 const U=id=>`https://images.unsplash.com/${id}?auto=format&fit=crop&w=800&q=80`;
@@ -392,7 +418,7 @@ const U=id=>`https://images.unsplash.com/${id}?auto=format&fit=crop&w=800&q=80`;
    place updates. Keep the label (n) matched to what the photo shows. */
 const cars=[
 {n:'Toyota Camry',y:2022,p:52,r:4.92,c:'sedan',l:'Austin, TX',s:5,t:'Automatic',b:'Top host',hl:1,i:U('photo-1621007947382-bb3c3994e3fb')},
-{n:'Tesla Roadster',y:2023,p:89,r:4.97,c:'electric sports',l:'Austin, TX',s:2,t:'Automatic',b:'Electric',hl:1,i:U('photo-1617788138017-80ad40651399')},
+{n:'Tesla Roadster',y:'',p:89,r:4.97,c:'electric sports',l:'Austin, TX',s:2,t:'Automatic',b:'Electric',hl:1,i:U('photo-1617788138017-80ad40651399')},
 {n:'Audi RS6 Avant',y:'',p:95,r:4.88,c:'sports',l:'Denver, CO',s:5,t:'Automatic',b:'Premium',i:U('photo-1606664515524-ed2f786a0bd6')},
 {n:'Honda CR-V',y:'',p:88,r:4.90,c:'suv',l:'Denver, CO',s:5,t:'Automatic',b:'Family pick',i:U('photo-1519641471654-76ce0107ad1b')},
 {n:'Ford Mustang GT',y:'',p:130,r:4.95,c:'sports',l:'Miami, FL',s:4,t:'Manual',b:'Sports',i:U('photo-1494905998402-395d579af36f')},
@@ -404,12 +430,13 @@ const INS=[{n:'Basic',d:'Essential protection',p:12},{n:'Standard',d:'Recommende
 let city='',curF='all';
 function render(f){curF=f;
   const list=cars.map((c,k)=>({c,k})).filter(o=>(f==='all'||o.c.c.split(' ').includes(f))&&(!city||o.c.l.toLowerCase().includes(city)));
-  $('#grid').innerHTML=list.length?list.map(({c,k})=>`
-  <article class="car" data-k="${k}">${SIL}<img src="${c.i}" alt="${esc(title(c))}" loading="lazy"><span class="badge ${c.hl?'hl':''}">${c.b}</span><button class="heart" aria-label="Save">♡</button>
+  $('#grid').innerHTML=list.length?list.map(({c,k},n)=>`
+  <article class="car" data-k="${k}" style="animation-delay:${n*70}ms">${SIL}<img src="${c.i}" alt="${esc(title(c))}" loading="lazy"><span class="badge ${c.hl?'hl':''}">${c.b}</span><button class="heart" aria-label="Save">♡</button>
   <div class="car-info"><h3>${title(c)}</h3><p>${c.s} seats, ${c.t}, ${c.l}</p><div class="row"><div class="price">$${c.p} <small>/ day</small></div><span class="rate">★ ${c.r.toFixed(2)}</span><span class="book-btn">Book</span></div></div></article>`).join(''):'<div class="empty">No sample cars match that filter here yet. Try another type or city.</div>';
 }
 render('all');
-function pick(k){st.car=k;st.step=1;drawRent();$('#book').scrollIntoView({behavior:'smooth'})}
+function pick(k){const dev=$('#rent').closest('.dev');st.car=k;st.step=1;scrollToEl(dev,true);
+  setTimeout(()=>{drawRent();dev.classList.remove('pulse');void dev.offsetWidth;dev.classList.add('pulse')},reduce?0:420)}
 document.addEventListener('error',e=>{if(e.target.tagName==='IMG')e.target.style.visibility='hidden'},true);
 $('#tabs').onclick=e=>{const b=e.target.closest('button');if(!b)return;$$('#tabs button').forEach(x=>x.classList.toggle('on',x===b));render(b.dataset.f)};
 $('#grid').onclick=e=>{
@@ -513,7 +540,7 @@ $('#hs').min=$('#he').min=iso(t);$('#hs').value=iso(new Date(t.getTime()+864e5))
 setDates();
 $('#hs').onchange=()=>{const a=new Date($('#hs').value+'T00:00'),z=new Date($('#he').value+'T00:00');if(!isNaN(a)&&(isNaN(z)||z<=a))$('#he').value=iso(new Date(a.getTime()+864e5));$('#he').min=$('#hs').value;setDates()};
 $('#he').onchange=setDates;
-$('#search').onsubmit=e=>{e.preventDefault();const q=$('#hl').value.toLowerCase(),m=['austin','denver','miami'].find(x=>q.includes(x));city=m||'';render(curF);setDates();$('#cars').scrollIntoView({behavior:'smooth'});toast(m?'Showing cars in '+m[0].toUpperCase()+m.slice(1):'Showing all cars')};
+$('#search').onsubmit=e=>{e.preventDefault();const q=$('#hl').value.toLowerCase(),m=['austin','denver','miami'].find(x=>q.includes(x));city=m||'';render(curF);setDates();scrollToEl($('#cars'));toast(m?'Showing cars in '+m[0].toUpperCase()+m.slice(1):'Showing all cars')};
 $('#notify').onsubmit=e=>{e.preventDefault();toast('Thanks! We will email you when parking opens.');e.target.reset()};
 document.addEventListener('click',e=>{const d=e.target.closest('[data-toast]');if(d){e.preventDefault();toast(d.dataset.toast)}});
 
