@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Share Your Car | Rent a car. Earn from your car.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+:root{--ink:#0B0D12;--ink2:#14171F;--lime:#B6F25C;--bg:#F6F6F4;--line:#E6E6E2;--muted:#6B6D75;--text:#111318;--ease:cubic-bezier(.2,.8,.2,1)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}button,input{font:inherit;color:inherit}button{cursor:pointer;border:0;background:none}
+:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
+h1,h2,h3{letter-spacing:-.03em;line-height:1.08}
+h1{font-size:clamp(2.8rem,7.5vw,6rem);font-weight:800}
+h2{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:800}
+h3{font-size:1.1rem;font-weight:700;letter-spacing:-.01em}
+p{color:var(--muted)}
+.wrap{width:min(1180px,92%);margin:0 auto}
+.section{padding:96px 0}
+.dark{background:var(--ink);color:#fff}.dark p{color:#A3A5AD}
+.eyebrow{font-size:.8rem;font-weight:600;color:var(--muted)}.dark .eyebrow{color:var(--lime)}
+.head{max-width:620px;margin-bottom:44px}.head h2{margin:10px 0 14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 26px;border-radius:14px;font-weight:700;font-size:.95rem;transition:transform .25s var(--ease),background .25s}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:scale(.97)}
+.btn-lime{background:var(--lime);color:var(--ink)}.btn-lime:hover{background:#c8ff72}
+.btn-ghost{border:1px solid rgba(255,255,255,.3);color:#fff}.btn-ghost:hover{background:rgba(255,255,255,.1)}
+.btn-white{background:#fff;color:var(--ink)}.btn-white:hover{background:var(--lime)}
+.btn-sm{min-height:40px;padding:0 18px;font-size:.86rem;border-radius:11px}.btn-block{width:100%}
+
+/* nav */
+.nav{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:100;width:min(1120px,94%);display:flex;justify-content:space-between;align-items:center;padding:11px 12px 11px 18px;border-radius:18px;background:rgba(11,13,18,.82);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.12);box-shadow:0 10px 40px rgba(0,0,0,.35);color:#fff}
+.logo{display:flex;align-items:center;gap:11px;font-weight:800;font-size:1.05rem;letter-spacing:-.03em;color:#fff}
+.logo-icon{width:36px;height:36px;border-radius:11px;background:var(--lime);color:var(--ink);display:grid;place-items:center}
+.nav-links{display:flex;gap:2px}
+.nav-links a{padding:9px 15px;border-radius:11px;font-size:.9rem;font-weight:600;color:rgba(255,255,255,.7);transition:.25s}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.09)}
+.nav-cta{display:flex;gap:8px}
+
+/* hero */
+.hero{position:relative;min-height:100vh;padding:130px 0 70px;display:flex;align-items:center;color:#fff;background:var(--ink);overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1800&q=80') center/cover;animation:zoom 18s ease-out both}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(11,13,18,.95) 8%,rgba(11,13,18,.55) 55%,rgba(11,13,18,.25)),linear-gradient(0deg,var(--ink),transparent 35%)}
+@keyframes zoom{from{transform:scale(1.12)}to{transform:scale(1)}}
+.hero .wrap{position:relative;z-index:2}
+.tag{display:inline-flex;gap:10px;align-items:center;padding:8px 14px;border-radius:99px;border:1px solid rgba(255,255,255,.2);background:rgba(11,13,18,.4);font-size:.8rem;font-weight:600}
+.tag i{width:8px;height:8px;border-radius:50%;background:var(--lime);animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 7px rgba(182,242,92,0)}0%{box-shadow:0 0 0 0 rgba(182,242,92,.6)}}
+.hero h1{margin:22px 0 18px;max-width:760px}.hero h1 span{color:var(--lime)}
+.lead{font-size:1.15rem;color:#C9CBD1;max-width:500px}
+.search{margin-top:34px;display:grid;grid-template-columns:1.3fr 1fr 1fr auto;gap:8px;padding:8px;border-radius:20px;background:rgba(11,13,18,.6);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.16);max-width:680px}
+.search div{display:flex;flex-direction:column;padding:9px 14px;border-radius:14px;background:rgba(255,255,255,.06)}
+.search div:focus-within{box-shadow:inset 0 0 0 1.5px var(--lime)}
+.search label{font-size:.72rem;font-weight:600;color:#9A9DA7}
+.search input{background:transparent;border:0;outline:0;font-weight:600;color:#fff;color-scheme:dark;width:100%}
+.hero-note{display:flex;gap:26px;margin-top:26px;flex-wrap:wrap;font-size:.86rem;color:#B3B5BC;font-weight:600}
+.hero-note span::before{content:"✓ ";color:var(--lime)}
+
+/* cars */
+.tabs{display:inline-flex;gap:4px;padding:5px;background:#fff;border:1px solid var(--line);border-radius:14px;margin-bottom:24px;flex-wrap:wrap}
+.tabs button{padding:9px 18px;border-radius:10px;font-weight:600;font-size:.9rem;color:var(--muted);transition:.25s}
+.tabs button.on{background:var(--ink);color:#fff}
+.cars{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.car{position:relative;border-radius:24px;overflow:hidden;cursor:pointer;height:340px;background:#1B1E27;color:#fff;animation:up .5s var(--ease) both}
+@keyframes up{from{opacity:0;transform:translateY(14px)}}
+.car img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.car:hover img{transform:scale(1.07)}
+.car::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(11,13,18,.9))}
+.badge{position:absolute;top:14px;left:14px;z-index:2;padding:6px 12px;border-radius:99px;background:#fff;color:var(--ink);font-size:.74rem;font-weight:700}
+.badge.hl{background:var(--lime)}
+.heart{position:absolute;top:12px;right:12px;z-index:2;width:38px;height:38px;border-radius:50%;background:#fff;color:var(--ink);display:grid;place-items:center}
+.heart.on{color:#E11D48}
+.car-info{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:20px}
+.car-info p{color:#C9CBD1;font-size:.82rem}
+.car-info .row{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.price{font-size:1.4rem;font-weight:800}.price small{font-size:.78rem;color:#C9CBD1;font-weight:500}
+.rate{font-weight:700;font-size:.9rem}
+.book-btn{padding:8px 16px;border-radius:10px;background:var(--lime);color:var(--ink);font-weight:700;font-size:.82rem}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.step{padding:30px;border-radius:22px;background:#fff;border:1px solid var(--line)}
+.step .num{font-size:3rem;font-weight:800;letter-spacing:-.05em;color:#D6D7D2;line-height:1}
+.step h3{margin:14px 0 8px;font-size:1.2rem}
+
+/* split sections */
+.split{display:grid;grid-template-columns:1fr auto;gap:70px;align-items:center}
+.split ul{list-style:none;display:grid;gap:14px;margin:26px 0}
+.split li{display:flex;gap:14px;align-items:center;font-weight:600;color:#E3E3DE}
+.split li span{flex:0 0 28px;height:28px;border-radius:50%;background:var(--lime);color:var(--ink);display:grid;place-items:center;font-weight:800;font-size:.8rem}
+.fee{padding:16px 18px;border-radius:16px;background:rgba(182,242,92,.08);border:1px solid rgba(182,242,92,.28);font-size:.9rem;color:#D4D5D0;max-width:480px}
+.calc{margin-top:26px;background:var(--ink2);border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:22px;max-width:480px}
+.sl{margin-bottom:16px}.sl-top{display:flex;justify-content:space-between;font-weight:600;font-size:.88rem;margin-bottom:8px;color:#DADBD6}.sl-top output{color:#fff;font-weight:800}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:8px;background:linear-gradient(90deg,var(--lime) var(--p,50%),rgba(255,255,255,.12) var(--p,50%));outline:0}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:#fff;border:4px solid var(--lime)}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#fff;border:4px solid var(--lime)}
+.out{display:flex;justify-content:space-between;align-items:flex-end;padding:16px 18px;border-radius:16px;background:rgba(182,242,92,.08);border:1px solid rgba(182,242,92,.28)}
+.out span{font-size:.8rem;color:#B3B5BC;font-weight:600}.out strong{font-size:2.2rem;font-weight:800;letter-spacing:-.04em;color:var(--lime);line-height:1}
+.calc small{display:block;color:#7C7F89;font-size:.74rem;margin-top:10px}
+
+/* phone device */
+.dev{position:relative;width:324px;height:660px;border-radius:48px;padding:9px;background:linear-gradient(145deg,#32364A,#0A0B10 60%);box-shadow:0 50px 90px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.08);flex:0 0 auto}
+.dev::before{content:"";position:absolute;inset:-60px;z-index:-1;background:radial-gradient(circle,rgba(182,242,92,.18),transparent 65%)}
+.island{position:absolute;top:19px;left:50%;transform:translateX(-50%);width:86px;height:24px;border-radius:99px;background:#000;z-index:20}
+.app{position:relative;height:100%;border-radius:40px;overflow:hidden;background:var(--bg);color:var(--text);display:flex;flex-direction:column}
+.app p{color:var(--muted)}
+.status{display:flex;justify-content:space-between;padding:14px 26px 0;font-size:.72rem;font-weight:700;flex:0 0 40px}
+.bar{display:flex;align-items:center;gap:10px;padding:6px 18px 8px;flex:0 0 auto}
+.bar h4{font-size:1.15rem;font-weight:800;letter-spacing:-.02em;flex:1}
+.back{width:34px;height:34px;border-radius:50%;background:#fff;border:1px solid var(--line);font-weight:800}
+.view{flex:1;overflow-y:auto;padding:4px 16px 16px;scrollbar-width:none}.view::-webkit-scrollbar{display:none}
+.scr{display:none}.scr.on{display:block;animation:slide .35s var(--ease)}
+@keyframes slide{from{opacity:0;transform:translateX(18px)}}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;margin-bottom:10px;font-size:.85rem}
+.card b{color:var(--text)}
+.rowx{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:.82rem;color:var(--muted)}.rowx b{color:var(--text)}
+.chip{display:inline-block;padding:4px 10px;border-radius:99px;font-size:.7rem;font-weight:700;background:var(--lime);color:var(--ink)}.chip.g{background:#E7E7E3;color:#3A3C44}
+.abtn{height:46px;width:100%;border-radius:14px;background:var(--lime);color:var(--ink);font-weight:800;font-size:.9rem;transition:.25s}
+.abtn:active{transform:scale(.97)}.abtn.dk{background:var(--ink);color:var(--lime)}.abtn.sm{height:36px;border-radius:10px;font-size:.8rem}.abtn.ln{background:#fff;border:1px solid var(--line);color:var(--text)}
+.abtn:disabled{opacity:.55;cursor:default}
+.tabbar{display:flex;flex:0 0 auto;padding:8px 8px 18px;background:rgba(255,255,255,.95);border-top:1px solid var(--line)}
+.tabbar button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:.62rem;font-weight:700;color:#9A9DA7;padding:4px 0;position:relative;transition:.25s}
+.tabbar svg{width:22px;height:22px}
+.tabbar button.on{color:var(--text)}
+.tabbar button.on::before{content:"";position:absolute;top:-9px;width:22px;height:3px;border-radius:3px;background:var(--lime)}
+.dot{position:absolute;top:0;right:22%;min-width:16px;height:16px;border-radius:50%;background:#E11D48;color:#fff;font-size:.6rem;display:grid;place-items:center}
+.hero-card{background:var(--ink);color:#fff;border-radius:22px;padding:20px;margin-bottom:12px}
+.hero-card p{color:#A3A5AD;font-size:.78rem}.hero-card strong{display:block;font-size:2.4rem;letter-spacing:-.04em;line-height:1.1;margin:4px 0 14px}
+.mini{display:flex;align-items:flex-end;gap:6px;height:40px;margin-bottom:14px}.mini i{flex:1;border-radius:4px;background:rgba(255,255,255,.18)}.mini i:last-child{background:var(--lime)}
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.quick button{display:flex;flex-direction:column;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 4px;font-size:.7rem;font-weight:700;transition:transform .25s var(--ease),border-color .25s}
+.quick button:hover{border-color:var(--ink)}
+.quick button:active{transform:scale(.97)}
+.qi{width:34px;height:34px;border-radius:11px;background:var(--ink);color:var(--lime);display:grid;place-items:center}
+.qi svg{width:18px;height:18px}
+.sec{font-size:.8rem;font-weight:700;margin:6px 2px 8px}
+.lrow{display:flex;align-items:center;gap:12px}
+.lrow img{width:62px;height:46px;border-radius:10px;object-fit:cover}.lrow div{flex:1;min-width:0}
+.sw{width:44px;height:26px;border-radius:99px;background:#CFCFCA;position:relative;transition:.3s;flex:0 0 44px}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .3s var(--ease)}
+.sw.on{background:var(--ink)}.sw.on::after{transform:translateX(18px);background:var(--lime)}
+.acts{display:flex;gap:8px;margin-top:10px}
+.thread{display:flex;gap:10px;align-items:center;cursor:pointer}
+.av{width:38px;height:38px;border-radius:50%;background:var(--ink);color:var(--lime);display:grid;place-items:center;font-weight:800;font-size:.8rem;flex:0 0 38px}
+.chat{display:flex;flex-direction:column;gap:8px;min-height:240px}
+.bub{max-width:86%;padding:9px 12px;border-radius:14px 14px 14px 4px;background:#fff;border:1px solid var(--line);font-size:.8rem;animation:slide .3s}
+.bub.me{align-self:flex-end;background:var(--lime);border:0;border-radius:14px 14px 4px 14px;font-weight:600}
+.compose{display:flex;gap:8px;margin-top:10px}.compose input{flex:1;min-width:0;border:1px solid var(--line);border-radius:12px;padding:0 12px;height:40px;background:#fff;outline:0}.compose .abtn{width:64px;height:40px}
+.carimg{height:150px;border-radius:18px;object-fit:cover;width:100%;margin-bottom:10px}
+.steps-dots{display:flex;gap:6px;padding:0 18px 6px}.steps-dots i{flex:1;height:4px;border-radius:4px;background:#DADBD6;transition:.3s}.steps-dots i.on{background:var(--ink)}
+.stepper{display:flex;align-items:center;gap:12px}.stepper button{width:32px;height:32px;border-radius:50%;background:#fff;border:1px solid var(--line);font-weight:800}
+.done{text-align:center;padding:30px 6px}.done .ok{width:64px;height:64px;margin:0 auto 14px;border-radius:50%;background:var(--lime);display:grid;place-items:center;font-size:1.8rem;font-weight:800;animation:pop .5s var(--ease)}
+@keyframes pop{from{transform:scale(.3)}}
+
+
+/* v2 */
+.hero h1{font-size:clamp(3rem,9vw,7rem)}
+.hero .wrap>*{animation:up .8s var(--ease) both}
+.hero .wrap>*:nth-child(2){animation-delay:.1s}.hero .wrap>*:nth-child(3){animation-delay:.2s}.hero .wrap>*:nth-child(4){animation-delay:.3s}.hero .wrap>*:nth-child(5){animation-delay:.4s}.hero .wrap>*:nth-child(6){animation-delay:.5s}
+.feat{display:flex;gap:14px;margin-top:34px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;scrollbar-width:none}.feat::-webkit-scrollbar{display:none}
+.fc{flex:0 0 230px;height:150px;border-radius:18px;overflow:hidden;position:relative;scroll-snap-align:start;cursor:pointer;background:#1B1E27;border:1px solid rgba(255,255,255,.15)}
+.fc img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}.fc:hover img{transform:scale(1.08)}
+.fc::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(11,13,18,.85))}
+.fc span{position:absolute;left:12px;bottom:10px;z-index:2;font-weight:700;font-size:.85rem}
+.seg{display:flex;gap:2px;padding:3px;border-radius:99px;background:rgba(255,255,255,.1)}
+.seg button{padding:3px 11px;border-radius:99px;font-size:.7rem;font-weight:700;color:#A3A5AD}.seg button.on{background:var(--lime);color:var(--ink)}
+.mini{height:64px}.mini i{cursor:pointer;transition:height .5s var(--ease),background .25s}
+.mini i:last-child{background:rgba(255,255,255,.18)}.mini i.on{background:var(--lime)}
+.hero-card .rowx p{margin:0}
+
+/* trust */
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.tc{padding:26px;border-radius:22px;background:#fff;border:1px solid var(--line)}
+.tc .ico{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:#F0F0EC;margin-bottom:16px;font-weight:800}
+.tc p{margin-top:8px;font-size:.92rem}
+.notice{margin-top:22px;padding:18px 22px;border-radius:16px;background:#EDEDE9;border:1px solid #E0E0DA;color:#3A3C44;font-size:.9rem}
+
+/* parking */
+.park{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px}
+.coming{display:inline-flex;padding:8px 14px;border-radius:99px;background:rgba(182,242,92,.1);border:1px solid rgba(182,242,92,.35);color:var(--lime);font-weight:700;font-size:.8rem}
+.park h2{margin:16px 0}
+.notify{display:flex;gap:8px;margin-top:18px;padding:6px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);max-width:460px}
+.notify input{flex:1;min-width:0;background:transparent;border:0;outline:0;padding:0 12px;color:#fff}
+.notify input::placeholder{color:#7C7F89}
+.map{border-radius:26px;overflow:hidden;min-height:400px;border:1px solid rgba(255,255,255,.08)}
+.map iframe{width:100%;height:100%;min-height:400px;border:0;display:block}
+
+.cta{border-radius:34px;padding:76px 40px;text-align:center;color:#fff;background:var(--ink)}
+.cta p{color:#B3B5BC;margin:16px auto 30px;max-width:500px}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+footer{background:var(--ink);color:#8E919B;padding:56px 0 34px}
+.fg{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:36px}
+footer h4{color:#fff;font-size:.9rem;margin-bottom:14px}footer ul{list-style:none;display:grid;gap:10px;font-size:.9rem}footer a:hover{color:#fff}
+.fb2{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.82rem}.fb2 small{max-width:600px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,160%);background:var(--ink);color:#fff;padding:14px 22px;border-radius:14px;font-weight:600;font-size:.9rem;z-index:300;transition:transform .5s var(--ease);max-width:calc(100% - 32px);text-align:center;border:1px solid rgba(255,255,255,.12)}
+.toast.show{transform:translate(-50%,0)}
+
+@media(max-width:1024px){.split,.park{grid-template-columns:1fr}.split{justify-items:center;gap:50px}.split>div:first-child{justify-self:start;width:100%}.trust{grid-template-columns:1fr 1fr}.fg{grid-template-columns:1fr 1fr}.cars{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){.section{padding:70px 0}.nav-links{display:none}.search{grid-template-columns:1fr}.cars,.steps,.trust{grid-template-columns:1fr}.fg{grid-template-columns:1fr}.cta{padding:52px 22px}.notify{flex-direction:column}.car{height:300px}}
+@media(max-width:420px){.dev{width:100%;height:640px;border-radius:40px}.app{border-radius:32px}}
+@media(max-width:520px){.dev{width:100%;height:min(760px,calc(100svh - 20px));padding:0;border-radius:0;background:none;box-shadow:none}.dev::before{display:none}.island,.status{display:none}.app{border-radius:22px;border:1px solid rgba(255,255,255,.1)}.fc{flex-basis:200px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <a href="#top" class="logo"><div class="logo-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14v-5l-1.5-4.5A2 2 0 0 0 15.6 6H8.4a2 2 0 0 0-1.9 1.5L5 12v5z"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/><path d="M5 12h14"/></svg></div><span>Share Your Car</span></a>
+  <nav class="nav-links"><a href="#cars">Cars</a><a href="#book">Book</a><a href="#host">Host app</a><a href="#trust">Insurance</a><a href="#parking">Parking</a></nav>
+  <div class="nav-cta"><a href="#" class="btn btn-ghost btn-sm" data-toast="Sign in opens here">Log in</a><a href="#host" class="btn btn-lime btn-sm">List your car</a></div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="wrap">
+    <span class="tag"><i></i>Available in Austin, Denver and Miami</span>
+    <h1>Find it.<br>Pick dates.<br><span>Drive it.</span></h1>
+    <p class="lead">Rent well-kept cars from local hosts in three simple steps. Or share your own and earn while it's parked.</p>
+    <form class="search" id="search">
+      <div><label for="hl">Location</label><input id="hl" value="Downtown Austin, TX" /></div>
+      <div><label for="hs">Pick-up</label><input id="hs" type="date" /></div>
+      <div><label for="he">Return</label><input id="he" type="date" /></div>
+      <button class="btn btn-white" type="submit">Find a car</button>
+    </form>
+    <div class="hero-note"><span>Host-set pricing</span><span>Secure checkout</span><span>Reviews from verified trips</span></div>
+    <div class="feat" id="feat"></div>
+  </div>
+</section>
+
+<section class="section" id="cars">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Top rated near you</span><h2>Cars people book again and again</h2><p>Every host sets their own prices and availability. Tap a car to start booking.</p></div>
+    <div class="tabs" id="tabs"><button class="on" data-f="all">All</button><button data-f="sedan">Sedans</button><button data-f="suv">SUVs</button><button data-f="truck">Trucks</button><button data-f="electric">Electric</button><button data-f="sports">Sports</button></div>
+    <div class="cars" id="grid"></div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:10px">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">How it works</span><h2>Find. Select dates. Book.</h2></div>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><h3>Find your car</h3><p>Search by city and dates. Read reviews from real drivers.</p></div>
+      <div class="step"><div class="num">2</div><h3>Select your dates</h3><p>See the total before you request. No surprises at checkout.</p></div>
+      <div class="step"><div class="num">3</div><h3>Book</h3><p>Verify once, add insurance, and message your host in the app.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- RENTER BOOKING -->
+<section class="section dark" id="book">
+  <div class="wrap split">
+    <div>
+      <span class="eyebrow">Renter booking</span>
+      <h2 style="margin:10px 0 16px">Book in three taps. Try it.</h2>
+      <p style="font-size:1.04rem;max-width:480px">Pick a car, choose your dates, then verify and insure through Bonzah at checkout. The phone on the right is live.</p>
+      <ul><li><span>1</span>Pick a car and your dates</li><li><span>2</span>See every fee before you pay</li><li><span>3</span>Verify once, then book faster every time</li></ul>
+      <div class="fee"><b style="color:#fff">First rental only:</b> a one-time $20 verification fee is added at checkout. Once your identity and eligibility are approved, future rentals skip it.</div>
+    </div>
+    <div class="dev"><div class="island"></div>
+      <div class="app" id="rent"></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOST APP -->
+<section class="section dark" id="host" style="padding-top:0">
+  <div class="wrap split" style="grid-template-columns:auto 1fr">
+    <div class="dev"><div class="island"></div>
+      <div class="app" id="hostapp">
+        <div class="status"><span>9:41</span><span>5G ▮▮▮</span></div>
+        <div class="bar"><button class="back" id="hback" style="display:none" aria-label="Back">‹</button><h4 id="htitle">Earnings</h4></div>
+        <div class="view" id="hview">
+          <div class="scr on" id="s-home">
+            <div class="hero-card"><div class="rowx"><p>Earnings</p><div class="seg" id="seg"><button class="on" data-p="w">Week</button><button data-p="m">Month</button></div></div><strong id="earn">$0</strong><p id="barLbl" style="margin-bottom:10px">Tap a bar for details</p><div class="mini" id="mini"></div><div class="rowx" style="margin-bottom:12px"><span style="color:#A3A5AD">Available balance</span><b id="bal" style="color:#fff">$1,240</b></div><button class="abtn sm" id="payHome">Request payout</button></div>
+            <div class="sec">Next trips</div>
+            <div class="card"><div class="rowx"><b>Toyota Camry</b><span class="chip">Confirmed</span></div><div class="rowx" style="margin-top:6px"><span>Oct 24 – 25, Sam K.</span><b>$104</b></div></div>
+            <div class="card"><div class="rowx"><b>Tesla Model Y</b><span class="chip g">Request</span></div><div class="rowx" style="margin-top:6px"><span>Oct 27 – 29, Priya N.</span><b>$267</b></div></div>
+          </div>
+          <div class="scr" id="s-vehicles"></div>
+          <div class="scr" id="s-bookings"></div>
+          <div class="scr" id="s-messages"></div>
+          <div class="scr" id="s-chat"><div class="chat" id="chat"></div><form class="compose" id="compose"><input placeholder="Message" aria-label="Message" /><button class="abtn" type="submit">Send</button></form></div>
+          <div class="scr" id="s-payouts"></div>
+        </div>
+        <nav class="tabbar" id="tabs2">
+          <button class="on" data-go="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></svg>Earnings</button>
+          <button data-go="vehicles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14v-5l-1.5-4.5A2 2 0 0 0 15.6 6H8.4a2 2 0 0 0-1.9 1.5L5 12v5zM5 12h14"/><circle cx="8" cy="17.5" r="1"/><circle cx="16" cy="17.5" r="1"/></svg>Vehicles</button>
+          <button data-go="bookings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Bookings<i class="dot" id="dotB">2</i></button>
+          <button data-go="messages"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Messages</button>
+          <button data-go="payouts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="3"/><path d="M3 11h18M7 15h3"/></svg>Payouts</button>
+        </nav>
+      </div>
+    </div>
+    <div>
+      <span class="eyebrow">For hosts</span>
+      <h2 style="margin:10px 0 16px">Your host dashboard, built like an app</h2>
+      <p style="font-size:1.04rem;max-width:480px">Earnings, vehicles, bookings, messages and payouts are one tap away. This is a live preview of the future iOS and Android app. Accept a request, send a message, or request a payout.</p>
+      <div class="calc">
+        <div class="sl"><div class="sl-top"><label for="rate">Daily rate</label><output id="rateOut">$60</output></div><input type="range" id="rate" min="25" max="250" step="5" value="60" /></div>
+        <div class="sl"><div class="sl-top"><label for="days">Days booked per month</label><output id="daysOut">12</output></div><input type="range" id="days" min="2" max="30" value="12" /></div>
+        <div class="out"><span>Estimated monthly earnings</span><strong id="earnOut">$612</strong></div>
+        <small>Illustrative only. Assumes a 15% platform fee; actual earnings depend on demand and pricing.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="trust">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Insurance &amp; verification</span><h2>Clear rules. Shared responsibility.</h2><p>Renters verify and insure through Bonzah. Hosts keep the insurance their vehicle requires, with partner options through Roamly.</p></div>
+    <div class="trust">
+      <div class="tc"><div class="ico">1</div><h3>Verify once</h3><p>First-time renters pay a one-time $20 verification fee at checkout. Approved renters skip it next time.</p></div>
+      <div class="tc"><div class="ico">2</div><h3>Renter coverage</h3><p>Insurance options for renters are offered through our partner, Bonzah, during booking.</p></div>
+      <div class="tc"><div class="ico">3</div><h3>Host coverage</h3><p>Know your state's requirements, keep your own policy, or explore options through Roamly.</p></div>
+      <div class="tc"><div class="ico">4</div><h3>Secure payments</h3><p>Booking payments are processed through a secure payment provider.</p></div>
+    </div>
+    <div class="notice">Share Your Car does not verify or guarantee every host's insurance coverage. Hosts remain responsible for ensuring their policies are appropriate and valid while their vehicle is listed.</div>
+  </div>
+</section>
+
+<section class="section dark" id="parking">
+  <div class="wrap park">
+    <div>
+      <span class="coming">Coming with our first location</span>
+      <h2>Share Your Car Parking</h2>
+      <p style="font-size:1.04rem">Soon, hosts can reserve a secure space at our locations, so renters can pick up with staff on hand during business hours. Parking is not yet open for bookings. Indicative rate: $10–$20 per visit, final pricing to be announced.</p>
+      <form class="notify" id="notify"><input type="email" placeholder="Email me when parking opens" aria-label="Email" required /><button class="btn btn-lime btn-sm" type="submit">Notify me</button></form>
+    </div>
+    <div class="map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110502.7539188404!2d-97.82144765!3d30.307182!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644b599a0cc032f%3A0x5d9b464bd469d57a!2sAustin%2C%20TX!5e0!3m2!1sen!2sus!4v1710000000000" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map of Austin, TX"></iframe></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap"><div class="cta"><h2>Ready to share the road?</h2><p>Find a car for your next trip, or list your own and let it work for you.</p>
+    <div class="cta-btns"><a href="#cars" class="btn btn-lime">Find a car</a><a href="#host" class="btn btn-ghost">List your car</a></div></div></div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fg">
+      <div><a href="#top" class="logo"><div class="logo-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14v-5l-1.5-4.5A2 2 0 0 0 15.6 6H8.4a2 2 0 0 0-1.9 1.5L5 12v5z"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/><path d="M5 12h14"/></svg></div><span>Share Your Car</span></a><p style="margin-top:14px;max-width:320px;font-size:.92rem">A peer-to-peer marketplace connecting drivers with local vehicle hosts.</p></div>
+      <div><h4>Drivers</h4><ul><li><a href="#cars">Find a car</a></li><li><a href="#book">Book a trip</a></li><li><a href="#">Help center</a></li></ul></div>
+      <div><h4>Hosts</h4><ul><li><a href="#host">Become a host</a></li><li><a href="#trust">Host insurance</a></li><li><a href="#">Host resources</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact</a></li></ul></div>
+    </div>
+    <div class="fb2"><span>© 2026 Share Your Car. All rights reserved.</span><small>Insurance options are provided through third-party partners. Share Your Car does not guarantee coverage for any host. Hosts are responsible for maintaining appropriate insurance for their vehicles.</small></div>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+let tt;function toast(m){const e=$('#toast');e.textContent=m;e.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('show'),2600)}
+const U=id=>`https://images.unsplash.com/${id}?auto=format&fit=crop&w=800&q=80`;
+const cars=[
+{n:'Toyota Camry',y:2022,p:52,r:4.92,c:'sedan',l:'Austin, TX',s:5,t:'Automatic',b:'Top host',hl:1,i:U('photo-1621007947382-bb3c3994e3fb')},
+{n:'Tesla Model Y',y:2023,p:89,r:4.97,c:'electric suv',l:'Austin, TX',s:5,t:'Automatic',b:'Electric',hl:1,i:U('photo-1617788138017-80ad40651399')},
+{n:'Ford F-150',y:2022,p:95,r:4.88,c:'truck',l:'Denver, CO',s:5,t:'Automatic',b:'Work truck',i:U('photo-1606664515524-ed2f786a0bd6')},
+{n:'Jeep Wrangler',y:2021,p:88,r:4.90,c:'suv',l:'Denver, CO',s:4,t:'Automatic',b:'Adventure',i:U('photo-1519641471654-76ce0107ad1b')},
+{n:'Ford Mustang GT',y:2022,p:130,r:4.95,c:'sports',l:'Miami, FL',s:4,t:'Manual',b:'Sports',i:U('photo-1494905998402-395d579af36f')},
+{n:'Honda CR-V',y:2023,p:68,r:4.84,c:'suv',l:'Miami, FL',s:5,t:'Automatic',b:'Family pick',i:U('photo-1549317661-bd32c8ce0db2')}];
+
+/* car grid */
+let city='',curF='all';
+function render(f){curF=f;
+  $('#grid').innerHTML=cars.map((c,k)=>({c,k})).filter(o=>(f==='all'||o.c.c.split(' ').includes(f))&&(!city||o.c.l.toLowerCase().includes(city))).map(({c,k})=>`
+  <article class="car" data-k="${k}"><img src="${c.i}" alt="${c.n}" loading="lazy"><span class="badge ${c.hl?'hl':''}">${c.b}</span><button class="heart" aria-label="Save">♡</button>
+  <div class="car-info"><h3>${c.n} ${c.y}</h3><p>${c.s} seats, ${c.t}, ${c.l}</p><div class="row"><div class="price">$${c.p} <small>/ day</small></div><span class="rate">★ ${c.r.toFixed(2)}</span><span class="book-btn">Book</span></div></div></article>`).join('');
+}
+render('all');
+$('#feat').innerHTML=cars.map((c,k)=>`<div class="fc" data-k="${k}"><img src="${c.i}" alt="${c.n}"><span>${c.n} · $${c.p}/day</span></div>`).join('');
+$('#feat').onclick=e=>{const c=e.target.closest('.fc');if(c){st.car=+c.dataset.k;st.step=1;drawRent();$('#book').scrollIntoView({behavior:'smooth'})}};
+document.addEventListener('error',e=>{if(e.target.tagName==='IMG')e.target.style.visibility='hidden'},true);
+$('#tabs').onclick=e=>{const b=e.target.closest('button');if(!b)return;$$('#tabs button').forEach(x=>x.classList.toggle('on',x===b));render(b.dataset.f)};
+$('#grid').onclick=e=>{
+  const h=e.target.closest('.heart');
+  if(h){h.classList.toggle('on');h.textContent=h.classList.contains('on')?'♥':'♡';toast(h.classList.contains('on')?'Saved to favorites':'Removed');return}
+  const c=e.target.closest('.car');if(c){st.car=+c.dataset.k;st.step=1;drawRent();$('#book').scrollIntoView({behavior:'smooth'})}
+};
+
+/* renter flow */
+const st={car:0,step:1,days:2,seen:false,start:new Date(Date.now()+864e5)};
+const fmt=n=>new Date(st.start.getTime()+n*864e5).toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
+function setDates(){const a=new Date($('#hs').value+'T00:00'),z=new Date($('#he').value+'T00:00');if(isNaN(a)||isNaN(z))return;st.start=a;st.days=Math.min(14,Math.max(1,Math.round((z-a)/864e5)));st.step=1;drawRent()}
+function drawRent(){
+  const c=cars[st.car],sub=c.p*st.days,fee=st.seen?0:20,tot=sub+fee,S=st.step;
+  const head=`<div class="status"><span>9:41</span><span>5G ▮▮▮</span></div><div class="bar">${S>1&&S<4?'<button class="back" data-rb>‹</button>':''}<h4>${['','Choose car','Select dates','Verify & pay','Booked'][S]}</h4></div>${S<4?`<div class="steps-dots">${[1,2,3].map(n=>`<i class="${n<=S?'on':''}"></i>`).join('')}</div>`:''}`;
+  let body='';
+  if(S===1)body=`<img class="carimg" src="${c.i}" alt="${c.n}"><div class="rowx"><b style="font-size:1.1rem">${c.n} ${c.y}</b><b>★ ${c.r.toFixed(2)}</b></div><p style="font-size:.82rem;margin:4px 0 12px">${c.s} seats, ${c.t}, ${c.l}. Hosted by Jordan R.</p><div class="card"><div class="rowx"><span>Per day</span><b>$${c.p}</b></div></div><button class="abtn" data-rn>Select dates</button>`;
+  if(S===2)body=`<div class="card"><div class="rowx"><span>Pick-up</span><b>${fmt(0)}</b></div><div class="rowx" style="margin-top:8px"><span>Return</span><b>${fmt(st.days)}</b></div></div><div class="card"><div class="rowx"><span>Trip length</span><div class="stepper"><button data-d="-1" aria-label="Fewer days">−</button><b>${st.days} days</b><button data-d="1" aria-label="More days">+</button></div></div></div><div class="card"><div class="rowx"><span>$${c.p} × ${st.days} days</span><b>$${sub}</b></div></div><button class="abtn" data-rn>Continue</button>`;
+  if(S===3)body=`<div class="card"><div class="rowx"><span>$${c.p} × ${st.days} days</span><b>$${sub}</b></div>${fee?'<div class="rowx" style="margin-top:8px"><span>One-time verification (Bonzah)</span><b>$20</b></div>':'<div class="rowx" style="margin-top:8px"><span>Verification</span><span class="chip">Approved</span></div>'}<div class="rowx" style="margin-top:8px"><span>Bonzah insurance</span><b>Quoted next</b></div><div class="rowx" style="margin-top:10px;padding-top:10px;border-top:1px solid var(--line)"><span>Total today</span><b style="font-size:1.05rem">$${tot}</b></div></div><div class="card"><div class="rowx"><span>I've rented here before</span><button class="sw ${st.seen?'on':''}" data-seen aria-label="Returning renter"></button></div></div><p style="font-size:.74rem;margin-bottom:10px">Verification is a one-time step. Once approved, future rentals skip the fee.</p><button class="abtn dk" data-rn>Request to book</button>`;
+  if(S===4)body=`<div class="done"><div class="ok">✓</div><h3 style="font-size:1.3rem;margin-bottom:6px">Request sent</h3><p style="font-size:.85rem;margin-bottom:18px">${c.n}, ${st.days} days, $${tot}. Your host will reply in the app.</p><button class="abtn ln" data-rr>Book another car</button></div>`;
+  $('#rent').innerHTML=head+`<div class="view"><div class="scr on">${body}</div></div>`;
+}
+$('#rent').onclick=e=>{
+  const t=e.target.closest('button');if(!t)return;
+  if('rn'in t.dataset){st.step++;drawRent();if(st.step===4)toast('Request sent. Your host will reply in the app.')}
+  else if('rb'in t.dataset){st.step--;drawRent()}
+  else if('rr'in t.dataset){st.step=1;drawRent()}
+  else if('seen'in t.dataset){st.seen=!st.seen;drawRent()}
+  else if(t.dataset.d){st.days=Math.min(14,Math.max(1,st.days+ +t.dataset.d));drawRent()}
+};
+drawRent();
+
+/* host app */
+const H={bal:1240,reqs:[{id:0,car:'Tesla Model Y',who:'Priya N.',d:'Oct 27 – 29',a:267,s:'new'},{id:1,car:'Jeep Wrangler',who:'Marcus T.',d:'Nov 2 – 3',a:176,s:'new'}],
+  live:[1,1,0],hist:[['Oct 12',480],['Sep 28',360],['Sep 9',410]],paid:false,
+  th:[{n:'Priya N.',m:['Hi! Is the Model Y still free Oct 27?','Yes, I can have it ready by 10.']},{n:'Sam K.',m:['Where do I pick up the Camry?']}]};
+const titles={home:'Earnings',vehicles:'Vehicles',bookings:'Bookings',messages:'Messages',payouts:'Payouts',chat:'Chat'};
+let cur='home',chatI=0;
+function go(v){
+  cur=v;$$('#hview .scr').forEach(s=>s.classList.toggle('on',s.id==='s-'+v));
+  $$('#tabs2 button').forEach(b=>b.classList.toggle('on',b.dataset.go===(v==='chat'?'messages':v)));
+  $('#htitle').textContent=v==='chat'?H.th[chatI].n:titles[v];$('#hback').style.display=v==='chat'?'block':'none';
+  $('#hview').scrollTop=0;if(v==='home')chart();
+}
+function drawHost(){
+  $('#s-vehicles').innerHTML=cars.slice(0,3).map((c,i)=>`<div class="card lrow"><img src="${c.i}" alt=""><div><b>${c.n} ${c.y}</b><p style="font-size:.76rem">${c.l}, $${c.p}/day</p></div><button class="sw ${H.live[i]?'on':''}" data-sw="${i}" aria-label="Toggle listing"></button></div>`).join('')+'<button class="abtn ln" data-toast2="Add vehicle opens here">+ Add vehicle</button>';
+  $('#s-bookings').innerHTML=H.reqs.map(r=>`<div class="card"><div class="rowx"><b>${r.car}</b><span class="chip ${r.s==='new'?'g':r.s==='no'?'g':''}">${r.s==='new'?'Request':r.s==='ok'?'Confirmed':'Declined'}</span></div><div class="rowx" style="margin-top:6px"><span>${r.d}, ${r.who}</span><b>$${r.a}</b></div>${r.s==='new'?`<div class="acts"><button class="abtn sm ln" data-rq="no" data-id="${r.id}">Decline</button><button class="abtn sm" data-rq="ok" data-id="${r.id}">Accept</button></div>`:''}</div>`).join('');
+  const n=H.reqs.filter(r=>r.s==='new').length;$('#dotB').textContent=n;$('#dotB').style.display=n?'grid':'none';
+  $('#s-messages').innerHTML=H.th.map((t,i)=>`<div class="card thread" data-th="${i}"><div class="av">${t.n[0]}</div><div style="flex:1;min-width:0"><b>${t.n}</b><p style="font-size:.76rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${t.m[t.m.length-1]}</p></div></div>`).join('');
+  $('#s-payouts').innerHTML=`<div class="hero-card"><p>Available balance</p><strong>$${H.bal.toLocaleString('en-US')}</strong><button class="abtn sm" data-pay ${H.paid?'disabled':''}>${H.paid?'Payout requested':'Request payout'}</button></div><div class="sec">History</div>`+H.hist.map(h=>`<div class="card rowx"><span>${h[0]}</span><b>$${h[1]}</b><span class="chip">Paid</span></div>`).join('');
+  $('#bal').textContent='$'+H.bal.toLocaleString('en-US');$('#payHome').textContent=H.paid?'Payout requested':'Request payout';$('#payHome').disabled=H.paid;
+}
+function drawChat(){$('#chat').innerHTML=H.th[chatI].m.map((m,i)=>`<div class="bub ${i%2&&chatI===0||m.me?'me':''}">${m.txt||m}</div>`).join('')}
+function pay(){if(H.paid)return;H.paid=true;H.hist.unshift(['Today',H.bal]);H.bal=0;drawHost();toast('Payout requested. Funds are sent to your payout account.')}
+$('#hostapp').onclick=e=>{
+  const sg=e.target.closest('#seg button');if(sg){per=sg.dataset.p;chart();return}
+  const bi=e.target.closest('#mini i');if(bi){const x=E[per][+bi.dataset.i];$$('#mini i').forEach(i=>i.classList.toggle('on',i===bi));$('#barLbl').textContent=x[0]+': $'+x[1];return}
+  const g=e.target.closest('[data-go]');if(g){go(g.dataset.go);return}
+  if(e.target.closest('#hback')){go('messages');return}
+  if(e.target.closest('#payHome')||e.target.closest('[data-pay]')){pay();return}
+  const sw=e.target.closest('[data-sw]');if(sw){const i=+sw.dataset.sw;H.live[i]=H.live[i]?0:1;drawHost();toast(H.live[i]?'Listing is live':'Listing paused');return}
+  const rq=e.target.closest('[data-rq]');if(rq){H.reqs[+rq.dataset.id].s=rq.dataset.rq;drawHost();toast(rq.dataset.rq==='ok'?'Booking confirmed':'Request declined');return}
+  const th=e.target.closest('[data-th]');if(th){chatI=+th.dataset.th;drawChat();go('chat');return}
+  const t2=e.target.closest('[data-toast2]');if(t2)toast(t2.dataset.toast2);
+};
+$('#compose').onsubmit=e=>{e.preventDefault();const i=e.target.querySelector('input');if(!i.value.trim())return;H.th[chatI].m.push({txt:i.value.replace(/[<>&]/g,''),me:1});i.value='';drawChat();drawHost();const c=$('#hview');c.scrollTop=c.scrollHeight};
+const E={w:[['Mon',64],['Tue',0],['Wed',104],['Thu',89],['Fri',178],['Sat',267],['Sun',130]],m:[['Week 1',420],['Week 2',560],['Week 3',480],['Week 4',612]]};let per='w';
+function count(el,to){const f=+el.dataset.v||0;el.dataset.v=to;const t0=performance.now();(function s(t){const k=Math.min(1,(t-t0)/700),e=1-Math.pow(1-k,3);el.textContent='$'+Math.round(f+(to-f)*e).toLocaleString('en-US');if(k<1)requestAnimationFrame(s)})(t0)}
+function chart(){const d=E[per],mx=Math.max(...d.map(x=>x[1]));$('#mini').innerHTML=d.map((x,i)=>`<i data-i="${i}" style="height:${Math.max(8,x[1]/mx*100)}%"></i>`).join('');count($('#earn'),d.reduce((a,x)=>a+x[1],0));$('#barLbl').textContent='Tap a bar for details';$$('#seg button').forEach(b=>b.classList.toggle('on',b.dataset.p===per))}
+drawHost();drawChat();chart();
+
+/* calc */
+const rate=$('#rate'),days=$('#days');
+function calc(){const r=+rate.value,d=+days.value;$('#rateOut').textContent='$'+r;$('#daysOut').textContent=d;$('#earnOut').textContent='$'+Math.round(r*d*.85).toLocaleString('en-US');[rate,days].forEach(el=>el.style.setProperty('--p',(el.value-el.min)/(el.max-el.min)*100+'%'))}
+rate.oninput=days.oninput=calc;calc();
+
+/* forms */
+const pad=n=>String(n).padStart(2,'0'),iso=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`,t=new Date();
+$('#hs').min=$('#he').min=iso(t);$('#hs').value=iso(new Date(t.getTime()+864e5));$('#he').value=iso(new Date(t.getTime()+2*864e5));
+setDates();
+$('#search').onsubmit=e=>{e.preventDefault();const q=$('#hl').value.toLowerCase(),m=['austin','denver','miami'].find(x=>q.includes(x));city=m||'';render(curF);setDates();$('#cars').scrollIntoView({behavior:'smooth'});toast(m?'Showing cars in '+m[0].toUpperCase()+m.slice(1):'Showing all cars')};
+$('#notify').onsubmit=e=>{e.preventDefault();toast('Thanks! We will email you when parking opens.');e.target.reset()};
+document.addEventListener('click',e=>{const d=e.target.closest('[data-toast]');if(d){e.preventDefault();toast(d.dataset.toast)}});
+})();
+</script>
+</body>
+</html>
