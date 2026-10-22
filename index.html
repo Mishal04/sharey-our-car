@@ -272,6 +272,30 @@ footer h4,footer .logo{color:var(--ink)}footer a:hover{color:var(--ink)}.fb2{bor
 @media(max-width:520px){.nav-cta .btn-ghost{display:none}.dev{width:100%;height:min(760px,calc(100svh - 20px));padding:0;border-radius:0;background:none;box-shadow:none}.dev::before{display:none}.island,.status{display:none}.app{border-radius:22px;border:1px solid rgba(255,255,255,.1)}}
 .car{height:auto}
 @media(max-width:768px){.live{display:none}.hero{margin:68px 10px 0;border-radius:22px;padding:80px 0 22px;min-height:0}.strip{justify-content:flex-start;gap:8px 18px}.nav-cta .btn-ghost{display:none}}
+
+/* THEME v3: dark sections (Book, Host dashboard, Parking) for contrast against the light sections */
+.dark{background:var(--ink);color:#fff}
+.dark h2,.dark h3{color:#fff}
+.dark .eyebrow{color:var(--lime)}
+.dark p{color:#A3A5AD}
+.dark .split li{color:#E6E8E4}
+.dark .fee{background:rgba(52,210,111,.08);border-color:rgba(52,210,111,.3);color:#D4D8D3}
+.dark .fee b{color:#fff!important}
+.dark .calc{background:var(--ink2);border:1px solid rgba(255,255,255,.08)}
+.dark .coming{background:rgba(52,210,111,.1);border-color:rgba(52,210,111,.35);color:var(--lime)}
+.dark .notify{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
+.dark .notify input{color:#fff}.dark .notify input::placeholder{color:#7C8680}
+.dark .map{border-color:rgba(255,255,255,.1)}
+.dark .dev{box-shadow:0 50px 90px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.1)}
+.dark .dev::before{background:radial-gradient(circle,rgba(52,210,111,.2),transparent 65%)}
+/* keep the phone screens themselves light and readable */
+.dark .app p{color:var(--muted)}
+.dark .app h3,.dark .app h4{color:var(--text)}
+.dark .hero-card p{color:#A3A5AD}
+#book{background:radial-gradient(60% 50% at 90% 20%,rgba(52,210,111,.12),transparent 70%),var(--ink)}
+#host{background:radial-gradient(60% 50% at 10% 80%,rgba(52,210,111,.12),transparent 70%),var(--ink);padding-bottom:84px}
+#parking{background:var(--ink2);border-top:1px solid rgba(255,255,255,.06)}
+
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -320,8 +344,8 @@ footer h4,footer .logo{color:var(--ink)}footer a:hover{color:var(--ink)}.fb2{bor
   </div>
 </section>
 
-<!-- RENTER BOOKING -->
-<section class="section" id="book">
+<!-- RENTER BOOKING (dark) -->
+<section class="section dark" id="book">
   <div class="wrap split">
     <div>
       <span class="eyebrow">Renter booking</span>
@@ -336,8 +360,8 @@ footer h4,footer .logo{color:var(--ink)}footer a:hover{color:var(--ink)}.fb2{bor
   </div>
 </section>
 
-<!-- HOST APP -->
-<section class="section" id="host" style="padding-top:0">
+<!-- HOST APP (dark) -->
+<section class="section dark" id="host" style="padding-top:0">
   <div class="wrap split rev">
     <div class="dev"><div class="island"></div>
       <div class="app" id="hostapp">
@@ -392,7 +416,8 @@ footer h4,footer .logo{color:var(--ink)}footer a:hover{color:var(--ink)}.fb2{bor
   </div>
 </section>
 
-<section class="section" id="parking">
+<!-- PARKING (dark) -->
+<section class="section dark" id="parking">
   <div class="wrap park">
     <div>
       <span class="coming">Coming with our first location</span>
@@ -435,7 +460,7 @@ footer h4,footer .logo{color:var(--ink)}footer a:hover{color:var(--ink)}.fb2{bor
 (function(){
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 let tt;function toast(m){const e=$('#toast');e.textContent=m;e.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('show'),2600)}
-/* smooth scrolling: native browser smooth scroll (runs off the main thread, so it stays fluid) */
+/* smooth scrolling */
 const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const fine=matchMedia('(pointer:fine)').matches&&!reduce;
 let sTo=0,sy=0,sRun=false,last=0;
@@ -446,7 +471,6 @@ function loop(t){const dt=Math.min(50,t-last);last=t;sy+=(sTo-sy)*(1-Math.exp(-d
 function glide(y){sTo=Math.max(0,Math.min(y,maxY()));if(!sRun){sy=scrollY;sRun=true;last=performance.now();requestAnimationFrame(loop)}}
 function scrollToY(y){fine?glide(y):scrollTo({top:y,behavior:reduce?'auto':'smooth'})}
 if(fine){
-  /* eased mouse-wheel / trackpad scrolling for the whole page */
   addEventListener('wheel',e=>{
     if(e.ctrlKey||e.defaultPrevented)return;
     const n=(e.target&&e.target.closest&&e.target.closest('.view,.bot-m'));
