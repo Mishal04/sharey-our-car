@@ -221,9 +221,57 @@ footer h4{color:#fff;font-size:.9rem;margin-bottom:14px}footer ul{list-style:non
 .bot form input{flex:1;min-width:0;border:1px solid var(--line);border-radius:12px;padding:0 12px;height:40px;background:#fff;outline:0}
 .bot form button{padding:0 16px;height:40px;border-radius:12px;background:var(--ink);color:var(--lime);font-weight:800;font-size:.82rem}
 
+/* THEME v2: light surfaces, deep green-black, green accent, lighter type weights */
+:root{--ink:#0E1512;--ink2:#17201B;--lime:#34D26F;--gd:#138A43;--bg:#F4F6F3;--line:#E6EAE4;--muted:#667069;--text:#0E1512}
+body{background:#fff}
+h1,h2,h3{letter-spacing:-.035em}
+h1{font-weight:600}h2{font-weight:600;font-size:clamp(1.8rem,3.4vw,2.5rem)}h3{font-weight:600}
+.eyebrow,.dark .eyebrow{color:var(--gd);font-weight:600}
+.section{padding:72px 0}.head{margin-bottom:36px}
+.btn{border-radius:12px;font-weight:600}.btn-lime:hover{background:#4BE082}
+.nav{top:0;left:0;transform:none;width:100%;border-radius:0;padding:12px clamp(16px,4vw,48px);background:rgba(255,255,255,.96);color:var(--ink);border:0;border-bottom:1px solid var(--line);box-shadow:none}
+.logo{color:var(--ink);font-weight:700}.logo-icon{background:var(--ink);color:#fff;border-radius:10px}
+.nav-links a{color:var(--muted);font-weight:500}.nav-links a:hover{color:var(--ink);background:var(--bg)}
+.nav-cta .btn-ghost{border:0;color:var(--ink)}.nav-cta .btn-ghost:hover{background:var(--bg)}
+.nav-cta .btn-lime{background:var(--ink);color:#fff}.nav-cta .btn-lime:hover{background:#26342C}
+.hero{margin:72px 14px 0;border-radius:28px;padding:130px 0 34px;align-items:flex-end;min-height:min(580px,80vh)}
+.hero .wrap{width:100%;margin:0;padding:0 clamp(20px,4vw,52px)}
+.hero h1{font-size:clamp(2.6rem,6.4vw,4.9rem);max-width:700px}
+.live{position:absolute;top:22px;right:22px;z-index:2;display:grid;gap:2px;padding:11px 15px;border-radius:14px;background:#fff;color:var(--ink);font-size:.82rem;box-shadow:0 16px 40px rgba(0,0,0,.25)}.live small{color:var(--muted);font-size:.7rem}
+.search{background:#fff;border:0;border-radius:16px;max-width:740px;box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.search div{background:transparent;border-radius:10px}.search div+div{border-left:1px solid var(--line)}
+.search label{color:var(--muted)}.search input{color:var(--ink);color-scheme:light}
+.strip{display:flex;gap:10px 30px;flex-wrap:wrap;justify-content:center;padding:22px 4% 0;font-size:.86rem;font-weight:500;color:var(--muted)}
+.strip span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--lime);margin-right:9px;vertical-align:middle}
+.car{height:auto;background:#fff;color:var(--text);border:1px solid var(--line);border-radius:20px;padding:10px}
+.car:hover{box-shadow:0 18px 40px rgba(14,21,18,.1)}.car::after{display:none}
+.car .imgw{position:relative;height:210px;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,#1B1E27,#2A3040)}
+.car .imgw img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.car-info{position:static;padding:14px 6px 6px}.car-info h3{font-size:1.02rem}
+.car-info p{color:var(--muted);font-size:.84rem;margin-top:2px}.car-info p+.row{margin-top:14px}
+.car-info .row{margin-top:0}.price{font-size:1.25rem;font-weight:700;color:var(--ink)}.price small{color:var(--muted)}
+.rate{font-size:.84rem;font-weight:600;color:var(--ink)}
+.book-btn{background:var(--ink);color:#fff;border-radius:10px;font-weight:600;padding:9px 16px;transition:.25s}.car:hover .book-btn{background:var(--lime);color:var(--ink)}
+.step,.tc{border-radius:16px}.step{position:relative}
+.step .num{position:absolute;top:16px;right:20px;font-size:3.4rem;color:#EDF0EB;font-weight:600}
+.tc .ico{background:#E8F7EE;color:var(--gd)}
+.split li{color:var(--text)}
+.fee{background:#EAF8EF;border-color:#BFE8CE;color:#2B4636}.fee b{color:var(--ink)!important}
+.dev{box-shadow:0 40px 70px rgba(14,21,18,.25),0 0 0 1px rgba(0,0,0,.06)}
+.dev::before{background:radial-gradient(circle,rgba(52,210,111,.16),transparent 65%)}
+.calc{background:var(--ink);border-radius:20px}
+.coming{background:#EAF8EF;border-color:#BFE8CE;color:var(--gd)}
+.notify{background:var(--bg);border-color:var(--line)}.notify input{color:var(--ink)}.notify input::placeholder{color:#8A938D}
+.map{border-color:var(--line)}
+.cta{background:var(--bg);color:var(--ink);border-radius:28px}.cta p{color:var(--muted)}
+.cta .btn-ghost{background:var(--ink);color:#fff;border:0}.cta .btn-ghost:hover{background:#26342C}
+footer{background:#fff;color:var(--muted);border-top:1px solid var(--line)}
+footer h4,footer .logo{color:var(--ink)}footer a:hover{color:var(--ink)}.fb2{border-top-color:var(--line)}
 @media(max-width:1024px){.split,.split.rev,.park{grid-template-columns:1fr}.split{justify-items:center;gap:50px}.split>div:not(.dev){justify-self:start;width:100%}.trust{grid-template-columns:1fr 1fr}.fg{grid-template-columns:1fr 1fr}.cars{grid-template-columns:1fr 1fr}}
 @media(max-width:768px){.section{padding:60px 0}.hero{padding:96px 0 38px}.nav-links{display:none}.search{grid-template-columns:1fr}.cars,.steps,.trust{grid-template-columns:1fr}.fg{grid-template-columns:1fr}.cta{padding:52px 22px}.notify{flex-direction:column}.car{height:300px}}
 @media(max-width:520px){.nav-cta .btn-ghost{display:none}.dev{width:100%;height:min(760px,calc(100svh - 20px));padding:0;border-radius:0;background:none;box-shadow:none}.dev::before{display:none}.island,.status{display:none}.app{border-radius:22px;border:1px solid rgba(255,255,255,.1)}}
+.car{height:auto}
+@media(max-width:768px){.live{display:none}.hero{margin:68px 10px 0;border-radius:22px;padding:80px 0 22px;min-height:0}.strip{justify-content:flex-start;gap:8px 18px}.nav-cta .btn-ghost{display:none}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -232,11 +280,12 @@ footer h4{color:#fff;font-size:.9rem;margin-bottom:14px}footer ul{list-style:non
 <header class="nav">
   <a href="#top" class="logo"><div class="logo-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14v-5l-1.5-4.5A2 2 0 0 0 15.6 6H8.4a2 2 0 0 0-1.9 1.5L5 12v5z"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/><path d="M5 12h14"/></svg></div><span>Share Your Car</span></a>
   <nav class="nav-links"><a href="#cars">Cars</a><a href="#book">Book</a><a href="#host">Host app</a><a href="#trust">Insurance</a><a href="#parking">Parking</a></nav>
-  <div class="nav-cta"><a href="#" class="btn btn-ghost btn-sm" data-toast="Sign in opens here">Log in</a><a href="#host" class="btn btn-lime btn-sm">List your car</a></div>
+  <div class="nav-cta"><a href="#" class="btn btn-ghost btn-sm" data-toast="Sign in opens here">Sign in</a><a href="#host" class="btn btn-lime btn-sm">List your car</a></div>
 </header>
 
 <section class="hero" id="top">
   <div class="hero-bg"></div>
+  <div class="live"><small>Sample activity</small><b>Maya booked a Tesla</b><small>3 min ago · Downtown</small></div>
   <div class="wrap">
     <span class="tag"><i></i>Concept preview · sample cities and listings</span>
     <h1>Find it. Pick dates. <span>Book it.</span></h1>
@@ -245,11 +294,11 @@ footer h4{color:#fff;font-size:.9rem;margin-bottom:14px}footer ul{list-style:non
       <div><label for="hl">Location</label><input id="hl" value="Downtown Austin, TX" /></div>
       <div><label for="hs">Pick-up</label><input id="hs" type="date" /></div>
       <div><label for="he">Return</label><input id="he" type="date" /></div>
-      <button class="btn btn-white" type="submit">Find a car</button>
+      <button class="btn btn-lime" type="submit">Search cars</button>
     </form>
-    <div class="hero-note"><span>Host-set pricing</span><span>Secure checkout</span><span>Reviews from verified trips</span></div>
   </div>
 </section>
+<div class="strip"><span>Host-set pricing</span><span>Secure checkout</span><span>Reviews from verified trips</span><span>Verified with Bonzah</span></div>
 
 <section class="section" id="cars">
   <div class="wrap">
@@ -272,7 +321,7 @@ footer h4{color:#fff;font-size:.9rem;margin-bottom:14px}footer ul{list-style:non
 </section>
 
 <!-- RENTER BOOKING -->
-<section class="section dark" id="book">
+<section class="section" id="book">
   <div class="wrap split">
     <div>
       <span class="eyebrow">Renter booking</span>
@@ -288,7 +337,7 @@ footer h4{color:#fff;font-size:.9rem;margin-bottom:14px}footer ul{list-style:non
 </section>
 
 <!-- HOST APP -->
-<section class="section dark" id="host" style="padding-top:0">
+<section class="section" id="host" style="padding-top:0">
   <div class="wrap split rev">
     <div class="dev"><div class="island"></div>
       <div class="app" id="hostapp">
@@ -343,7 +392,7 @@ footer h4{color:#fff;font-size:.9rem;margin-bottom:14px}footer ul{list-style:non
   </div>
 </section>
 
-<section class="section dark" id="parking">
+<section class="section" id="parking">
   <div class="wrap park">
     <div>
       <span class="coming">Coming with our first location</span>
@@ -431,8 +480,7 @@ let city='',curF='all';
 function render(f){curF=f;
   const list=cars.map((c,k)=>({c,k})).filter(o=>(f==='all'||o.c.c.split(' ').includes(f))&&(!city||o.c.l.toLowerCase().includes(city)));
   $('#grid').innerHTML=list.length?list.map(({c,k},n)=>`
-  <article class="car" data-k="${k}" style="animation-delay:${n*70}ms">${SIL}<img src="${c.i}" alt="${esc(title(c))}" loading="lazy"><span class="badge ${c.hl?'hl':''}">${c.b}</span><button class="heart" aria-label="Save">♡</button>
-  <div class="car-info"><h3>${title(c)}</h3><p>${c.s} seats, ${c.t}, ${c.l}</p><div class="row"><div class="price">$${c.p} <small>/ day</small></div><span class="rate">★ ${c.r.toFixed(2)}</span><span class="book-btn">Book</span></div></div></article>`).join(''):'<div class="empty">No sample cars match that filter here yet. Try another type or city.</div>';
+  <article class="car" data-k="${k}" style="animation-delay:${n*70}ms"><div class="imgw">${SIL}<img src="${c.i}" alt="${esc(title(c))}" loading="lazy"><span class="badge ${c.hl?'hl':''}">${c.b}</span><button class="heart" aria-label="Save">♡</button></div><div class="car-info"><div class="row"><h3>${title(c)}</h3><span class="rate">★ ${c.r.toFixed(2)}</span></div><p>${c.s} seats, ${c.t}, ${c.l}</p><div class="row"><div class="price">$${c.p} <small>/ day</small></div><span class="book-btn">View car</span></div></div></article>`).join(''):'<div class="empty">No sample cars match that filter here yet. Try another type or city.</div>';
 }
 render('all');
 function pick(k){const dev=$('#rent').closest('.dev');st.car=k;st.step=1;scrollToEl(dev,true);
