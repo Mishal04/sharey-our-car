@@ -296,6 +296,97 @@ footer h4,footer .logo{color:var(--ink)}footer a:hover{color:var(--ink)}.fb2{bor
 #host{background:radial-gradient(60% 50% at 10% 80%,rgba(52,210,111,.12),transparent 70%),var(--ink);padding-bottom:84px}
 #parking{background:var(--ink2);border-top:1px solid rgba(255,255,255,.06)}
 
+/* THEME v4: studio-style car cards */
+.car{padding:0;border-radius:26px;overflow:hidden;border:1px solid var(--line)}
+.car .imgw{height:250px;border-radius:0;background:linear-gradient(180deg,#CFCFD1,#B8B8BB)}
+.car .imgw .sil{color:#fff;opacity:.35}
+.car .imgw img{object-fit:cover;object-position:center}
+.badge,.badge.hl{top:16px;left:16px;padding:7px 14px;font-size:.84rem;font-weight:500;background:#fff;color:var(--ink)}
+.heart{top:16px;right:16px;width:46px;height:46px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.heart svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linejoin:round}
+.heart.on svg{fill:currentColor}
+.car-info{padding:22px 24px 20px}
+.car-info .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.car-info h3{font-size:1.2rem;font-weight:600}
+.rate{display:flex;align-items:center;gap:5px;font-size:.92rem;font-weight:600;white-space:nowrap}
+.rate svg{width:15px;height:15px;fill:var(--ink)}
+.rate em{font-style:normal;color:var(--muted);font-weight:400}
+.loc{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:.92rem;margin-top:8px}
+.loc svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
+.car-info .row.ft{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+
+/* Desktop host dashboard (browser window) */
+#dashboard{background:#F6F7F9;padding-bottom:84px}
+#dashboard .head{max-width:640px}
+/* fit the whole dashboard in one screen, with breathing room at the sides */
+#dashboard{min-height:100svh;display:flex;align-items:center;padding:92px 0 36px}
+#dashboard .wrap{width:min(1040px,84%)}
+#dashboard .head{max-width:none;margin-bottom:18px}
+#dashboard .head h2{font-size:clamp(1.6rem,3vw,2.2rem);margin:6px 0 6px}
+#dashboard .head p{font-size:.95rem}
+#dashboard .wbar{padding:10px 18px}
+#dashboard .wbody{height:auto;min-height:400px}
+#dashboard .side{padding:12px}
+#dashboard .side button{padding:9px 12px}
+#dashboard .main{padding:20px 26px 22px;overflow:visible}
+#dashboard .dr{padding:9px 0}
+#dashboard .mh{margin-bottom:16px}
+#dashboard .mh h3{font-size:1.25rem}
+#dashboard .qa button{padding:9px 15px;font-size:.84rem}
+#dashboard .stat{padding:14px 16px}
+#dashboard .stat b{font-size:1.5rem}
+#dashboard .panel{margin-top:16px;padding:14px 16px}
+@media(max-width:900px){#dashboard{display:block;padding:80px 0 50px}#dashboard .wrap{width:92%}#dashboard .wbody{height:auto;min-height:420px}#dashboard .main{overflow:visible;padding:18px}}
+.win{background:#fff;border:1px solid var(--line);border-radius:28px;box-shadow:0 30px 70px rgba(14,21,18,.12);overflow:hidden}
+.wbar{display:flex;align-items:center;gap:8px;padding:14px 20px;border-bottom:1px solid var(--line);font-size:.78rem;color:var(--muted)}
+.wbar i{width:12px;height:12px;border-radius:50%;background:#ECEEF1}.wbar span{margin-left:14px}
+.wbody{display:grid;grid-template-columns:230px 1fr;min-height:480px}
+.side{padding:16px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:4px}
+.side button{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;font-size:.92rem;font-weight:500;color:#4A5560;text-align:left;transition:.2s}
+.side button svg{width:18px;height:18px;flex:0 0 18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.side button:hover{background:#F6F7F9}.side button.on{background:#EEF2F8;color:var(--ink);font-weight:600}
+.pill{margin-left:auto;font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:99px}
+.pill.n{background:#22B35E;color:#fff}.pill.s{background:#EEF2F8;color:#5B6675;font-size:.6rem;letter-spacing:.04em}
+.main{padding:30px 32px;min-width:0}
+.mh{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:22px}
+.mh h3{font-size:1.4rem;font-weight:600;letter-spacing:-.02em}
+.qa{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.qa button{padding:11px 18px;border-radius:99px;border:1px solid var(--line);background:#fff;font-weight:600;font-size:.88rem;transition:.2s}
+.qa button:hover{border-color:var(--ink)}.qa button.p{background:var(--ink);color:#fff;border-color:var(--ink)}
+.qa button:disabled{opacity:.5;cursor:default}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.stat{padding:18px 20px;border-radius:22px;background:#F6F7F9;text-align:left;transition:.2s}
+.stat:hover{transform:translateY(-2px);background:#EFF1F4}
+.stat small{display:block;font-size:.8rem;color:var(--muted)}
+.stat b{display:block;font-size:1.7rem;font-weight:700;letter-spacing:-.03em;margin:4px 0 2px}
+.stat em{font-style:normal;font-size:.8rem;font-weight:600;color:#22A559}
+.panel{margin-top:22px;border:1px solid var(--line);border-radius:20px;padding:18px 20px}
+.panel>b{display:block;margin-bottom:6px}
+.panel p{font-size:.88rem}
+.dr{display:flex;align-items:center;gap:14px;padding:12px 0;border-top:1px solid var(--line);font-size:.9rem}
+.dr:first-of-type{border-top:0}
+.dr .th{width:68px;height:48px;border-radius:10px;overflow:hidden;background:linear-gradient(135deg,#1B1E27,#2A3040);position:relative;flex:0 0 68px}
+.dr .th img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.dr .th .sil{width:70%;opacity:.5}
+.dr .g{flex:1;min-width:0}.dr .g small{display:block;color:var(--muted);font-size:.8rem}
+.dr .bx{padding:8px 14px;border-radius:99px;border:1px solid var(--line);font-weight:600;font-size:.8rem;background:#fff;white-space:nowrap}
+.dr .bx.p{background:var(--ink);color:#fff;border-color:var(--ink)}
+.st{display:inline-block;padding:4px 10px;border-radius:99px;font-size:.72rem;font-weight:700;background:#E4F6EB;color:#14803F;white-space:nowrap}
+.st.g{background:#EEF0F3;color:#59626C}
+.fld{height:42px;border:1px solid var(--line);border-radius:12px;padding:0 14px;background:#fff;outline:0;font-size:.9rem;min-width:0}
+.fld:focus{border-color:var(--ink)}
+.bars{display:flex;align-items:flex-end;gap:12px;height:110px;margin:14px 0 6px}
+.bars i{flex:1;border-radius:8px;background:#DDE3E8;transition:.3s}.bars i:last-child{background:#22B35E}
+.bars+.rowl{display:flex;gap:12px;font-size:.74rem;color:var(--muted)}.bars+.rowl span{flex:1;text-align:center}
+.bigbal{font-size:2.4rem;font-weight:700;letter-spacing:-.04em;margin:2px 0 14px}
+.chatw{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.bb{max-width:70%;padding:10px 14px;border-radius:16px 16px 16px 4px;background:#F1F3F5;font-size:.88rem;color:var(--text)}
+.bb.me{align-self:flex-end;background:#22B35E;color:#fff;border-radius:16px 16px 4px 16px}
+.insg{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.insg>div{border:1px solid var(--line);border-radius:20px;padding:18px}.insg h4{font-size:.98rem;margin-bottom:6px}.insg p{font-size:.86rem}
+.note2{margin-top:16px;padding:14px 18px;border-radius:14px;background:#F6F7F9;font-size:.84rem;color:#4A5560}
+@media(max-width:900px){.wbody{grid-template-columns:1fr}.side{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line)}.side button{white-space:nowrap}.stats{grid-template-columns:1fr 1fr}.main{padding:22px 18px}.insg{grid-template-columns:1fr}.bb{max-width:88%}}
+
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -403,6 +494,17 @@ footer h4,footer .logo{color:var(--ink)}footer a:hover{color:var(--ink)}.fb2{bor
   </div>
 </section>
 
+<!-- DESKTOP HOST DASHBOARD -->
+<section class="section" id="dashboard">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Host dashboard</span><h2>Everything you need, one glance away</h2><p>Try it. Tap the tabs and quick actions.</p></div>
+    <div class="win">
+      <div class="wbar"><i></i><i></i><i></i><span>host.shareyourcar.com</span></div>
+      <div class="wbody"><aside class="side" id="dside"></aside><main class="main" id="dmain"></main></div>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="trust">
   <div class="wrap">
     <div class="head"><span class="eyebrow">Insurance &amp; verification</span><h2>Clear rules. Shared responsibility.</h2><p>Renters verify and insure through Bonzah. Hosts keep the insurance their vehicle requires, with partner options through Roamly.</p></div>
@@ -497,14 +599,16 @@ const cars=[
 {n:'Ford Mustang GT',y:'',p:130,r:4.95,c:'sports',l:'Miami, FL',s:4,t:'Manual',b:'Sports',i:U('photo-1494905998402-395d579af36f')},
 {n:'Fiat 500',y:'',p:68,r:4.84,c:'compact',l:'Miami, FL',s:4,t:'Automatic',b:'City pick',i:U('photo-1549317661-bd32c8ce0db2')}];
 const title=c=>c.n+(c.y?' '+c.y:'');
+window.SYC={cars,toast,SIL,esc,title};
 const INS=[{n:'Basic',d:'Essential protection',p:12},{n:'Standard',d:'Recommended',p:19},{n:'Premium',d:'Lowest deductible',p:27}];
 
 /* car grid */
+const REV=[128,86,203,64,157,92],DIST=['Downtown · 0.8 mi','Westside · 2.1 mi','Harbor · 1.4 mi','Uptown · 3.0 mi','Midtown · 1.9 mi','Lakeside · 2.6 mi'];
 let city='',curF='all';
 function render(f){curF=f;
   const list=cars.map((c,k)=>({c,k})).filter(o=>(f==='all'||o.c.c.split(' ').includes(f))&&(!city||o.c.l.toLowerCase().includes(city)));
   $('#grid').innerHTML=list.length?list.map(({c,k},n)=>`
-  <article class="car" data-k="${k}" style="animation-delay:${n*70}ms"><div class="imgw">${SIL}<img src="${c.i}" alt="${esc(title(c))}" loading="lazy"><span class="badge ${c.hl?'hl':''}">${c.b}</span><button class="heart" aria-label="Save">♡</button></div><div class="car-info"><div class="row"><h3>${title(c)}</h3><span class="rate">★ ${c.r.toFixed(2)}</span></div><p>${c.s} seats, ${c.t}, ${c.l}</p><div class="row"><div class="price">$${c.p} <small>/ day</small></div><span class="book-btn">View car</span></div></div></article>`).join(''):'<div class="empty">No sample cars match that filter here yet. Try another type or city.</div>';
+  <article class="car" data-k="${k}" style="animation-delay:${n*70}ms"><div class="imgw">${SIL}<img src="${c.i}" alt="${esc(title(c))}" loading="lazy"><span class="badge">${c.b}</span><button class="heart" aria-label="Save"><svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.3-9.2C1.5 8.4 3.6 5 7 5c2 0 3.5 1 5 3 1.5-2 3-3 5-3 3.4 0 5.5 3.4 4.3 6.8C19.5 16.4 12 21 12 21z"/></svg></button></div><div class="car-info"><div class="top"><h3>${title(c)}</h3><span class="rate"><svg viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21.1 7 14.2 2 9.3l6.9-1z"/></svg>${c.r.toFixed(2)} <em>(${REV[k]})</em></span></div><div class="loc"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>${DIST[k]}</div><div class="row ft"><div class="price">$${c.p} <small>/ day</small></div><span class="book-btn">View car</span></div></div></article>`).join(''):'<div class="empty">No sample cars match that filter here yet. Try another type or city.</div>';
 }
 render('all');
 function pick(k){const dev=$('#rent').closest('.dev');st.car=k;st.step=1;scrollToEl(dev,true);
@@ -513,7 +617,7 @@ document.addEventListener('error',e=>{if(e.target.tagName==='IMG')e.target.style
 $('#tabs').onclick=e=>{const b=e.target.closest('button');if(!b)return;$$('#tabs button').forEach(x=>x.classList.toggle('on',x===b));render(b.dataset.f)};
 $('#grid').onclick=e=>{
   const h=e.target.closest('.heart');
-  if(h){h.classList.toggle('on');h.textContent=h.classList.contains('on')?'♥':'♡';toast(h.classList.contains('on')?'Saved to favorites':'Removed');return}
+  if(h){h.classList.toggle('on');toast(h.classList.contains('on')?'Saved to favorites':'Removed');return}
   const c=e.target.closest('.car');if(c)pick(+c.dataset.k)
 };
 
@@ -619,6 +723,84 @@ document.addEventListener('click',e=>{const d=e.target.closest('[data-toast]');i
 /* scroll reveal */
 const rv=$$('.head,.step,.tc,.notice,.cta,.split>div,.park>div');rv.forEach(el=>el.classList.add('rv'));
 if('IntersectionObserver'in window){const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.12});rv.forEach(el=>io.observe(el))}else rv.forEach(el=>el.classList.add('in'));
+})();
+</script>
+<script>
+/* Desktop host dashboard */
+(function(){
+const {cars,toast,SIL,esc,title}=window.SYC,$=s=>document.querySelector(s);
+const I=p=>`<svg viewBox="0 0 24 24">${p}</svg>`;
+const TABS=[
+['ov','Overview',I('<rect x="4" y="4" width="6" height="6" rx="1.5"/><rect x="14" y="4" width="6" height="6" rx="1.5"/><rect x="4" y="14" width="6" height="6" rx="1.5"/><rect x="14" y="14" width="6" height="6" rx="1.5"/>')],
+['veh','Vehicles',I('<path d="M5 17h14v-5l-1.5-4.5A2 2 0 0 0 15.6 6H8.4a2 2 0 0 0-1.9 1.5L5 12v5zM5 12h14"/><circle cx="8" cy="17.5" r="1"/><circle cx="16" cy="17.5" r="1"/>')],
+['bk','Bookings',I('<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/>')],
+['earn','Earnings',I('<rect x="3" y="6" width="18" height="13" rx="3"/><path d="M3 11h18M7 15h3"/>')],
+['msg','Messages',I('<path d="M21 12a8 8 0 0 1-11.5 7.2L4 20l1-4.6A8 8 0 1 1 21 12z"/>')],
+['ins','Insurance',I('<path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/>')],
+['park','Parking',I('<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M10 16V8h3a2.5 2.5 0 0 1 0 5h-3"/>')]];
+const money=n=>'$'+n.toLocaleString('en-US');
+const pad=n=>String(n).padStart(2,'0'),iso=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const S={tab:'ov',adding:false,blocking:false,open:-1,bal:1240,paid:false,blocked:[],
+ veh:cars.slice(0,3).map((c,i)=>({n:title(c),loc:c.l,p:c.p,i:c.i,on:i<2?1:0})),
+ reqs:[{car:'Toyota Camry',who:'Sam K.',d:'Oct 24 – 25',a:104,s:'ok'},{car:'Tesla Roadster',who:'Priya N.',d:'Oct 27 – 29',a:267,s:'new'},{car:'Audi RS6 Avant',who:'Marcus T.',d:'Nov 2 – 3',a:190,s:'new'}],
+ hist:[['Oct 12',480],['Sep 28',360],['Sep 9',410]],
+ th:[{n:'Priya N.',u:1,m:[['Hi! Is the Roadster still free Oct 27?',0],['Yes, I can have it ready by 10.',1]]},{n:'Sam K.',u:1,m:[['Where do I pick up the Camry?',0]]}]};
+const QA=`<div class="qa"><button class="p" data-a="add">＋ Add vehicle</button><button data-a="block">Block dates</button><button data-a="payout">Request payout</button><button data-a="tab:msg">Messages</button></div>`;
+const head=t=>`<div class="mh"><h3>${t}</h3>${QA}</div>`;
+const row=(r,i)=>`<div class="dr"><div class="g"><b>${r.car}</b><small>${r.d}, ${r.who}</small></div><b>$${r.a}</b><span class="st ${r.s==='ok'?'':'g'}">${r.s==='ok'?'Confirmed':r.s==='no'?'Declined':'Request'}</span>${r.s==='new'?`<button class="bx" data-a="dec:${i}">Decline</button><button class="bx p" data-a="acc:${i}">Accept</button>`:''}</div>`;
+function draw(){
+  const live=S.veh.filter(v=>v.on).length,up=S.reqs.filter(r=>r.s!=='no').length,unread=S.th.filter(t=>t.u).length,earnOct=612;
+  $('#dside').innerHTML=TABS.map(([k,l,ic])=>`<button class="${S.tab===k?'on':''}" data-a="tab:${k}">${ic}${l}${k==='msg'&&unread?`<span class="pill n">${unread}</span>`:''}${k==='park'?'<span class="pill s">SOON</span>':''}</button>`).join('');
+  let h='';
+  if(S.tab==='ov'){
+    const t0=new Date(Date.now()+864e5),t1=new Date(Date.now()+2*864e5);
+    h=head('Good morning, Alex')+`<div class="stats">
+      <button class="stat" data-a="tab:earn"><small>Earnings (Oct)</small><b>${money(earnOct)}</b><em>View →</em></button>
+      <button class="stat" data-a="tab:veh"><small>Vehicles</small><b>${S.veh.length}</b><em>View →</em></button>
+      <button class="stat" data-a="tab:bk"><small>Upcoming</small><b>${up}</b><em>View →</em></button>
+      <button class="stat" data-a="tab:msg"><small>Messages</small><b>${unread}</b><em>View →</em></button></div>`+
+    (S.blocking?`<div class="panel"><b>Block dates</b><p>Pause bookings for a vehicle on the dates you choose.</p><div class="qa" style="margin-top:12px"><select class="fld" id="bv">${S.veh.map((v,i)=>`<option value="${i}">${esc(v.n)}</option>`).join('')}</select><input class="fld" type="date" id="b1" value="${iso(t0)}"><input class="fld" type="date" id="b2" value="${iso(t1)}"><button class="p" data-a="doBlock">Block</button><button data-a="cancelBlock">Cancel</button></div></div>`:'')+
+    (S.blocked.length?`<div class="panel"><b>Blocked dates</b>${S.blocked.map(b=>`<div class="dr"><div class="g"><b>${b[0]}</b><small>${b[1]}</small></div><span class="st g">Blocked</span></div>`).join('')}</div>`:'')+
+    `<div class="panel"><b>Next trips</b>${S.reqs.filter(r=>r.s!=='no').slice(0,2).map((r,i)=>row(r,S.reqs.indexOf(r))).join('')||'<p>No upcoming trips.</p>'}</div>`;
+  }
+  if(S.tab==='veh'){
+    h=head('Vehicles')+`<div class="panel" style="margin-top:0">${S.veh.map((v,i)=>`<div class="dr"><div class="th">${SIL}${v.i?`<img src="${v.i}" alt="">`:''}</div><div class="g"><b>${esc(v.n)}</b><small>${esc(v.loc)}, $${v.p}/day</small></div><span class="st ${v.on?'':'g'}">${v.on?'Live':'Paused'}</span><button class="bx" data-a="tog:${i}">${v.on?'Pause':'Go live'}</button></div>`).join('')}</div>`+
+    (S.adding?`<div class="panel"><b>New vehicle</b><div class="qa" style="margin-top:12px"><input class="fld" id="vn" placeholder="Make, model, year" aria-label="Vehicle name"><input class="fld" id="vp" type="number" min="1" placeholder="Daily rate ($)" aria-label="Daily rate"><button class="p" data-a="saveV">Save</button><button data-a="cancelV">Cancel</button></div></div>`:'');
+  }
+  if(S.tab==='bk')h=head('Bookings')+`<div class="panel" style="margin-top:0">${S.reqs.map(row).join('')}</div>`;
+  if(S.tab==='earn')h=head('Earnings')+`<div class="stats" style="grid-template-columns:1fr 2fr"><div class="stat" style="cursor:default"><small>Available balance</small><div class="bigbal">${money(S.bal)}</div><button class="bx p" style="padding:10px 16px;border-radius:99px;font-weight:600;font-size:.84rem;background:var(--ink);color:#fff" data-a="payout" ${S.bal?'':'disabled'}>${S.paid&&!S.bal?'Payout requested':'Request payout'}</button></div><div class="stat" style="cursor:default"><small>October by week</small><div class="bars">${[420,560,480,612].map(v=>`<i style="height:${v/612*100}%"></i>`).join('')}</div><div class="rowl"><span>Wk 1</span><span>Wk 2</span><span>Wk 3</span><span>Wk 4</span></div></div></div><div class="panel"><b>Payout history</b>${S.hist.map(x=>`<div class="dr"><div class="g">${x[0]}</div><b>${money(x[1])}</b><span class="st">Paid</span></div>`).join('')}</div>`;
+  if(S.tab==='msg'){
+    h=head('Messages');
+    if(S.open<0)h+=`<div class="panel" style="margin-top:0">${S.th.map((t,i)=>`<button class="dr" style="width:100%;text-align:left" data-a="th:${i}"><div class="g"><b>${t.n}</b><small>${esc(t.m[t.m.length-1][0])}</small></div>${t.u?'<span class="pill n">New</span>':''}</button>`).join('')}</div>`;
+    else{const t=S.th[S.open];h+=`<div class="panel" style="margin-top:0"><button class="bx" data-a="back">‹ All messages</button><div class="chatw">${t.m.map(m=>`<div class="bb ${m[1]?'me':''}">${esc(m[0])}</div>`).join('')}</div><div class="qa"><input class="fld" id="mi" placeholder="Message ${esc(t.n)}" style="flex:1" aria-label="Message"><button class="p" data-a="send">Send</button></div></div>`}
+  }
+  if(S.tab==='ins')h=head('Insurance')+`<div class="insg"><div><h4>Renter coverage</h4><p>Renters verify and insure through our partner Bonzah at checkout.</p></div><div><h4>Your host policy</h4><p>Keep the insurance your state requires for your vehicle while it is listed.</p></div><div><h4>Partner options</h4><p>Explore host coverage options through Roamly.</p></div></div><div class="note2">Share Your Car does not verify or guarantee every host's insurance coverage. Hosts remain responsible for keeping an appropriate, valid policy.</div>`;
+  if(S.tab==='park')h=head('Parking')+`<div class="panel" style="margin-top:0"><span class="st g">Coming with our first location</span><p style="margin:12px 0">Soon you can reserve a secure space at our locations so renters can pick up with staff on hand. Indicative rate: $10 to $20 per visit, final pricing to be announced.</p><div class="qa"><input class="fld" id="pe" type="email" placeholder="Email me when parking opens" style="min-width:240px" aria-label="Email"><button class="p" data-a="notify">Notify me</button></div></div>`;
+  $('#dmain').innerHTML=h;
+}
+function pay(){if(!S.bal){toast('Nothing to pay out yet');return}S.hist.unshift(['Today',S.bal]);S.bal=0;S.paid=true;toast('Payout requested. Funds are sent to your payout account.')}
+$('#dashboard').addEventListener('click',e=>{
+  const el=e.target.closest('[data-a]');if(!el)return;
+  const [a,v]=el.dataset.a.split(':'),n=+v;
+  if(a==='tab'){S.tab=v;S.open=-1;S.adding=false}
+  else if(a==='add'){S.tab='veh';S.adding=true}
+  else if(a==='block'){S.tab='ov';S.blocking=true}
+  else if(a==='cancelBlock')S.blocking=false;
+  else if(a==='doBlock'){const x=$('#b1').value,y=$('#b2').value;if(!x||!y||y<x){toast('Choose a valid date range');return}S.blocked.push([S.veh[+$('#bv').value].n,x+' to '+y]);S.blocking=false;toast('Dates blocked')}
+  else if(a==='payout'){S.tab='earn';pay()}
+  else if(a==='tog'){S.veh[n].on=S.veh[n].on?0:1;toast(S.veh[n].on?'Listing is live':'Listing paused')}
+  else if(a==='cancelV')S.adding=false;
+  else if(a==='saveV'){const nm=esc($('#vn').value.trim()),p=Math.round(+$('#vp').value);if(!nm||!(p>0)){toast('Add a name and daily rate');return}S.veh.push({n:nm,loc:'Your location',p,i:'',on:1});S.adding=false;toast('Vehicle added and live')}
+  else if(a==='acc'){S.reqs[n].s='ok';toast('Booking confirmed')}
+  else if(a==='dec'){S.reqs[n].s='no';toast('Request declined')}
+  else if(a==='th'){S.open=n;S.th[n].u=0}
+  else if(a==='back')S.open=-1;
+  else if(a==='send'){const i=$('#mi'),t=i.value.trim();if(!t)return;S.th[S.open].m.push([t,1])}
+  else if(a==='notify'){const m=$('#pe').value.trim();if(!m||!m.includes('@')){toast('Enter a valid email');return}toast('Thanks! We will email you when parking opens.')}
+  draw();
+});
+$('#dashboard').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='mi'){e.preventDefault();e.target.closest('.panel').querySelector('[data-a="send"]').click()}});
+draw();
 })();
 </script>
 </body>
