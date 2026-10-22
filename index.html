@@ -15,7 +15,7 @@ body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--tex
 a{color:inherit;text-decoration:none}button,input{font:inherit;color:inherit}button{cursor:pointer;border:0;background:none}
 :focus-visible{outline:2px solid var(--lime);outline-offset:2px}
 h1,h2,h3{letter-spacing:-.03em;line-height:1.08}
-h1{font-size:clamp(2.4rem,5.5vw,4.2rem);font-weight:800}
+h1{font-size:clamp(2.6rem,7vw,5.2rem);font-weight:800}
 h2{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:800}
 h3{font-size:1.1rem;font-weight:700;letter-spacing:-.01em}
 p{color:var(--muted)}
@@ -29,49 +29,59 @@ p{color:var(--muted)}
 .btn-lime{background:var(--lime);color:var(--ink)}.btn-lime:hover{background:#c8ff72}
 .btn-ghost{border:1px solid rgba(255,255,255,.3);color:#fff}.btn-ghost:hover{background:rgba(255,255,255,.1)}
 .btn-white{background:#fff;color:var(--ink)}.btn-white:hover{background:var(--lime)}
-.btn-sm{min-height:40px;padding:0 18px;font-size:.86rem;border-radius:11px}.btn-block{width:100%}
+.btn-sm{min-height:40px;padding:0 18px;font-size:.86rem;border-radius:11px}
+
+/* scroll reveal */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.in{opacity:1;transform:none}
 
 /* nav */
 .nav{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:100;width:min(1120px,94%);display:flex;justify-content:space-between;align-items:center;padding:11px 12px 11px 18px;border-radius:18px;background:rgba(11,13,18,.82);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.12);box-shadow:0 10px 40px rgba(0,0,0,.35);color:#fff}
 .logo{display:flex;align-items:center;gap:11px;font-weight:800;font-size:1.05rem;letter-spacing:-.03em;color:#fff}
-.logo-icon{width:36px;height:36px;border-radius:11px;background:var(--lime);color:var(--ink);display:grid;place-items:center}
+.logo-icon{width:36px;height:36px;border-radius:11px;background:var(--lime);color:var(--ink);display:grid;place-items:center;flex:0 0 36px}
 .nav-links{display:flex;gap:2px}
 .nav-links a{padding:9px 15px;border-radius:11px;font-size:.9rem;font-weight:600;color:rgba(255,255,255,.7);transition:.25s}
 .nav-links a:hover{color:#fff;background:rgba(255,255,255,.09)}
 .nav-cta{display:flex;gap:8px}
 
-/* hero (compact) */
-.hero{position:relative;padding:112px 0 44px;display:flex;align-items:center;color:#fff;background:var(--ink);overflow:hidden}
-.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1800&q=80') center/cover;animation:zoom 18s ease-out both}
-.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(11,13,18,.95) 8%,rgba(11,13,18,.55) 55%,rgba(11,13,18,.25)),linear-gradient(0deg,var(--ink),transparent 35%)}
+/* hero: compact, bolder */
+.hero{position:relative;padding:118px 0 56px;display:flex;align-items:center;color:#fff;background:linear-gradient(135deg,#0B0D12,#1B2030);overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1800&q=80') center/cover;animation:zoom 18s ease-out both} /* HERO PHOTO: swap this URL for the client's chosen image */
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(60% 80% at 85% 100%,rgba(182,242,92,.22),transparent 70%),linear-gradient(90deg,rgba(11,13,18,.97) 10%,rgba(11,13,18,.72) 50%,rgba(11,13,18,.38)),linear-gradient(0deg,var(--ink),transparent 40%)}
 @keyframes zoom{from{transform:scale(1.12)}to{transform:scale(1)}}
 .hero .wrap{position:relative;z-index:2}
 .tag{display:inline-flex;gap:10px;align-items:center;padding:8px 14px;border-radius:99px;border:1px solid rgba(255,255,255,.2);background:rgba(11,13,18,.4);font-size:.8rem;font-weight:600}
 .tag i{width:8px;height:8px;border-radius:50%;background:var(--lime);animation:pulse 2s infinite}
 @keyframes pulse{50%{box-shadow:0 0 0 7px rgba(182,242,92,0)}0%{box-shadow:0 0 0 0 rgba(182,242,92,.6)}}
-.hero h1{margin:16px 0 12px;max-width:760px}.hero h1 span{color:var(--lime)}
-.lead{font-size:1.05rem;color:#C9CBD1;max-width:500px}
-.search{margin-top:24px;display:grid;grid-template-columns:1.3fr 1fr 1fr auto;gap:8px;padding:8px;border-radius:20px;background:rgba(11,13,18,.6);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.16);max-width:680px}
-.search div{display:flex;flex-direction:column;padding:9px 14px;border-radius:14px;background:rgba(255,255,255,.06)}
+.hero h1{margin:16px 0 12px;max-width:860px;font-size:clamp(2.8rem,8vw,5.8rem);text-shadow:0 4px 30px rgba(0,0,0,.45)}.hero h1 span{color:var(--lime)}
+.lead{font-size:1.08rem;color:#D5D7DC;max-width:520px}
+.search{margin-top:24px;display:grid;grid-template-columns:1.3fr 1fr 1fr auto;gap:8px;padding:8px;border-radius:20px;background:rgba(11,13,18,.66);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.18);max-width:680px}
+.search div{display:flex;flex-direction:column;padding:9px 14px;border-radius:14px;background:rgba(255,255,255,.06);min-width:0}
 .search div:focus-within{box-shadow:inset 0 0 0 1.5px var(--lime)}
 .search label{font-size:.72rem;font-weight:600;color:#9A9DA7}
 .search input{background:transparent;border:0;outline:0;font-weight:600;color:#fff;color-scheme:dark;width:100%}
-.hero-note{display:flex;gap:22px;margin-top:16px;flex-wrap:wrap;font-size:.84rem;color:#B3B5BC;font-weight:600}
+.hero-note{display:flex;gap:22px;margin-top:16px;flex-wrap:wrap;font-size:.84rem;color:#C3C5CB;font-weight:600}
 .hero-note span::before{content:"✓ ";color:var(--lime)}
+
+/* car silhouette fallback */
+.sil{position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);width:58%;color:var(--lime);opacity:.22;pointer-events:none}
 
 /* cars */
 .tabs{display:inline-flex;gap:4px;padding:5px;background:#fff;border:1px solid var(--line);border-radius:14px;margin-bottom:24px;flex-wrap:wrap}
 .tabs button{padding:9px 18px;border-radius:10px;font-weight:600;font-size:.9rem;color:var(--muted);transition:.25s}
 .tabs button.on{background:var(--ink);color:#fff}
 .cars{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.car{position:relative;border-radius:24px;overflow:hidden;cursor:pointer;height:340px;background:#1B1E27;color:#fff;animation:up .5s var(--ease) both}
+.empty{grid-column:1/-1;padding:40px 20px;text-align:center;border-radius:22px;background:#fff;border:1px dashed var(--line);font-weight:600}
+.car{position:relative;border-radius:24px;overflow:hidden;cursor:pointer;height:340px;background:linear-gradient(135deg,#1B1E27,#2A3040);color:#fff;animation:up .5s var(--ease) both;transition:transform .4s var(--ease),box-shadow .4s}
+.car:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(11,13,18,.25)}
 @keyframes up{from{opacity:0;transform:translateY(14px)}}
 .car img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
 .car:hover img{transform:scale(1.07)}
 .car::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(11,13,18,.9))}
 .badge{position:absolute;top:14px;left:14px;z-index:2;padding:6px 12px;border-radius:99px;background:#fff;color:var(--ink);font-size:.74rem;font-weight:700}
 .badge.hl{background:var(--lime)}
-.heart{position:absolute;top:12px;right:12px;z-index:2;width:38px;height:38px;border-radius:50%;background:#fff;color:var(--ink);display:grid;place-items:center}
+.heart{position:absolute;top:12px;right:12px;z-index:2;width:38px;height:38px;border-radius:50%;background:#fff;color:var(--ink);display:grid;place-items:center;transition:transform .25s var(--ease)}
+.heart:active{transform:scale(.85)}
 .heart.on{color:#E11D48}
 .car-info{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:20px}
 .car-info p{color:#C9CBD1;font-size:.82rem}
@@ -79,6 +89,7 @@ p{color:var(--muted)}
 .price{font-size:1.4rem;font-weight:800}.price small{font-size:.78rem;color:#C9CBD1;font-weight:500}
 .rate{font-weight:700;font-size:.9rem}
 .book-btn{padding:8px 16px;border-radius:10px;background:var(--lime);color:var(--ink);font-weight:700;font-size:.82rem}
+.sample{font-size:.78rem;color:var(--muted);margin-top:18px}
 
 /* steps */
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
@@ -88,6 +99,7 @@ p{color:var(--muted)}
 
 /* split sections */
 .split{display:grid;grid-template-columns:1fr auto;gap:70px;align-items:center}
+.split.rev{grid-template-columns:auto 1fr}
 .split ul{list-style:none;display:grid;gap:14px;margin:26px 0}
 .split li{display:flex;gap:14px;align-items:center;font-weight:600;color:#E3E3DE}
 .split li span{flex:0 0 28px;height:28px;border-radius:50%;background:var(--lime);color:var(--ink);display:grid;place-items:center;font-weight:800;font-size:.8rem}
@@ -129,16 +141,15 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .dot{position:absolute;top:0;right:22%;min-width:16px;height:16px;border-radius:50%;background:#E11D48;color:#fff;font-size:.6rem;display:grid;place-items:center}
 .hero-card{background:var(--ink);color:#fff;border-radius:22px;padding:20px;margin-bottom:12px}
 .hero-card p{color:#A3A5AD;font-size:.78rem}.hero-card strong{display:block;font-size:2.4rem;letter-spacing:-.04em;line-height:1.1;margin:4px 0 14px}
-.mini{display:flex;align-items:flex-end;gap:6px;height:40px;margin-bottom:14px}.mini i{flex:1;border-radius:4px;background:rgba(255,255,255,.18)}.mini i:last-child{background:var(--lime)}
-.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
-.quick button{display:flex;flex-direction:column;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 4px;font-size:.7rem;font-weight:700;transition:transform .25s var(--ease),border-color .25s}
-.quick button:hover{border-color:var(--ink)}
-.quick button:active{transform:scale(.97)}
-.qi{width:34px;height:34px;border-radius:11px;background:var(--ink);color:var(--lime);display:grid;place-items:center}
-.qi svg{width:18px;height:18px}
+.mini{display:flex;align-items:flex-end;gap:6px;height:64px;margin-bottom:14px}.mini i{flex:1;border-radius:4px;background:rgba(255,255,255,.18);cursor:pointer;transition:height .5s var(--ease),background .25s}.mini i.on{background:var(--lime)}
 .sec{font-size:.8rem;font-weight:700;margin:6px 2px 8px}
 .lrow{display:flex;align-items:center;gap:12px}
-.lrow img{width:62px;height:46px;border-radius:10px;object-fit:cover}.lrow div{flex:1;min-width:0}
+.lrow img,.lrow .ph{width:62px;height:46px;border-radius:10px;object-fit:cover;background:linear-gradient(135deg,#1B1E27,#2A3040);flex:0 0 62px;position:relative;overflow:hidden}
+.lrow .ph svg{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:70%;color:var(--lime);opacity:.5}
+.lrow>div:not(.ph){flex:1;min-width:0}
+.lrow .imgw{position:relative;width:62px;height:46px;flex:0 0 62px;border-radius:10px;overflow:hidden;background:linear-gradient(135deg,#1B1E27,#2A3040)}
+.lrow .imgw svg{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:70%;color:var(--lime);opacity:.5}
+.lrow .imgw img{position:absolute;inset:0;width:100%;height:100%}
 .sw{width:44px;height:26px;border-radius:99px;background:#CFCFCA;position:relative;transition:.3s;flex:0 0 44px}
 .sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .3s var(--ease)}
 .sw.on{background:var(--ink)}.sw.on::after{transform:translateX(18px);background:var(--lime)}
@@ -146,28 +157,21 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .thread{display:flex;gap:10px;align-items:center;cursor:pointer}
 .av{width:38px;height:38px;border-radius:50%;background:var(--ink);color:var(--lime);display:grid;place-items:center;font-weight:800;font-size:.8rem;flex:0 0 38px}
 .chat{display:flex;flex-direction:column;gap:8px;min-height:240px}
-.bub{max-width:86%;padding:9px 12px;border-radius:14px 14px 14px 4px;background:#fff;border:1px solid var(--line);font-size:.8rem;animation:slide .3s}
+.bub{max-width:86%;padding:9px 12px;border-radius:14px 14px 14px 4px;background:#fff;border:1px solid var(--line);font-size:.8rem;animation:slide .3s;color:var(--text)}
 .bub.me{align-self:flex-end;background:var(--lime);border:0;border-radius:14px 14px 4px 14px;font-weight:600}
 .compose{display:flex;gap:8px;margin-top:10px}.compose input{flex:1;min-width:0;border:1px solid var(--line);border-radius:12px;padding:0 12px;height:40px;background:#fff;outline:0}.compose .abtn{width:64px;height:40px}
-.carimg{height:150px;border-radius:18px;object-fit:cover;width:100%;margin-bottom:10px}
+.carimgw{position:relative;height:150px;border-radius:18px;overflow:hidden;margin-bottom:10px;background:linear-gradient(135deg,#1B1E27,#2A3040)}
+.carimgw img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .steps-dots{display:flex;gap:6px;padding:0 18px 6px}.steps-dots i{flex:1;height:4px;border-radius:4px;background:#DADBD6;transition:.3s}.steps-dots i.on{background:var(--ink)}
 .stepper{display:flex;align-items:center;gap:12px}.stepper button{width:32px;height:32px;border-radius:50%;background:#fff;border:1px solid var(--line);font-weight:800}
 .done{text-align:center;padding:30px 6px}.done .ok{width:64px;height:64px;margin:0 auto 14px;border-radius:50%;background:var(--lime);display:grid;place-items:center;font-size:1.8rem;font-weight:800;animation:pop .5s var(--ease)}
 @keyframes pop{from{transform:scale(.3)}}
-
-
-/* v2 */
-.hero .wrap>*{animation:up .8s var(--ease) both}
-.hero .wrap>*:nth-child(2){animation-delay:.1s}.hero .wrap>*:nth-child(3){animation-delay:.2s}.hero .wrap>*:nth-child(4){animation-delay:.3s}.hero .wrap>*:nth-child(5){animation-delay:.4s}.hero .wrap>*:nth-child(6){animation-delay:.5s}
-.feat{display:flex;gap:12px;margin-top:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px;scrollbar-width:none}.feat::-webkit-scrollbar{display:none}
-.fc{flex:0 0 180px;height:100px;border-radius:16px;overflow:hidden;position:relative;scroll-snap-align:start;cursor:pointer;background:#1B1E27;border:1px solid rgba(255,255,255,.15)}
-.fc img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}.fc:hover img{transform:scale(1.08)}
-.fc::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(11,13,18,.85))}
-.fc span{position:absolute;left:10px;bottom:8px;z-index:2;font-weight:700;font-size:.78rem}
+.opt{display:flex;justify-content:space-between;align-items:center;gap:8px;width:100%;text-align:left;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#fff;margin-bottom:6px;font-size:.8rem;transition:.25s}
+.opt small{display:block;color:var(--muted);font-size:.7rem}
+.opt.on{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.field{width:100%;height:40px;border:1px solid var(--line);border-radius:10px;padding:0 12px;background:#fff;outline:0;margin-bottom:8px}
 .seg{display:flex;gap:2px;padding:3px;border-radius:99px;background:rgba(255,255,255,.1)}
 .seg button{padding:3px 11px;border-radius:99px;font-size:.7rem;font-weight:700;color:#A3A5AD}.seg button.on{background:var(--lime);color:var(--ink)}
-.mini{height:64px}.mini i{cursor:pointer;transition:height .5s var(--ease),background .25s}
-.mini i:last-child{background:rgba(255,255,255,.18)}.mini i.on{background:var(--lime)}
 .hero-card .rowx p{margin:0}
 
 /* trust */
@@ -197,10 +201,26 @@ footer h4{color:#fff;font-size:.9rem;margin-bottom:14px}footer ul{list-style:non
 .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,160%);background:var(--ink);color:#fff;padding:14px 22px;border-radius:14px;font-weight:600;font-size:.9rem;z-index:300;transition:transform .5s var(--ease);max-width:calc(100% - 32px);text-align:center;border:1px solid rgba(255,255,255,.12)}
 .toast.show{transform:translate(-50%,0)}
 
-@media(max-width:1024px){.split,.park{grid-template-columns:1fr}.split{justify-items:center;gap:50px}.split>div:first-child{justify-self:start;width:100%}.trust{grid-template-columns:1fr 1fr}.fg{grid-template-columns:1fr 1fr}.cars{grid-template-columns:1fr 1fr}}
-@media(max-width:768px){.section{padding:60px 0}.hero{padding:96px 0 32px}.nav-links{display:none}.search{grid-template-columns:1fr}.cars,.steps,.trust{grid-template-columns:1fr}.fg{grid-template-columns:1fr}.cta{padding:52px 22px}.notify{flex-direction:column}.car{height:300px}.feat{display:none}}
-@media(max-width:420px){.dev{width:100%;height:640px;border-radius:40px}.app{border-radius:32px}}
-@media(max-width:520px){.dev{width:100%;height:min(760px,calc(100svh - 20px));padding:0;border-radius:0;background:none;box-shadow:none}.dev::before{display:none}.island,.status{display:none}.app{border-radius:22px;border:1px solid rgba(255,255,255,.1)}}
+/* AI chat preview */
+.bot-fab{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:260;width:56px;height:56px;border-radius:50%;background:var(--lime);color:var(--ink);display:grid;place-items:center;box-shadow:0 12px 30px rgba(0,0,0,.35);transition:transform .25s var(--ease)}
+.bot-fab:hover{transform:scale(1.07)}.bot-fab:active{transform:scale(.94)}
+.bot-fab svg{width:26px;height:26px}
+.bot{position:fixed;right:20px;bottom:calc(88px + env(safe-area-inset-bottom,0px));width:min(350px,calc(100% - 32px));max-height:min(500px,72svh);display:none;flex-direction:column;background:var(--bg);border-radius:22px;box-shadow:0 30px 70px rgba(0,0,0,.4);border:1px solid var(--line);z-index:250;overflow:hidden;color:var(--text)}
+.bot.open{display:flex;animation:up .3s var(--ease)}
+.bot-h{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:var(--ink);color:#fff}
+.bot-h b{font-size:.92rem;display:block}.bot-h small{color:var(--lime);font-size:.7rem;font-weight:600}
+.bot-h button{color:#fff;font-size:1.3rem;width:30px;height:30px}
+.bot-m{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px;min-height:180px}
+.bot-q{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 10px}
+.bot-q button{padding:7px 12px;border-radius:99px;border:1px solid var(--line);background:#fff;font-size:.74rem;font-weight:700;transition:.25s}
+.bot-q button:hover{border-color:var(--ink)}
+.bot form{display:flex;gap:8px;padding:10px 14px 14px;border-top:1px solid var(--line)}
+.bot form input{flex:1;min-width:0;border:1px solid var(--line);border-radius:12px;padding:0 12px;height:40px;background:#fff;outline:0}
+.bot form button{padding:0 16px;height:40px;border-radius:12px;background:var(--ink);color:var(--lime);font-weight:800;font-size:.82rem}
+
+@media(max-width:1024px){.split,.split.rev,.park{grid-template-columns:1fr}.split{justify-items:center;gap:50px}.split>div:not(.dev){justify-self:start;width:100%}.trust{grid-template-columns:1fr 1fr}.fg{grid-template-columns:1fr 1fr}.cars{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){.section{padding:60px 0}.hero{padding:96px 0 38px}.nav-links{display:none}.search{grid-template-columns:1fr}.cars,.steps,.trust{grid-template-columns:1fr}.fg{grid-template-columns:1fr}.cta{padding:52px 22px}.notify{flex-direction:column}.car{height:300px}}
+@media(max-width:520px){.nav-cta .btn-ghost{display:none}.dev{width:100%;height:min(760px,calc(100svh - 20px));padding:0;border-radius:0;background:none;box-shadow:none}.dev::before{display:none}.island,.status{display:none}.app{border-radius:22px;border:1px solid rgba(255,255,255,.1)}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -215,8 +235,8 @@ footer h4{color:#fff;font-size:.9rem;margin-bottom:14px}footer ul{list-style:non
 <section class="hero" id="top">
   <div class="hero-bg"></div>
   <div class="wrap">
-    <span class="tag"><i></i>Available in Austin, Denver and Miami</span>
-    <h1>Find it. Pick dates.<br><span>Drive it.</span></h1>
+    <span class="tag"><i></i>Concept preview · sample cities and listings</span>
+    <h1>Find it. Pick dates. <span>Book it.</span></h1>
     <p class="lead">Rent well-kept cars from local hosts in three simple steps. Or share your own and earn while it's parked.</p>
     <form class="search" id="search">
       <div><label for="hl">Location</label><input id="hl" value="Downtown Austin, TX" /></div>
@@ -225,15 +245,15 @@ footer h4{color:#fff;font-size:.9rem;margin-bottom:14px}footer ul{list-style:non
       <button class="btn btn-white" type="submit">Find a car</button>
     </form>
     <div class="hero-note"><span>Host-set pricing</span><span>Secure checkout</span><span>Reviews from verified trips</span></div>
-    <div class="feat" id="feat"></div>
   </div>
 </section>
 
 <section class="section" id="cars">
   <div class="wrap">
     <div class="head"><span class="eyebrow">Top rated near you</span><h2>Cars people book again and again</h2><p>Every host sets their own prices and availability. Tap a car to start booking.</p></div>
-    <div class="tabs" id="tabs"><button class="on" data-f="all">All</button><button data-f="sedan">Sedans</button><button data-f="suv">SUVs</button><button data-f="truck">Trucks</button><button data-f="electric">Electric</button><button data-f="sports">Sports</button></div>
+    <div class="tabs" id="tabs"><button class="on" data-f="all">All</button><button data-f="sedan">Sedans</button><button data-f="suv">SUVs</button><button data-f="electric">Electric</button><button data-f="sports">Sports</button><button data-f="compact">Compact</button></div>
     <div class="cars" id="grid"></div>
+    <p class="sample">Sample listings, prices and ratings shown for design preview only.</p>
   </div>
 </section>
 
@@ -266,7 +286,7 @@ footer h4{color:#fff;font-size:.9rem;margin-bottom:14px}footer ul{list-style:non
 
 <!-- HOST APP -->
 <section class="section dark" id="host" style="padding-top:0">
-  <div class="wrap split" style="grid-template-columns:auto 1fr">
+  <div class="wrap split rev">
     <div class="dev"><div class="island"></div>
       <div class="app" id="hostapp">
         <div class="status"><span>9:41</span><span>5G ▮▮▮</span></div>
@@ -275,8 +295,8 @@ footer h4{color:#fff;font-size:.9rem;margin-bottom:14px}footer ul{list-style:non
           <div class="scr on" id="s-home">
             <div class="hero-card"><div class="rowx"><p>Earnings</p><div class="seg" id="seg"><button class="on" data-p="w">Week</button><button data-p="m">Month</button></div></div><strong id="earn">$0</strong><p id="barLbl" style="margin-bottom:10px">Tap a bar for details</p><div class="mini" id="mini"></div><div class="rowx" style="margin-bottom:12px"><span style="color:#A3A5AD">Available balance</span><b id="bal" style="color:#fff">$1,240</b></div><button class="abtn sm" id="payHome">Request payout</button></div>
             <div class="sec">Next trips</div>
-            <div class="card"><div class="rowx"><b>Toyota Camry</b><span class="chip">Confirmed</span></div><div class="rowx" style="margin-top:6px"><span>Oct 24 – 25, Sam K.</span><b>$104</b></div></div>
-            <div class="card"><div class="rowx"><b>Tesla Model Y</b><span class="chip g">Request</span></div><div class="rowx" style="margin-top:6px"><span>Oct 27 – 29, Priya N.</span><b>$267</b></div></div>
+            <div class="card thread" data-go="bookings"><div style="flex:1"><div class="rowx"><b>Toyota Camry</b><span class="chip">Confirmed</span></div><div class="rowx" style="margin-top:6px"><span>Oct 24 – 25, Sam K.</span><b>$104</b></div></div></div>
+            <div class="card thread" data-go="bookings"><div style="flex:1"><div class="rowx"><b>Tesla Roadster</b><span class="chip g">Request</span></div><div class="rowx" style="margin-top:6px"><span>Oct 27 – 29, Priya N.</span><b>$267</b></div></div></div>
           </div>
           <div class="scr" id="s-vehicles"></div>
           <div class="scr" id="s-bookings"></div>
@@ -296,12 +316,12 @@ footer h4{color:#fff;font-size:.9rem;margin-bottom:14px}footer ul{list-style:non
     <div>
       <span class="eyebrow">For hosts</span>
       <h2 style="margin:10px 0 16px">Your host dashboard, built like an app</h2>
-      <p style="font-size:1.04rem;max-width:480px">Earnings, vehicles, bookings, messages and payouts are one tap away. This is a live preview of the future iOS and Android app. Accept a request, send a message, or request a payout.</p>
+      <p style="font-size:1.04rem;max-width:480px">Earnings, vehicles, bookings, messages and payouts are one tap away. This is a live preview of the future iOS and Android app. Accept a request, add a vehicle, send a message, or request a payout.</p>
       <div class="calc">
         <div class="sl"><div class="sl-top"><label for="rate">Daily rate</label><output id="rateOut">$60</output></div><input type="range" id="rate" min="25" max="250" step="5" value="60" /></div>
         <div class="sl"><div class="sl-top"><label for="days">Days booked per month</label><output id="daysOut">12</output></div><input type="range" id="days" min="2" max="30" value="12" /></div>
         <div class="out"><span>Estimated monthly earnings</span><strong id="earnOut">$612</strong></div>
-        <small>Illustrative only. Assumes a 15% platform fee; actual earnings depend on demand and pricing.</small>
+        <small>Illustrative only. The 15% platform fee is a placeholder until pricing is confirmed; actual earnings depend on demand and pricing.</small>
       </div>
     </div>
   </div>
@@ -345,54 +365,74 @@ footer h4{color:#fff;font-size:.9rem;margin-bottom:14px}footer ul{list-style:non
       <div><h4>Hosts</h4><ul><li><a href="#host">Become a host</a></li><li><a href="#trust">Host insurance</a></li><li><a href="#">Host resources</a></li></ul></div>
       <div><h4>Company</h4><ul><li><a href="#">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact</a></li></ul></div>
     </div>
-    <div class="fb2"><span>© 2026 Share Your Car. All rights reserved.</span><small>Insurance options are provided through third-party partners. Share Your Car does not guarantee coverage for any host. Hosts are responsible for maintaining appropriate insurance for their vehicles.</small></div>
+    <div class="fb2"><span>© 2026 Share Your Car. All rights reserved.</span><small>Design concept with sample data. Insurance options are provided through third-party partners. Share Your Car does not guarantee coverage for any host. Hosts are responsible for maintaining appropriate insurance for their vehicles.</small></div>
   </div>
 </footer>
+
+<!-- AI support chat preview -->
+<button class="bot-fab" id="botFab" aria-label="Open support chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></button>
+<div class="bot" id="bot" role="dialog" aria-label="Support assistant">
+  <div class="bot-h"><div><b>Support assistant</b><small>● Preview · 24/7 in the live version</small></div><button id="botX" aria-label="Close">×</button></div>
+  <div class="bot-m" id="botM"></div>
+  <div class="bot-q" id="botQ"></div>
+  <form id="botF"><input placeholder="Ask about bookings, insurance…" aria-label="Message" /><button type="submit">Send</button></form>
+</div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 (function(){
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 let tt;function toast(m){const e=$('#toast');e.textContent=m;e.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('show'),2600)}
+const esc=s=>String(s).replace(/[<>&"]/g,'');
+const SIL='<svg class="sil" viewBox="0 0 120 50" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 38h100v-12l-9-12a8 8 0 0 0-6-3H40a8 8 0 0 0-6 3L22 24l-12 4z"/><path d="M38 14l-6 12h66l-8-12"/><circle cx="34" cy="38" r="7" fill="#0B0D12"/><circle cx="88" cy="38" r="7" fill="#0B0D12"/></svg>';
 const U=id=>`https://images.unsplash.com/${id}?auto=format&fit=crop&w=800&q=80`;
+
+/* CAR PHOTOS: one source of truth. The same photo (field i) is used in the grid,
+   the phone booking preview and the host Vehicles tab. Swap a URL here and every
+   place updates. Keep the label (n) matched to what the photo shows. */
 const cars=[
 {n:'Toyota Camry',y:2022,p:52,r:4.92,c:'sedan',l:'Austin, TX',s:5,t:'Automatic',b:'Top host',hl:1,i:U('photo-1621007947382-bb3c3994e3fb')},
-{n:'Tesla Model Y',y:2023,p:89,r:4.97,c:'electric suv',l:'Austin, TX',s:5,t:'Automatic',b:'Electric',hl:1,i:U('photo-1617788138017-80ad40651399')},
-{n:'Ford F-150',y:2022,p:95,r:4.88,c:'truck',l:'Denver, CO',s:5,t:'Automatic',b:'Work truck',i:U('photo-1606664515524-ed2f786a0bd6')},
-{n:'Jeep Wrangler',y:2021,p:88,r:4.90,c:'suv',l:'Denver, CO',s:4,t:'Automatic',b:'Adventure',i:U('photo-1519641471654-76ce0107ad1b')},
-{n:'Ford Mustang GT',y:2022,p:130,r:4.95,c:'sports',l:'Miami, FL',s:4,t:'Manual',b:'Sports',i:U('photo-1494905998402-395d579af36f')},
-{n:'Honda CR-V',y:2023,p:68,r:4.84,c:'suv',l:'Miami, FL',s:5,t:'Automatic',b:'Family pick',i:U('photo-1549317661-bd32c8ce0db2')}];
+{n:'Tesla Roadster',y:2023,p:89,r:4.97,c:'electric sports',l:'Austin, TX',s:2,t:'Automatic',b:'Electric',hl:1,i:U('photo-1617788138017-80ad40651399')},
+{n:'Audi RS6 Avant',y:'',p:95,r:4.88,c:'sports',l:'Denver, CO',s:5,t:'Automatic',b:'Premium',i:U('photo-1606664515524-ed2f786a0bd6')},
+{n:'Honda CR-V',y:'',p:88,r:4.90,c:'suv',l:'Denver, CO',s:5,t:'Automatic',b:'Family pick',i:U('photo-1519641471654-76ce0107ad1b')},
+{n:'Ford Mustang GT',y:'',p:130,r:4.95,c:'sports',l:'Miami, FL',s:4,t:'Manual',b:'Sports',i:U('photo-1494905998402-395d579af36f')},
+{n:'Fiat 500',y:'',p:68,r:4.84,c:'compact',l:'Miami, FL',s:4,t:'Automatic',b:'City pick',i:U('photo-1549317661-bd32c8ce0db2')}];
+const title=c=>c.n+(c.y?' '+c.y:'');
+const INS=[{n:'Basic',d:'Essential protection',p:12},{n:'Standard',d:'Recommended',p:19},{n:'Premium',d:'Lowest deductible',p:27}];
 
 /* car grid */
 let city='',curF='all';
 function render(f){curF=f;
-  $('#grid').innerHTML=cars.map((c,k)=>({c,k})).filter(o=>(f==='all'||o.c.c.split(' ').includes(f))&&(!city||o.c.l.toLowerCase().includes(city))).map(({c,k})=>`
-  <article class="car" data-k="${k}"><img src="${c.i}" alt="${c.n}" loading="lazy"><span class="badge ${c.hl?'hl':''}">${c.b}</span><button class="heart" aria-label="Save">♡</button>
-  <div class="car-info"><h3>${c.n} ${c.y}</h3><p>${c.s} seats, ${c.t}, ${c.l}</p><div class="row"><div class="price">$${c.p} <small>/ day</small></div><span class="rate">★ ${c.r.toFixed(2)}</span><span class="book-btn">Book</span></div></div></article>`).join('');
+  const list=cars.map((c,k)=>({c,k})).filter(o=>(f==='all'||o.c.c.split(' ').includes(f))&&(!city||o.c.l.toLowerCase().includes(city)));
+  $('#grid').innerHTML=list.length?list.map(({c,k})=>`
+  <article class="car" data-k="${k}">${SIL}<img src="${c.i}" alt="${esc(title(c))}" loading="lazy"><span class="badge ${c.hl?'hl':''}">${c.b}</span><button class="heart" aria-label="Save">♡</button>
+  <div class="car-info"><h3>${title(c)}</h3><p>${c.s} seats, ${c.t}, ${c.l}</p><div class="row"><div class="price">$${c.p} <small>/ day</small></div><span class="rate">★ ${c.r.toFixed(2)}</span><span class="book-btn">Book</span></div></div></article>`).join(''):'<div class="empty">No sample cars match that filter here yet. Try another type or city.</div>';
 }
 render('all');
-$('#feat').innerHTML=cars.map((c,k)=>`<div class="fc" data-k="${k}"><img src="${c.i}" alt="${c.n}"><span>${c.n} · $${c.p}/day</span></div>`).join('');
-$('#feat').onclick=e=>{const c=e.target.closest('.fc');if(c){st.car=+c.dataset.k;st.step=1;drawRent();$('#book').scrollIntoView({behavior:'smooth'})}};
+function pick(k){st.car=k;st.step=1;drawRent();$('#book').scrollIntoView({behavior:'smooth'})}
 document.addEventListener('error',e=>{if(e.target.tagName==='IMG')e.target.style.visibility='hidden'},true);
 $('#tabs').onclick=e=>{const b=e.target.closest('button');if(!b)return;$$('#tabs button').forEach(x=>x.classList.toggle('on',x===b));render(b.dataset.f)};
 $('#grid').onclick=e=>{
   const h=e.target.closest('.heart');
   if(h){h.classList.toggle('on');h.textContent=h.classList.contains('on')?'♥':'♡';toast(h.classList.contains('on')?'Saved to favorites':'Removed');return}
-  const c=e.target.closest('.car');if(c){st.car=+c.dataset.k;st.step=1;drawRent();$('#book').scrollIntoView({behavior:'smooth'})}
+  const c=e.target.closest('.car');if(c)pick(+c.dataset.k)
 };
 
 /* renter flow */
-const st={car:0,step:1,days:2,seen:false,start:new Date(Date.now()+864e5)};
+const st={car:0,step:1,days:2,seen:false,ins:1,start:new Date(Date.now()+864e5)};
 const fmt=n=>new Date(st.start.getTime()+n*864e5).toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
 function setDates(){const a=new Date($('#hs').value+'T00:00'),z=new Date($('#he').value+'T00:00');if(isNaN(a)||isNaN(z))return;st.start=a;st.days=Math.min(14,Math.max(1,Math.round((z-a)/864e5)));st.step=1;drawRent()}
 function drawRent(){
-  const c=cars[st.car],sub=c.p*st.days,fee=st.seen?0:20,tot=sub+fee,S=st.step;
-  const head=`<div class="status"><span>9:41</span><span>5G ▮▮▮</span></div><div class="bar">${S>1&&S<4?'<button class="back" data-rb>‹</button>':''}<h4>${['','Choose car','Select dates','Verify & pay','Booked'][S]}</h4></div>${S<4?`<div class="steps-dots">${[1,2,3].map(n=>`<i class="${n<=S?'on':''}"></i>`).join('')}</div>`:''}`;
+  const c=cars[st.car],sub=c.p*st.days,fee=st.seen?0:20,I=INS[st.ins],insc=I.p*st.days,tot=sub+fee+insc,S=st.step;
+  const head=`<div class="status"><span>9:41</span><span>5G ▮▮▮</span></div><div class="bar">${S>1&&S<4?'<button class="back" data-rb aria-label="Back">‹</button>':''}<h4>${['','Choose car','Select dates','Verify & book','Booked'][S]}</h4></div>${S<4?`<div class="steps-dots">${[1,2,3].map(n=>`<i class="${n<=S?'on':''}"></i>`).join('')}</div>`:''}`;
   let body='';
-  if(S===1)body=`<img class="carimg" src="${c.i}" alt="${c.n}"><div class="rowx"><b style="font-size:1.1rem">${c.n} ${c.y}</b><b>★ ${c.r.toFixed(2)}</b></div><p style="font-size:.82rem;margin:4px 0 12px">${c.s} seats, ${c.t}, ${c.l}. Hosted by Jordan R.</p><div class="card"><div class="rowx"><span>Per day</span><b>$${c.p}</b></div></div><button class="abtn" data-rn>Select dates</button>`;
+  if(S===1)body=`<div class="carimgw">${SIL}<img src="${c.i}" alt="${esc(title(c))}"></div><div class="rowx"><b style="font-size:1.1rem">${title(c)}</b><b>★ ${c.r.toFixed(2)}</b></div><p style="font-size:.82rem;margin:4px 0 12px">${c.s} seats, ${c.t}, ${c.l}. Sample listing from a local host.</p><div class="card"><div class="rowx"><span>Per day</span><b>$${c.p}</b></div></div><button class="abtn" data-rn>Select dates</button>`;
   if(S===2)body=`<div class="card"><div class="rowx"><span>Pick-up</span><b>${fmt(0)}</b></div><div class="rowx" style="margin-top:8px"><span>Return</span><b>${fmt(st.days)}</b></div></div><div class="card"><div class="rowx"><span>Trip length</span><div class="stepper"><button data-d="-1" aria-label="Fewer days">−</button><b>${st.days} days</b><button data-d="1" aria-label="More days">+</button></div></div></div><div class="card"><div class="rowx"><span>$${c.p} × ${st.days} days</span><b>$${sub}</b></div></div><button class="abtn" data-rn>Continue</button>`;
-  if(S===3)body=`<div class="card"><div class="rowx"><span>$${c.p} × ${st.days} days</span><b>$${sub}</b></div>${fee?'<div class="rowx" style="margin-top:8px"><span>One-time verification (Bonzah)</span><b>$20</b></div>':'<div class="rowx" style="margin-top:8px"><span>Verification</span><span class="chip">Approved</span></div>'}<div class="rowx" style="margin-top:8px"><span>Bonzah insurance</span><b>Quoted next</b></div><div class="rowx" style="margin-top:10px;padding-top:10px;border-top:1px solid var(--line)"><span>Total today</span><b style="font-size:1.05rem">$${tot}</b></div></div><div class="card"><div class="rowx"><span>I've rented here before</span><button class="sw ${st.seen?'on':''}" data-seen aria-label="Returning renter"></button></div></div><p style="font-size:.74rem;margin-bottom:10px">Verification is a one-time step. Once approved, future rentals skip the fee.</p><button class="abtn dk" data-rn>Request to book</button>`;
-  if(S===4)body=`<div class="done"><div class="ok">✓</div><h3 style="font-size:1.3rem;margin-bottom:6px">Request sent</h3><p style="font-size:.85rem;margin-bottom:18px">${c.n}, ${st.days} days, $${tot}. Your host will reply in the app.</p><button class="abtn ln" data-rr>Book another car</button></div>`;
+  if(S===3)body=`<div class="card"><div class="rowx"><span>$${c.p} × ${st.days} days</span><b>$${sub}</b></div><div class="rowx" style="margin-top:8px"><span>Identity check (Bonzah)</span>${fee?'<b>$20 one-time</b>':'<span class="chip">Approved</span>'}</div></div>
+  <div class="sec">Bonzah insurance <span style="font-weight:500;color:var(--muted)">· sample quotes</span></div>${INS.map((o,i)=>`<button class="opt ${i===st.ins?'on':''}" data-ins="${i}"><span><b>${o.n}</b><small>${o.d}</small></span><b>$${o.p}/day</b></button>`).join('')}
+  <div class="card" style="margin-top:6px"><div class="rowx"><span>Insurance, ${st.days} days</span><b>$${insc}</b></div><div class="rowx" style="margin-top:10px;padding-top:10px;border-top:1px solid var(--line)"><span>Total today</span><b style="font-size:1.05rem">$${tot}</b></div></div>
+  <div class="card"><div class="rowx"><span>I've rented here before</span><button class="sw ${st.seen?'on':''}" data-seen aria-label="Returning renter"></button></div></div><p style="font-size:.74rem;margin-bottom:10px">Verification is a one-time step. Once approved, future rentals skip the fee. Final insurance quote is confirmed by Bonzah.</p><button class="abtn dk" data-rn>Request to book</button>`;
+  if(S===4)body=`<div class="done"><div class="ok">✓</div><h3 style="font-size:1.3rem;margin-bottom:6px">Request sent</h3><p style="font-size:.85rem;margin-bottom:18px">${title(c)}, ${st.days} days, $${tot} incl. ${I.n} insurance. Your host will reply in the app.</p><button class="abtn ln" data-rr>Book another car</button></div>`;
   $('#rent').innerHTML=head+`<div class="view"><div class="scr on">${body}</div></div>`;
 }
 $('#rent').onclick=e=>{
@@ -401,14 +441,17 @@ $('#rent').onclick=e=>{
   else if('rb'in t.dataset){st.step--;drawRent()}
   else if('rr'in t.dataset){st.step=1;drawRent()}
   else if('seen'in t.dataset){st.seen=!st.seen;drawRent()}
+  else if('ins'in t.dataset){st.ins=+t.dataset.ins;drawRent()}
   else if(t.dataset.d){st.days=Math.min(14,Math.max(1,st.days+ +t.dataset.d));drawRent()}
 };
 drawRent();
 
 /* host app */
-const H={bal:1240,reqs:[{id:0,car:'Tesla Model Y',who:'Priya N.',d:'Oct 27 – 29',a:267,s:'new'},{id:1,car:'Jeep Wrangler',who:'Marcus T.',d:'Nov 2 – 3',a:176,s:'new'}],
-  live:[1,1,0],hist:[['Oct 12',480],['Sep 28',360],['Sep 9',410]],paid:false,
-  th:[{n:'Priya N.',m:['Hi! Is the Model Y still free Oct 27?','Yes, I can have it ready by 10.']},{n:'Sam K.',m:['Where do I pick up the Camry?']}]};
+const H={bal:1240,adding:false,
+  veh:cars.slice(0,3).map((c,i)=>({n:title(c),loc:c.l,p:c.p,i:c.i,on:i<2?1:0})),
+  reqs:[{id:0,car:'Tesla Roadster',who:'Priya N.',d:'Oct 27 – 29',a:267,s:'new'},{id:1,car:'Audi RS6 Avant',who:'Marcus T.',d:'Nov 2 – 3',a:190,s:'new'}],
+  hist:[['Oct 12',480],['Sep 28',360],['Sep 9',410]],paid:false,
+  th:[{n:'Priya N.',m:['Hi! Is the Roadster still free Oct 27?','Yes, I can have it ready by 10.']},{n:'Sam K.',m:['Where do I pick up the Camry?']}]};
 const titles={home:'Earnings',vehicles:'Vehicles',bookings:'Bookings',messages:'Messages',payouts:'Payouts',chat:'Chat'};
 let cur='home',chatI=0;
 function go(v){
@@ -418,10 +461,11 @@ function go(v){
   $('#hview').scrollTop=0;if(v==='home')chart();
 }
 function drawHost(){
-  $('#s-vehicles').innerHTML=cars.slice(0,3).map((c,i)=>`<div class="card lrow"><img src="${c.i}" alt=""><div><b>${c.n} ${c.y}</b><p style="font-size:.76rem">${c.l}, $${c.p}/day</p></div><button class="sw ${H.live[i]?'on':''}" data-sw="${i}" aria-label="Toggle listing"></button></div>`).join('')+'<button class="abtn ln" data-toast2="Add vehicle opens here">+ Add vehicle</button>';
-  $('#s-bookings').innerHTML=H.reqs.map(r=>`<div class="card"><div class="rowx"><b>${r.car}</b><span class="chip ${r.s==='new'?'g':r.s==='no'?'g':''}">${r.s==='new'?'Request':r.s==='ok'?'Confirmed':'Declined'}</span></div><div class="rowx" style="margin-top:6px"><span>${r.d}, ${r.who}</span><b>$${r.a}</b></div>${r.s==='new'?`<div class="acts"><button class="abtn sm ln" data-rq="no" data-id="${r.id}">Decline</button><button class="abtn sm" data-rq="ok" data-id="${r.id}">Accept</button></div>`:''}</div>`).join('');
+  $('#s-vehicles').innerHTML=H.veh.map((v,i)=>`<div class="card lrow"><div class="imgw">${SIL}${v.i?`<img src="${v.i}" alt="">`:''}</div><div><b>${esc(v.n)}</b><p style="font-size:.76rem">${esc(v.loc)}, $${v.p}/day</p></div><button class="sw ${v.on?'on':''}" data-sw="${i}" aria-label="Toggle listing"></button></div>`).join('')+
+   (H.adding?`<div class="card"><b>New vehicle</b><input class="field" id="vn" placeholder="Make, model, year" style="margin-top:10px" aria-label="Vehicle name"><input class="field" id="vp" type="number" min="1" placeholder="Daily rate ($)" aria-label="Daily rate"><div class="acts"><button class="abtn sm ln" data-vc>Cancel</button><button class="abtn sm" data-vs>Save</button></div></div>`:'<button class="abtn ln" data-va>+ Add vehicle</button>');
+  $('#s-bookings').innerHTML=H.reqs.map(r=>`<div class="card"><div class="rowx"><b>${r.car}</b><span class="chip ${r.s==='new'||r.s==='no'?'g':''}">${r.s==='new'?'Request':r.s==='ok'?'Confirmed':'Declined'}</span></div><div class="rowx" style="margin-top:6px"><span>${r.d}, ${r.who}</span><b>$${r.a}</b></div>${r.s==='new'?`<div class="acts"><button class="abtn sm ln" data-rq="no" data-id="${r.id}">Decline</button><button class="abtn sm" data-rq="ok" data-id="${r.id}">Accept</button></div>`:''}</div>`).join('');
   const n=H.reqs.filter(r=>r.s==='new').length;$('#dotB').textContent=n;$('#dotB').style.display=n?'grid':'none';
-  $('#s-messages').innerHTML=H.th.map((t,i)=>`<div class="card thread" data-th="${i}"><div class="av">${t.n[0]}</div><div style="flex:1;min-width:0"><b>${t.n}</b><p style="font-size:.76rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${t.m[t.m.length-1]}</p></div></div>`).join('');
+  $('#s-messages').innerHTML=H.th.map((t,i)=>`<div class="card thread" data-th="${i}"><div class="av">${t.n[0]}</div><div style="flex:1;min-width:0"><b>${t.n}</b><p style="font-size:.76rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${t.m[t.m.length-1].txt||t.m[t.m.length-1]}</p></div></div>`).join('');
   $('#s-payouts').innerHTML=`<div class="hero-card"><p>Available balance</p><strong>$${H.bal.toLocaleString('en-US')}</strong><button class="abtn sm" data-pay ${H.paid?'disabled':''}>${H.paid?'Payout requested':'Request payout'}</button></div><div class="sec">History</div>`+H.hist.map(h=>`<div class="card rowx"><span>${h[0]}</span><b>$${h[1]}</b><span class="chip">Paid</span></div>`).join('');
   $('#bal').textContent='$'+H.bal.toLocaleString('en-US');$('#payHome').textContent=H.paid?'Payout requested':'Request payout';$('#payHome').disabled=H.paid;
 }
@@ -433,12 +477,14 @@ $('#hostapp').onclick=e=>{
   const g=e.target.closest('[data-go]');if(g){go(g.dataset.go);return}
   if(e.target.closest('#hback')){go('messages');return}
   if(e.target.closest('#payHome')||e.target.closest('[data-pay]')){pay();return}
-  const sw=e.target.closest('[data-sw]');if(sw){const i=+sw.dataset.sw;H.live[i]=H.live[i]?0:1;drawHost();toast(H.live[i]?'Listing is live':'Listing paused');return}
+  const sw=e.target.closest('[data-sw]');if(sw){const v=H.veh[+sw.dataset.sw];v.on=v.on?0:1;drawHost();toast(v.on?'Listing is live':'Listing paused');return}
+  if(e.target.closest('[data-va]')){H.adding=true;drawHost();return}
+  if(e.target.closest('[data-vc]')){H.adding=false;drawHost();return}
+  if(e.target.closest('[data-vs]')){const n=esc($('#vn').value.trim()),p=Math.round(+$('#vp').value);if(!n||!(p>0)){toast('Add a name and daily rate');return}H.veh.push({n,loc:'Your location',p,i:'',on:1});H.adding=false;drawHost();toast('Vehicle added and live');return}
   const rq=e.target.closest('[data-rq]');if(rq){H.reqs[+rq.dataset.id].s=rq.dataset.rq;drawHost();toast(rq.dataset.rq==='ok'?'Booking confirmed':'Request declined');return}
-  const th=e.target.closest('[data-th]');if(th){chatI=+th.dataset.th;drawChat();go('chat');return}
-  const t2=e.target.closest('[data-toast2]');if(t2)toast(t2.dataset.toast2);
+  const th=e.target.closest('[data-th]');if(th){chatI=+th.dataset.th;drawChat();go('chat')}
 };
-$('#compose').onsubmit=e=>{e.preventDefault();const i=e.target.querySelector('input');if(!i.value.trim())return;H.th[chatI].m.push({txt:i.value.replace(/[<>&]/g,''),me:1});i.value='';drawChat();drawHost();const c=$('#hview');c.scrollTop=c.scrollHeight};
+$('#compose').onsubmit=e=>{e.preventDefault();const i=e.target.querySelector('input');if(!i.value.trim())return;H.th[chatI].m.push({txt:esc(i.value),me:1});i.value='';drawChat();drawHost();const c=$('#hview');c.scrollTop=c.scrollHeight};
 const E={w:[['Mon',64],['Tue',0],['Wed',104],['Thu',89],['Fri',178],['Sat',267],['Sun',130]],m:[['Week 1',420],['Week 2',560],['Week 3',480],['Week 4',612]]};let per='w';
 function count(el,to){const f=+el.dataset.v||0;el.dataset.v=to;const t0=performance.now();(function s(t){const k=Math.min(1,(t-t0)/700),e=1-Math.pow(1-k,3);el.textContent='$'+Math.round(f+(to-f)*e).toLocaleString('en-US');if(k<1)requestAnimationFrame(s)})(t0)}
 function chart(){const d=E[per],mx=Math.max(...d.map(x=>x[1]));$('#mini').innerHTML=d.map((x,i)=>`<i data-i="${i}" style="height:${Math.max(8,x[1]/mx*100)}%"></i>`).join('');count($('#earn'),d.reduce((a,x)=>a+x[1],0));$('#barLbl').textContent='Tap a bar for details';$$('#seg button').forEach(b=>b.classList.toggle('on',b.dataset.p===per))}
@@ -449,13 +495,31 @@ const rate=$('#rate'),days=$('#days');
 function calc(){const r=+rate.value,d=+days.value;$('#rateOut').textContent='$'+r;$('#daysOut').textContent=d;$('#earnOut').textContent='$'+Math.round(r*d*.85).toLocaleString('en-US');[rate,days].forEach(el=>el.style.setProperty('--p',(el.value-el.min)/(el.max-el.min)*100+'%'))}
 rate.oninput=days.oninput=calc;calc();
 
+/* AI chat preview */
+const A={booking:'Find a car, pick your dates, and request to book. Your host replies in the app, and you can message them there.',insurance:'Renter insurance is offered through our partner Bonzah during booking. Hosts keep their own policy, with partner options through Roamly.',payments:'Payments go through a secure payment provider, and you see the full total before you request.',verification:'First-time renters pay a one-time $20 verification fee at checkout. Once approved, future rentals skip it.',rep:'I\'ll connect you with a team member. In the live version this opens a support case with this chat attached, so claims and urgent issues get tracked.'};
+const Q=[['Booking help','booking'],['Insurance','insurance'],['Payments','payments'],['Verification','verification'],['Start a claim','rep'],['Talk to a person','rep']];
+function say(t,me){const m=$('#botM');m.insertAdjacentHTML('beforeend',`<div class="bub ${me?'me':''}">${esc(t)}</div>`);m.scrollTop=m.scrollHeight}
+function ask(key,label){say(label,1);setTimeout(()=>{say(A[key]);if(key==='rep')toast('Support case would be created here')},450)}
+$('#botQ').innerHTML=Q.map(q=>`<button data-k="${q[1]}">${q[0]}</button>`).join('');
+$('#botQ').onclick=e=>{const b=e.target.closest('button');if(b)ask(b.dataset.k,b.textContent)};
+$('#botF').onsubmit=e=>{e.preventDefault();const i=e.target.querySelector('input'),v=i.value.trim();if(!v)return;i.value='';const l=v.toLowerCase();const k=/\b(claim|damage|person|human|agent|rep)\b/.test(l)?'rep':/insur|bonzah|roamly|cover/.test(l)?'insurance':/pay|charge|fee|refund/.test(l)?(/verif|\$20/.test(l)?'verification':'payments'):/verif|\bid\b|identity/.test(l)?'verification':'booking';ask(k,v)};
+say('Hi! I can help with bookings, insurance, payments and verification, or connect you with our team.');
+function bot(o){$('#bot').classList.toggle('open',o)}
+$('#botFab').onclick=()=>bot(!$('#bot').classList.contains('open'));$('#botX').onclick=()=>bot(false);
+
 /* forms */
 const pad=n=>String(n).padStart(2,'0'),iso=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`,t=new Date();
 $('#hs').min=$('#he').min=iso(t);$('#hs').value=iso(new Date(t.getTime()+864e5));$('#he').value=iso(new Date(t.getTime()+2*864e5));
 setDates();
+$('#hs').onchange=()=>{const a=new Date($('#hs').value+'T00:00'),z=new Date($('#he').value+'T00:00');if(!isNaN(a)&&(isNaN(z)||z<=a))$('#he').value=iso(new Date(a.getTime()+864e5));$('#he').min=$('#hs').value;setDates()};
+$('#he').onchange=setDates;
 $('#search').onsubmit=e=>{e.preventDefault();const q=$('#hl').value.toLowerCase(),m=['austin','denver','miami'].find(x=>q.includes(x));city=m||'';render(curF);setDates();$('#cars').scrollIntoView({behavior:'smooth'});toast(m?'Showing cars in '+m[0].toUpperCase()+m.slice(1):'Showing all cars')};
 $('#notify').onsubmit=e=>{e.preventDefault();toast('Thanks! We will email you when parking opens.');e.target.reset()};
 document.addEventListener('click',e=>{const d=e.target.closest('[data-toast]');if(d){e.preventDefault();toast(d.dataset.toast)}});
+
+/* scroll reveal */
+const rv=$$('.head,.step,.tc,.notice,.cta,.split>div,.park>div');rv.forEach(el=>el.classList.add('rv'));
+if('IntersectionObserver'in window){const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.12});rv.forEach(el=>io.observe(el))}else rv.forEach(el=>el.classList.add('in'));
 })();
 </script>
 </body>
