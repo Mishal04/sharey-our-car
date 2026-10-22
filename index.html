@@ -349,6 +349,37 @@ footer h4,footer .logo{color:var(--ink)}footer a:hover{color:var(--ink)}.fb2{bor
   .bot-fab{width:50px;height:50px;transition:opacity .25s,transform .25s}
   .bot-fab.away{opacity:0;pointer-events:none;transform:scale(.8)}
 }
+
+/* Dashboard: fully responsive */
+#dashboard .wbody{grid-template-columns:230px minmax(0,1fr)}
+#dashboard .win{max-width:100%}
+.stats.two{grid-template-columns:1fr 2fr}
+@media(max-width:900px){
+  #dashboard .wbody{grid-template-columns:minmax(0,1fr)}
+  #dashboard .win{border-radius:22px}
+  #dashboard .wbar{padding:10px 14px}
+  #dashboard .side{flex-direction:row;gap:6px;padding:10px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  #dashboard .side::-webkit-scrollbar{display:none}
+  #dashboard .side button{flex:0 0 auto;padding:9px 14px;gap:8px}
+  #dashboard .main{padding:18px 16px 20px}
+  #dashboard .mh{flex-direction:column;align-items:stretch;gap:14px}
+  #dashboard .mh .qa{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  #dashboard .mh .qa button{width:100%;padding:11px 8px}
+  #dashboard .stats,#dashboard .stats.two{grid-template-columns:1fr 1fr;gap:12px}
+  #dashboard .stat b{font-size:1.45rem}
+  #dashboard .panel .qa .fld,#dashboard .panel .qa select{flex:1 1 150px}
+  #dashboard .panel .qa{width:100%}
+  #dashboard .dr{flex-wrap:wrap;gap:8px 12px}
+  #dashboard .dr .g{flex:1 1 150px}
+  #dashboard .bb{max-width:90%}
+}
+@media(max-width:520px){
+  #dashboard .stats.two{grid-template-columns:1fr}
+  #dashboard .head h2{font-size:1.6rem}
+  #dashboard .mh h3{font-size:1.15rem}
+  #dashboard .panel{padding:14px}
+  #dashboard .bigbal{font-size:2rem}
+}
 .win{background:#fff;border:1px solid var(--line);border-radius:28px;box-shadow:0 30px 70px rgba(14,21,18,.12);overflow:hidden}
 .wbar{display:flex;align-items:center;gap:8px;padding:14px 20px;border-bottom:1px solid var(--line);font-size:.78rem;color:var(--muted)}
 .wbar i{width:12px;height:12px;border-radius:50%;background:#ECEEF1}.wbar span{margin-left:14px}
@@ -780,14 +811,14 @@ function draw(){
     (S.adding?`<div class="panel"><b>New vehicle</b><div class="qa" style="margin-top:12px"><input class="fld" id="vn" placeholder="Make, model, year" aria-label="Vehicle name"><input class="fld" id="vp" type="number" min="1" placeholder="Daily rate ($)" aria-label="Daily rate"><button class="p" data-a="saveV">Save</button><button data-a="cancelV">Cancel</button></div></div>`:'');
   }
   if(S.tab==='bk')h=head('Bookings')+`<div class="panel" style="margin-top:0">${S.reqs.map(row).join('')}</div>`;
-  if(S.tab==='earn')h=head('Earnings')+`<div class="stats" style="grid-template-columns:1fr 2fr"><div class="stat" style="cursor:default"><small>Available balance</small><div class="bigbal">${money(S.bal)}</div><button class="bx p" style="padding:10px 16px;border-radius:99px;font-weight:600;font-size:.84rem;background:var(--ink);color:#fff" data-a="payout" ${S.bal?'':'disabled'}>${S.paid&&!S.bal?'Payout requested':'Request payout'}</button></div><div class="stat" style="cursor:default"><small>October by week</small><div class="bars">${[420,560,480,612].map(v=>`<i style="height:${v/612*100}%"></i>`).join('')}</div><div class="rowl"><span>Wk 1</span><span>Wk 2</span><span>Wk 3</span><span>Wk 4</span></div></div></div><div class="panel"><b>Payout history</b>${S.hist.map(x=>`<div class="dr"><div class="g">${x[0]}</div><b>${money(x[1])}</b><span class="st">Paid</span></div>`).join('')}</div>`;
+  if(S.tab==='earn')h=head('Earnings')+`<div class="stats two"><div class="stat" style="cursor:default"><small>Available balance</small><div class="bigbal">${money(S.bal)}</div><button class="bx p" style="padding:10px 16px;border-radius:99px;font-weight:600;font-size:.84rem;background:var(--ink);color:#fff" data-a="payout" ${S.bal?'':'disabled'}>${S.paid&&!S.bal?'Payout requested':'Request payout'}</button></div><div class="stat" style="cursor:default"><small>October by week</small><div class="bars">${[420,560,480,612].map(v=>`<i style="height:${v/612*100}%"></i>`).join('')}</div><div class="rowl"><span>Wk 1</span><span>Wk 2</span><span>Wk 3</span><span>Wk 4</span></div></div></div><div class="panel"><b>Payout history</b>${S.hist.map(x=>`<div class="dr"><div class="g">${x[0]}</div><b>${money(x[1])}</b><span class="st">Paid</span></div>`).join('')}</div>`;
   if(S.tab==='msg'){
     h=head('Messages');
     if(S.open<0)h+=`<div class="panel" style="margin-top:0">${S.th.map((t,i)=>`<button class="dr" style="width:100%;text-align:left" data-a="th:${i}"><div class="g"><b>${t.n}</b><small>${esc(t.m[t.m.length-1][0])}</small></div>${t.u?'<span class="pill n">New</span>':''}</button>`).join('')}</div>`;
     else{const t=S.th[S.open];h+=`<div class="panel" style="margin-top:0"><button class="bx" data-a="back">‹ All messages</button><div class="chatw">${t.m.map(m=>`<div class="bb ${m[1]?'me':''}">${esc(m[0])}</div>`).join('')}</div><div class="qa"><input class="fld" id="mi" placeholder="Message ${esc(t.n)}" style="flex:1" aria-label="Message"><button class="p" data-a="send">Send</button></div></div>`}
   }
   if(S.tab==='ins')h=head('Insurance')+`<div class="insg"><div><h4>Renter coverage</h4><p>Renters verify and insure through our partner Bonzah at checkout.</p></div><div><h4>Your host policy</h4><p>Keep the insurance your state requires for your vehicle while it is listed.</p></div><div><h4>Partner options</h4><p>Explore host coverage options through Roamly.</p></div></div><div class="note2">Share Your Car does not verify or guarantee every host's insurance coverage. Hosts remain responsible for keeping an appropriate, valid policy.</div>`;
-  if(S.tab==='park')h=head('Parking')+`<div class="panel" style="margin-top:0"><span class="st g">Coming with our first location</span><p style="margin:12px 0">Soon you can reserve a secure space at our locations so renters can pick up with staff on hand. Indicative rate: $10 to $20 per visit, final pricing to be announced.</p><div class="qa"><input class="fld" id="pe" type="email" placeholder="Email me when parking opens" style="min-width:240px" aria-label="Email"><button class="p" data-a="notify">Notify me</button></div></div>`;
+  if(S.tab==='park')h=head('Parking')+`<div class="panel" style="margin-top:0"><span class="st g">Coming with our first location</span><p style="margin:12px 0">Soon you can reserve a secure space at our locations so renters can pick up with staff on hand. Indicative rate: $10 to $20 per visit, final pricing to be announced.</p><div class="qa"><input class="fld" id="pe" type="email" placeholder="Email me when parking opens" style="flex:1 1 200px" aria-label="Email"><button class="p" data-a="notify">Notify me</button></div></div>`;
   $('#dmain').innerHTML=h;
 }
 function pay(){if(!S.bal){toast('Nothing to pay out yet');return}S.hist.unshift(['Today',S.bal]);S.bal=0;S.paid=true;toast('Payout requested. Funds are sent to your payout account.')}
