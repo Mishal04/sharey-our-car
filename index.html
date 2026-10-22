@@ -337,6 +337,18 @@ footer h4,footer .logo{color:var(--ink)}footer a:hover{color:var(--ink)}.fb2{bor
 #dashboard .stat b{font-size:1.5rem}
 #dashboard .panel{margin-top:16px;padding:14px 16px}
 @media(max-width:900px){#dashboard{display:block;padding:80px 0 50px}#dashboard .wrap{width:92%}#dashboard .wbody{height:auto;min-height:420px}#dashboard .main{overflow:visible;padding:18px}}
+
+/* Mobile: show the phone as a real framed device so it reads clearly */
+@media(max-width:520px){
+  .dev{width:min(100%,350px);height:min(680px,calc(100svh - 150px));margin:0 auto;padding:8px;border-radius:42px;background:linear-gradient(145deg,#32364A,#0A0B10 60%);box-shadow:0 30px 60px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.1)}
+  .dev::before{display:block;inset:-30px}
+  .island{display:block;top:17px;width:76px;height:22px}
+  .status{display:flex;padding:12px 24px 0;flex:0 0 38px}
+  .app{border-radius:34px;border:0}
+  .bar h4{font-size:1.1rem}
+  .bot-fab{width:50px;height:50px;transition:opacity .25s,transform .25s}
+  .bot-fab.away{opacity:0;pointer-events:none;transform:scale(.8)}
+}
 .win{background:#fff;border:1px solid var(--line);border-radius:28px;box-shadow:0 30px 70px rgba(14,21,18,.12);overflow:hidden}
 .wbar{display:flex;align-items:center;gap:8px;padding:14px 20px;border-bottom:1px solid var(--line);font-size:.78rem;color:var(--muted)}
 .wbar i{width:12px;height:12px;border-radius:50%;background:#ECEEF1}.wbar span{margin-left:14px}
@@ -801,6 +813,10 @@ $('#dashboard').addEventListener('click',e=>{
 });
 $('#dashboard').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='mi'){e.preventDefault();e.target.closest('.panel').querySelector('[data-a="send"]').click()}});
 draw();
+/* on phones, tuck the support button away while a phone preview is on screen so it never covers the tab bar */
+(function(){const fab=$('#botFab');if(!fab||!('IntersectionObserver'in window))return;const seen=new Set();
+const io=new IntersectionObserver(es=>{es.forEach(x=>x.isIntersecting?seen.add(x.target):seen.delete(x.target));fab.classList.toggle('away',seen.size>0)},{threshold:.2});
+['#rent','#hostapp'].forEach(s=>{const d=$(s);if(d)io.observe(d.closest('.dev'))})})();
 })();
 </script>
 </body>
